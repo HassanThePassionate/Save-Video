@@ -64,6 +64,7 @@
 .ico {
   display: none;
 }
+
 @media screen and (max-width: 1170px) {
   .nav {
     display: none;

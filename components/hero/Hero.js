@@ -32,7 +32,7 @@ const Hero = () => {
 
   return (
     <div className=" max-w-[768px] mx-auto p-4 my-12">
-      <div className="box p-[40px] rounded-lg shadow-lg border-[#dadada] border dark:border-[#333]">
+      <div className="box p-[30px] sm:p-[40px] rounded-lg shadow-lg border-[#dadada] border dark:border-[#333]">
         <h1 className=" text-4xl font-bold ">Youtube Video Downloader</h1>
         <p className="text-lg text-[#71717a] mb-6 mt-1">
           A carousel with motion and swipe build using Embla.
@@ -44,18 +44,8 @@ const Hero = () => {
         <h4 className="pt-[32px] pb-4 text-[16px] font-semibold">
           People with access
         </h4>
-        <div className="grid grid-cols-2 items-center pb-[80px] ">
-          <div>
-            <div className="flex items-center gap-4 mb-[30px]">
-              <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
-              <div>
-                <h5 className="text-[16px] font-semibold">Olivia Martin</h5>
-                <Badge variant="outline">8:47</Badge>
-              </div>
-            </div>
+        <div className="grid pb-[20px]  sm:pb-[80px] ">
+          <div className="flex items-center justify-between gap-5 flex-wrap mb-[30px]">
             <div className="flex items-center gap-4">
               <Avatar>
                 <AvatarImage src="https://github.com/shadcn.png" />
@@ -66,9 +56,7 @@ const Hero = () => {
                 <Badge variant="outline">8:47</Badge>
               </div>
             </div>
-          </div>
-          <div>
-            <div className="flex items-center gap-4 mb-[30px]">
+            <div className="flex items-center gap-4 ">
               <div className="flex items-center ">
                 <Button className="rounded-r-none">
                   <Download className="h-4 w-4 " />
@@ -208,6 +196,18 @@ const Hero = () => {
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
+            </div>
+          </div>
+          <div className="flex items-center justify-between gap-5 flex-wrap">
+            <div className="flex items-center gap-4">
+              <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+              <div>
+                <h5 className="text-[16px] font-semibold">Olivia Martin</h5>
+                <Badge variant="outline">8:47</Badge>
+              </div>
             </div>
             <div className="flex items-center gap-4 ">
               <div className="flex items-center ">
