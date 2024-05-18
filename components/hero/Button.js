@@ -12,12 +12,7 @@ const Button = () => {
           building your next project with Tairo today.
         </p>
         <button className="px-7 py-3 bg-black text-white flex items-center gap-2 text-base font-semibold rounded-md mb-[5px] ">
-          <Image
-            src="https://save-video-two.vercel.app/_next/image?url=%2Fchrome.png&w=16&q=75"
-            alt="img"
-            width={12}
-            height={12}
-          />
+          <Image src="/Chrome.png" alt="img" width={20} height={20} />
           Add to chorme
         </button>
         <p className="text-sm text-[#9ca3af]">
