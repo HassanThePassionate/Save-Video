@@ -1,30 +1,35 @@
-import React from "react";
+"use client";
+import React, { useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Download, Music, Scissors } from "lucide-react";
+import { ChevronDown, Download, Music, Scissors } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuGroup,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
-  Command,
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-  CommandShortcut,
-} from "@/components/ui/command";
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const Hero = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prevState) => !prevState);
+  };
+
   return (
     <div className=" max-w-[768px] mx-auto p-4 my-12">
       <div className="box p-[40px] rounded-lg shadow-lg border-[#dadada] border dark:border-[#333]">
@@ -71,25 +76,138 @@ const Hero = () => {
                 <DropdownMenu>
                   <DropdownMenuTrigger>
                     <Button variant="outline" className="rounded-l-none">
-                      Select the Image
+                      Select role
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                    <DropdownMenuItem>Billing</DropdownMenuItem>
-                    <DropdownMenuItem>Team</DropdownMenuItem>
-                    <DropdownMenuItem>Subscription</DropdownMenuItem>
+                  <DropdownMenuContent className="w-[17.5rem] mr-[-4.1rem]">
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem className="justify-between">
+                        <p>
+                          MP4
+                          <span className="ml-2">720p</span>
+                        </p>
+                        HD
+                        <DropdownMenuShortcut className="ml-0">
+                          64.6MB
+                        </DropdownMenuShortcut>
+                      </DropdownMenuItem>
+
+                      <DropdownMenuItem className="justify-between">
+                        <p>
+                          MP4
+                          <span className="ml-2">360p</span>
+                        </p>
+
+                        <DropdownMenuShortcut className="ml-0">
+                          17.7MB
+                        </DropdownMenuShortcut>
+                      </DropdownMenuItem>
+
+                      <DropdownMenuItem className="justify-between">
+                        <p>
+                          MP4
+                          <span className="ml-2">480p</span>
+                        </p>
+
+                        <DropdownMenuShortcut className="ml-0">
+                          39.2MB
+                        </DropdownMenuShortcut>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="justify-between">
+                        <p>
+                          MP4
+                          <span className="ml-2">1080p</span>
+                        </p>
+                        HD
+                        <DropdownMenuShortcut className="ml-0">
+                          185.5MB
+                        </DropdownMenuShortcut>
+                      </DropdownMenuItem>
+                      <div className="relative" ref={dropdownRef}>
+                        {!isDropdownOpen ? (
+                          <button
+                            onClick={toggleDropdown}
+                            className="hover:bg-secondary text-secondary-foreground flex justify-between items-center text-xs w-full py-1 px-2"
+                          >
+                            More <ChevronDown className="w-4 h-4" />
+                          </button>
+                        ) : (
+                          <div className="w-full">
+                            <DropdownMenuItem className="justify-between">
+                              <p>
+                                MP4
+                                <span className="ml-2">720p</span>
+                              </p>
+                              HD
+                              <DropdownMenuShortcut className="ml-0">
+                                64.6MB
+                              </DropdownMenuShortcut>
+                            </DropdownMenuItem>
+
+                            <DropdownMenuItem className="justify-between">
+                              <p>
+                                MP4
+                                <span className="ml-2">360p</span>
+                              </p>
+
+                              <DropdownMenuShortcut className="ml-0">
+                                17.7MB
+                              </DropdownMenuShortcut>
+                            </DropdownMenuItem>
+
+                            <DropdownMenuItem className="justify-between">
+                              <p>
+                                MP4
+                                <span className="ml-2">480p</span>
+                              </p>
+
+                              <DropdownMenuShortcut className="ml-0">
+                                39.2MB
+                              </DropdownMenuShortcut>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem className="justify-between">
+                              <p>
+                                MP4
+                                <span className="ml-2">1080p</span>
+                              </p>
+                              HD
+                              <DropdownMenuShortcut className="ml-0">
+                                185.5MB
+                              </DropdownMenuShortcut>
+                            </DropdownMenuItem>
+                          </div>
+                        )}
+                      </div>
+                    </DropdownMenuGroup>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
-              <Button variant="outline" size="icon">
-                <Scissors className="h-4 w-4 " />
-              </Button>
-              <Button variant="outline" size="icon">
-                <Music className="h-4 w-4 " />
-              </Button>
+
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Button variant="outline" size="icon">
+                      <Scissors className="h-4 w-4 " />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Trim Video</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Button variant="outline" size="icon">
+                      <Music className="h-4 w-4 " />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Music</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
             <div className="flex items-center gap-4 ">
               <div className="flex items-center ">
@@ -99,25 +217,138 @@ const Hero = () => {
                 <DropdownMenu>
                   <DropdownMenuTrigger>
                     <Button variant="outline" className="rounded-l-none">
-                      Select the Image
+                      Select role
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                    <DropdownMenuItem>Billing</DropdownMenuItem>
-                    <DropdownMenuItem>Team</DropdownMenuItem>
-                    <DropdownMenuItem>Subscription</DropdownMenuItem>
+                  <DropdownMenuContent className="w-[17.5rem] mr-[-4.1rem]">
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem className="justify-between">
+                        <p>
+                          MP4
+                          <span className="ml-2">720p</span>
+                        </p>
+                        HD
+                        <DropdownMenuShortcut className="ml-0">
+                          64.6MB
+                        </DropdownMenuShortcut>
+                      </DropdownMenuItem>
+
+                      <DropdownMenuItem className="justify-between">
+                        <p>
+                          MP4
+                          <span className="ml-2">360p</span>
+                        </p>
+
+                        <DropdownMenuShortcut className="ml-0">
+                          17.7MB
+                        </DropdownMenuShortcut>
+                      </DropdownMenuItem>
+
+                      <DropdownMenuItem className="justify-between">
+                        <p>
+                          MP4
+                          <span className="ml-2">480p</span>
+                        </p>
+
+                        <DropdownMenuShortcut className="ml-0">
+                          39.2MB
+                        </DropdownMenuShortcut>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="justify-between">
+                        <p>
+                          MP4
+                          <span className="ml-2">1080p</span>
+                        </p>
+                        HD
+                        <DropdownMenuShortcut className="ml-0">
+                          185.5MB
+                        </DropdownMenuShortcut>
+                      </DropdownMenuItem>
+                      <div className="relative" ref={dropdownRef}>
+                        {!isDropdownOpen ? (
+                          <button
+                            onClick={toggleDropdown}
+                            className="hover:bg-secondary text-secondary-foreground flex justify-between items-center text-xs w-full py-1 px-2"
+                          >
+                            More <ChevronDown className="w-4 h-4" />
+                          </button>
+                        ) : (
+                          <div className="w-full">
+                            <DropdownMenuItem className="justify-between">
+                              <p>
+                                MP4
+                                <span className="ml-2">720p</span>
+                              </p>
+                              HD
+                              <DropdownMenuShortcut className="ml-0">
+                                64.6MB
+                              </DropdownMenuShortcut>
+                            </DropdownMenuItem>
+
+                            <DropdownMenuItem className="justify-between">
+                              <p>
+                                MP4
+                                <span className="ml-2">360p</span>
+                              </p>
+
+                              <DropdownMenuShortcut className="ml-0">
+                                17.7MB
+                              </DropdownMenuShortcut>
+                            </DropdownMenuItem>
+
+                            <DropdownMenuItem className="justify-between">
+                              <p>
+                                MP4
+                                <span className="ml-2">480p</span>
+                              </p>
+
+                              <DropdownMenuShortcut className="ml-0">
+                                39.2MB
+                              </DropdownMenuShortcut>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem className="justify-between">
+                              <p>
+                                MP4
+                                <span className="ml-2">1080p</span>
+                              </p>
+                              HD
+                              <DropdownMenuShortcut className="ml-0">
+                                185.5MB
+                              </DropdownMenuShortcut>
+                            </DropdownMenuItem>
+                          </div>
+                        )}
+                      </div>
+                    </DropdownMenuGroup>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>
-              <Button variant="outline" size="icon">
-                <Scissors className="h-4 w-4 " />
-              </Button>
-              <Button variant="outline" size="icon">
-                <Music className="h-4 w-4 " />
-              </Button>
+
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Button variant="outline" size="icon">
+                      <Scissors className="h-4 w-4 " />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Trim Video</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Button variant="outline" size="icon">
+                      <Music className="h-4 w-4 " />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Music</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
           </div>
         </div>
