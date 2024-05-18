@@ -5,10 +5,12 @@ import Article from "@/components/hero/Article";
 import Accordin from "@/components/hero/Accordin";
 import Button from "@/components/hero/Button";
 import Footer from "@/components/footer/Footer";
+
 const page = () => {
   return (
     <>
       <Navbar />
+
       <Hero />
       <Article />
       <Accordin />

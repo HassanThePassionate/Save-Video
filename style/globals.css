@@ -50,7 +50,7 @@
 }
 
 .container {
-  @apply w-full max-w-[1280] mx-auto px-4;
+  @apply w-full max-w-[1536] mx-auto px-4;
 }
 @layer base {
   * {
@@ -58,5 +58,20 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+.ico {
+  display: none;
+}
+@media screen and (max-width: 1170px) {
+  .nav {
+    display: none;
+  }
+  .Desk_logo {
+    display: none;
+  }
+  .ico {
+    display: block;
   }
 }
