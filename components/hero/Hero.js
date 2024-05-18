@@ -31,8 +31,8 @@ const Hero = () => {
   };
 
   return (
-    <div className=" max-w-[768px] mx-auto p-4 my-12">
-      <div className="box p-[30px] sm:p-[40px] rounded-lg shadow-lg border-[#dadada] border dark:border-[#333]">
+    <div className=" max-w-[768px] sm:mx-auto p-4 my-12">
+      <div className="box  sm:p-[40px] rounded-lg sm:shadow-lg sm:border-[#dadada] sm:border dark:border-[#333]">
         <h1 className=" text-4xl font-bold ">Youtube Video Downloader</h1>
         <p className="text-lg text-[#71717a] mb-6 mt-1">
           A carousel with motion and swipe build using Embla.
