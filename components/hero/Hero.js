@@ -33,13 +33,21 @@ const Hero = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const [loading, setLoading] = useState(false);
-  const [url, setUrl] = useState("");
+  const [link, setLink] = useState("");
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
   };
-  const changeHandler = (e) => {
+  const pasteLink = async () => {
+    const text = await navigator.clipboard.readText();
+    setLink(text);
     setLoading(true);
-    setUrl(e.target.value);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000); // Wait for 2 seconds
+  };
+  const inputHandler = (e) => {
+    setLoading(true);
+    setLink(e.target.value);
     setTimeout(() => {
       setLoading(false);
     }, 2000); // Wait for 2 seconds
@@ -56,11 +64,11 @@ const Hero = () => {
           <Input
             type="url"
             placeholder="Enter URL"
-            value={url}
-            onChange={changeHandler}
+            value={link}
+            onChange={inputHandler}
             className="!h-10"
           />
-          <Button disabled={loading} variant={"secondary"}>
+          <Button disabled={loading} onClick={pasteLink} variant={"secondary"}>
             {loading ? (
               <>
                 <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
