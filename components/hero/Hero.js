@@ -60,7 +60,7 @@ const Hero = () => {
         <p className="text-lg text-[#71717a] mb-6 mt-1">
           A carousel with motion and swipe build using Embla.
         </p>
-        <div className="flex w-full items-center space-x-2 px-0 sm:pr-10">
+        <div className="flex w-full items-center space-x-4 px-0 ">
           <Input
             type="url"
             placeholder="Enter URL"
@@ -82,7 +82,7 @@ const Hero = () => {
         <h4 className="pt-[32px] pb-4 text-[16px] font-semibold">
           People with access
         </h4>
-        <div className="grid pb-[20px] sm:pb-[80px] ">
+        <div className="grid   ">
           {loading ? (
             <>
               <Blur />
