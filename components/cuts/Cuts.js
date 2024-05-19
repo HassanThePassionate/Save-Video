@@ -47,18 +47,9 @@ const Cuts = () => {
     const video = videoRef.current;
 
     if (video) {
-      video.addEventListener("loadedmetadata", () => {
-        const videoDuration = video.duration;
-        setDuration(formatTime(videoDuration));
-        setSliderValue([0, videoDuration]);
-      });
-
-      video.addEventListener("timeupdate", timeUpdate);
-
-      return () => {
-        video.removeEventListener("loadedmetadata", () => {});
-        video.removeEventListener("timeupdate", timeUpdate);
-      };
+      const videoDuration = video.duration;
+      setDuration(formatTime(videoDuration));
+      setSliderValue([0, videoDuration]);
     }
   }, []);
 
@@ -74,7 +65,6 @@ const Cuts = () => {
     setSliderValue(value);
     videoRef.current.currentTime = value[0];
     setUpdate(formatTime(value[0]));
-    setDuration(formatTime(value[1] - value[0]));
   };
 
   const videoPlay = () => {
@@ -95,31 +85,29 @@ const Cuts = () => {
     videoRef.current.muted = !mute;
   };
 
-  const incrementDuration = () => {
-    const currentDuration = videoRef.current.duration;
-    videoRef.current.currentTime = Math.min(
-      videoRef.current.currentTime + 1,
-      currentDuration
-    );
+  const updateplus = () => {
+    videoRef.current.currentTime += 1;
     setUpdate(formatTime(videoRef.current.currentTime));
-    setSliderValue([
-      sliderValue[0],
-      Math.min(sliderValue[1] + 1, currentDuration),
-    ]);
-    setDuration(formatTime(sliderValue[1] + 1 - sliderValue[0]));
   };
 
-  const decrementDuration = () => {
-    const newEndTime = Math.max(sliderValue[1] - 1, 0);
-    videoRef.current.currentTime = Math.min(
-      videoRef.current.currentTime,
-      newEndTime
-    );
+  const dec = () => {
+    videoRef.current.currentTime -= 1;
+    if (videoRef.current.currentTime <= 0) {
+      videoRef.current.currentTime = 0;
+    }
     setUpdate(formatTime(videoRef.current.currentTime));
-    setSliderValue([sliderValue[0], newEndTime]);
-    setDuration(formatTime(newEndTime - sliderValue[0]));
   };
-
+  const increment = () => {
+    videoRef.current.currentTime += 10;
+    setDuration(formatTime(videoRef.current.currentTime));
+  };
+  const decrement = () => {
+    videoRef.current.currentTime -= 10;
+    if (videoRef.current.currentTime <= 0) {
+      videoRef.current.currentTime = 0;
+    }
+    setDuration(formatTime(videoRef.current.currentTime));
+  };
   return (
     <div>
       <main className="max-w-3xl px-4 mx-auto my-4 md:my-12 space-y-8">
@@ -159,10 +147,10 @@ const Cuts = () => {
               src="/video.mp4"
               controls={false}
               className="h-full w-full rounded-md"
+              onTimeUpdate={timeUpdate}
               onLoadedMetadata={() => {
-                const videoDuration = videoRef.current.duration;
-                setDuration(formatTime(videoDuration));
-                setSliderValue([0, videoDuration]);
+                setDuration(formatTime(videoRef.current.duration));
+                setSliderValue([0, videoRef.current.duration]);
               }}
             />
             <div className="progress bg-red-500 h-[20px] w-full relative">
@@ -282,18 +270,10 @@ const Cuts = () => {
                   value={update}
                   readOnly
                 />
-                <Button
-                  size="icon"
-                  onClick={decrementDuration}
-                  className="w-12 h-8"
-                >
+                <Button size="icon" onClick={dec} className="w-12 h-8">
                   <Minus className="w-4 h-4" />
                 </Button>
-                <Button
-                  size="icon"
-                  onClick={incrementDuration}
-                  className="w-12 h-8"
-                >
+                <Button size="icon" onClick={updateplus} className="w-12 h-8">
                   <Plus className="w-4 h-4" />
                 </Button>
               </div>
@@ -306,18 +286,10 @@ const Cuts = () => {
                   value={duration}
                   readOnly
                 />
-                <Button
-                  size="icon"
-                  onClick={decrementDuration}
-                  className="w-12 h-8"
-                >
+                <Button size="icon" onClick={dec} className="w-12 h-8">
                   <Minus className="w-4 h-4" />
                 </Button>
-                <Button
-                  size="icon"
-                  onClick={incrementDuration}
-                  className="w-12 h-8"
-                >
+                <Button size="icon" onClick={updateplus} className="w-12 h-8">
                   <Plus className="w-4 h-4" />
                 </Button>
               </div>
