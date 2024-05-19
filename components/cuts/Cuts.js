@@ -279,9 +279,7 @@ const Cuts = () => {
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <Button className="h-10">
-                {/* Add your download functionality here */}
-              </Button>
+              <Button className="h-10">Download</Button>
               <TooltipProvider delayDuration={0}>
                 <Tooltip>
                   <TooltipTrigger asChild>
