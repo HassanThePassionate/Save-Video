@@ -64,6 +64,7 @@ const Cuts = () => {
   const handleSliderChange = (value) => {
     setSliderValue(value);
     videoRef.current.currentTime = value[0];
+    setUpdate(formatTime(value[0]));
   };
 
   const videoPlay = () => {
@@ -86,10 +87,15 @@ const Cuts = () => {
 
   const updateplus = () => {
     videoRef.current.currentTime += 1;
+    setUpdate(formatTime(videoRef.current.currentTime));
   };
 
   const dec = () => {
     videoRef.current.currentTime -= 1;
+    if (videoRef.current.currentTime <= 0) {
+      videoRef.current.currentTime = 0;
+    }
+    setUpdate(formatTime(videoRef.current.currentTime));
   };
 
   return (
