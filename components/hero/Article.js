@@ -2,7 +2,7 @@ import React from "react";
 
 const Article = () => {
   return (
-    <div className=" max-w-[768px] sm:mx-auto p-4 my-12">
+    <div className=" max-w-[768px] sm:mx-auto  my-12">
       <div className="box  sm:p-[40px] rounded-lg sm:shadow-lg sm:border-[#dadada] sm:border dark:border-[#333]">
         <h2 className=" pb-2 border-[#dadada] border-b text-3xl font-semibold dark:border-[#333]">
           The King&apos;s Plan

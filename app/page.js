@@ -2,7 +2,7 @@ import React from "react";
 import Hero from "@/components/hero/Hero";
 import Article from "@/components/hero/Article";
 import Accordin from "@/components/hero/Accordin";
-import Button from "@/components/hero/Button";
+import Btn from "@/components/hero/Btn";
 
 const page = () => {
   return (
@@ -10,7 +10,7 @@ const page = () => {
       <Hero />
       <Article />
       <Accordin />
-      <Button />
+      <Btn />
     </>
   );
 };
