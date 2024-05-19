@@ -65,6 +65,7 @@ const Cuts = () => {
     setSliderValue(value);
     videoRef.current.currentTime = value[0];
     setUpdate(formatTime(value[0]));
+    setDuration(formatTime(value[1]));
   };
 
   const videoPlay = () => {
@@ -97,17 +98,7 @@ const Cuts = () => {
     }
     setUpdate(formatTime(videoRef.current.currentTime));
   };
-  const increment = () => {
-    videoRef.current.currentTime += 10;
-    setDuration(formatTime(videoRef.current.currentTime));
-  };
-  const decrement = () => {
-    videoRef.current.currentTime -= 10;
-    if (videoRef.current.currentTime <= 0) {
-      videoRef.current.currentTime = 0;
-    }
-    setDuration(formatTime(videoRef.current.currentTime));
-  };
+
   return (
     <div>
       <main className="max-w-3xl px-4 mx-auto my-4 md:my-12 space-y-8">
