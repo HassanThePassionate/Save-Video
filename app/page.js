@@ -12,7 +12,6 @@ const page = () => {
       <Article />
       <Accordin />
       <Btn />
-      <Pop />
     </>
   );
 };

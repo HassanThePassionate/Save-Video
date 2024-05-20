@@ -24,6 +24,7 @@ import { MultiSlider } from "../ui/slider";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { Button, buttonVariants } from "../ui/button";
 import Btn from "../hero/Btn";
+import Pop from "../hero/Pop";
 
 const Cuts = () => {
   const [play, setPlay] = useState(false);
@@ -347,7 +348,7 @@ const Cuts = () => {
               </div>
             </div>
             <div className='flex items-center gap-4'>
-              <Button className='h-10'>Download</Button>
+              <Pop />
               <TooltipProvider delayDuration={0}>
                 <Tooltip>
                   <TooltipTrigger asChild>

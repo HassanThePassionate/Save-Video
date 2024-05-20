@@ -12,11 +12,14 @@ import {
 } from "@/components/ui/alert-dialog";
 import Image from "next/image";
 import { RxCross2 } from "react-icons/rx";
+import { Button } from "../ui/button";
 const Pop = () => {
   return (
     <div>
       <AlertDialog>
-        <AlertDialogTrigger>Open</AlertDialogTrigger>
+        <AlertDialogTrigger>
+          <Button>Download</Button>
+        </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader className='relative'>
             <AlertDialogTitle>
