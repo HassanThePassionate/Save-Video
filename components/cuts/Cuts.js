@@ -118,7 +118,6 @@ const Cuts = () => {
       }
     }
   };
-
   return (
     <div>
       <main className='max-w-3xl px-4 mx-auto my-4 md:my-12 space-y-8'>
@@ -167,7 +166,7 @@ const Cuts = () => {
               />
             </div>
             <div
-              className='progress bg-green-500 h-[20px] w-full relative mt-4 rounded-full overflow-hidden'
+              className='progress bg-green-500 h-[20px] w-full relative mt-4 rounded-full overflow-hidden cursor-pointer'
               onClick={handleProgressBarClick}
             >
               <div
@@ -208,7 +207,7 @@ const Cuts = () => {
           <div className='flex items-center flex-col gap-4 text-center px-0 sm:px-10'>
             <MultiSlider
               defaultValue={sliderValue}
-              min={0}
+              min={10}
               max={duration}
               value={sliderValue}
               onValueChange={handleSliderChange}
