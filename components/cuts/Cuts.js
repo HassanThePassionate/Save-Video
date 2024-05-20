@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Article from "../hero/Article";
 import Accordin from "../hero/Accordin";
+import ReactPlayer from "react-player";
 import {
   Tooltip,
   TooltipContent,
@@ -28,134 +29,78 @@ import Pop from "../hero/Pop";
 
 const Cuts = () => {
   const [play, setPlay] = useState(false);
-  const [mute, setMute] = useState();
+  const [mute, setMute] = useState(false);
   const videoRef = useRef(null);
-  const [duration, setDuration] = useState("00:00:00");
-  const [update, setUpdate] = useState("00:00:00");
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
   const [sliderValue, setSliderValue] = useState([0, 0]);
-  const [playbtn, setPlaybtn] = useState(false);
-
+  // const [startpoint, setStartpoint] = useState(false);
   const formatTime = (time) => {
     const hours = Math.floor(time / 3600);
     const minutes = Math.floor((time / 60) % 60);
     const seconds = Math.floor(time % 60);
-
     return `${hours.toString().padStart(2, "0")}:${minutes
       .toString()
       .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   };
   useEffect(() => {
-    const onPlayerReady = (event) => {
-      const videoDuration = event.target.getDuration();
-      setDuration(formatTime(videoDuration));
-      setSliderValue([0, videoDuration]);
-    };
-
-    const onPlayerStateChange = (event) => {
-      if (event.data === YT.PlayerState.PLAYING) {
-        setPlay(true);
-        setPlaybtn(true);
-      } else {
-        setPlay(false);
+    if (play && currentTime >= sliderValue[1]) {
+      setPlay(false);
+      if (videoRef.current) {
+        videoRef.current.seekTo(sliderValue[0]);
       }
-    };
-
-    const tag = document.createElement("script");
-    tag.src = "https://www.youtube.com/iframe_api";
-    const firstScriptTag = document.getElementsByTagName("script")[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-    window.onYouTubeIframeAPIReady = () => {
-      videoRef.current = new YT.Player("video-player", {
-        events: {
-          onReady: onPlayerReady,
-          onStateChange: onPlayerStateChange,
-        },
-      });
-    };
-  }, []);
-
-  const timeUpdate = () => {
-    const currentTime = videoRef.current.getCurrentTime();
-    // setUpdate(formatTime(currentTime));
-
-    const progress = (currentTime / videoRef.current.getDuration()) * 100;
-    document.getElementById("cut-progress").style.width = `${progress}%`;
+    }
+  }, [currentTime, play, sliderValue]);
+  const handleDuration = (duration) => {
+    setDuration(duration);
+    setSliderValue([0, duration]);
   };
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (videoRef.current && videoRef.current.getCurrentTime) {
-        timeUpdate();
-      }
-    }, 1000);
 
-    return () => clearInterval(interval);
-  }, []);
+  const handleProgress = (progress) => {
+    setCurrentTime(progress.playedSeconds);
+  };
+
   const handleSliderChange = (value) => {
     setSliderValue(value);
-    setUpdate(formatTime(value[0]));
-    setDuration(formatTime(value[1]));
-  };
-  const vidoPlay = () => {
-    if (playbtn === true) {
-      setPlay(!play);
-      if (play) {
-        videoRef.current.pauseVideo();
-      } else {
-        videoRef.current.playVideo();
-      }
+    if (videoRef.current) {
+      videoRef.current.seekTo(value[0]);
     }
   };
 
+  const togglePlay = () => {
+    setPlay((prevPlay) => !prevPlay);
+  };
+
+  const toggleMute = () => {
+    setMute((prevMute) => !prevMute);
+  };
+
   const replay = () => {
-    if (playbtn === true) {
+    if (videoRef.current) {
       videoRef.current.seekTo(0);
     }
   };
 
-  const muted = () => {
-    if (playbtn === true) {
-      setMute(!mute);
-      videoRef.current.mute();
-    }
-    if (mute) {
-      videoRef.current.unMute();
-    }
-  };
-  const updateplus = () => {
-    const videoDuration = videoRef.current.getDuration();
-    const currentEndTime = sliderValue[1];
-    const newEndTime = Math.min(currentEndTime + 1, videoDuration);
-
-    setSliderValue([sliderValue[0], newEndTime]);
-    setDuration(formatTime(newEndTime));
+  const incrementStart = () => {
+    setSliderValue(([start, end]) => [Math.min(start + 1, end), end]);
   };
 
-  const dec = () => {
-    const currentEndTime = sliderValue[1];
-    const newEndTime = Math.max(currentEndTime - 1, 1);
-
-    setSliderValue([sliderValue[0], newEndTime]);
-    setDuration(formatTime(newEndTime));
+  const decrementStart = () => {
+    setSliderValue(([start, end]) => [Math.max(start - 1, 0), end]);
   };
-  const minus = () => {
-    const currentStartTime = sliderValue[0];
-    const newStartTime = Math.max(currentStartTime - 1, 1);
 
-    setSliderValue([newStartTime, sliderValue[1]]);
-    setUpdate(formatTime(newStartTime));
+  const incrementEnd = () => {
+    setSliderValue(([start, end]) => [start, Math.min(end + 1, duration)]);
   };
-  const plus = () => {
-    const currentStartTime = sliderValue[0];
-    const newStartTime = Math.max(currentStartTime + 1, 1);
 
-    setSliderValue([newStartTime, sliderValue[1]]);
-    setUpdate(formatTime(newStartTime));
+  const decrementEnd = () => {
+    setSliderValue(([start, end]) => [start, Math.max(end - 1, start)]);
   };
+
   return (
     <div>
       <main className='max-w-3xl px-4 mx-auto my-4 md:my-12 space-y-8'>
-        <Card className=' '>
+        <Card>
           <CardHeader className='px-0 sm:px-10 md:pt-10 flex flex-row items-center gap-4'>
             <TooltipProvider delayDuration={0}>
               <Tooltip>
@@ -187,52 +132,44 @@ const Cuts = () => {
           </CardHeader>
           <div className='px-0 sm:px-10 pb-10'>
             <div className='relative h-0 pb-[56.25%]'>
-              <iframe
-                id='video-player'
-                width='560'
-                height='315'
-                src='https://www.youtube.com/embed/RD4JPW6mKaU?enablejsapi=1'
-                title='YouTube video player'
-                allowFullScreen
-                className='absolute top-0 left-0 w-full h-full'
-              ></iframe>
+              <ReactPlayer
+                url='https://www.youtube.com/embed/RD4JPW6mKaU'
+                ref={videoRef}
+                playing={play}
+                muted={mute}
+                onDuration={handleDuration}
+                onProgress={handleProgress}
+                width='100%'
+                height='100%'
+                className='absolute top-0 left-0'
+              />
             </div>
-
-            <div className='progress bg-yellow-500 h-[20px] w-full relative mt-4 rounded-full overflow-hidden'>
+            <div className='progress bg-green-500 h-[20px] w-full relative mt-4 rounded-full overflow-hidden'>
               <div
-                className='progress-bar progress-bar-primary progress-bar-striped h-full bg-blue-500 absolute left-0 delay-300 transition-all duration-400 '
+                className='progress-bar progress-bar-primary progress-bar-striped h-full bg-red-500 absolute left-0 delay-300 transition-all duration-400'
                 id='cut-left'
                 style={{
-                  width: `${
-                    (sliderValue[0] / (videoRef.current?.getDuration() || 1)) *
-                    100
-                  }%`,
-                  transition: "width 0.3s ease-in-out",
-                  transitionDelay: "0.3s", // Add a delay of 0.3 seconds
+                  width: `${(sliderValue[0] / (duration || 1)) * 100}%`,
                 }}
               >
                 <span className='sr-only'></span>
               </div>
               <div
-                className='progress-bar progress-bar-primary progress-bar-striped h-full bg-blue-500 absolute right-0'
+                className='progress-bar progress-bar-primary progress-bar-striped h-full bg-red-500 absolute right-0'
                 id='cut-right'
                 style={{
                   width: `${
-                    (((videoRef.current?.getDuration() || 1) - sliderValue[1]) /
-                      (videoRef.current?.getDuration() || 1)) *
-                    100
+                    ((duration - sliderValue[1]) / (duration || 1)) * 100
                   }%`,
-                  transition: "width 0.3s ease-in-out",
-                  transitionDelay: "0.3s", // Add a delay of 0.3 seconds
                 }}
               >
                 <span className='sr-only'></span>
               </div>
               <div
-                className='progress-bar progress-bar-primary progress-bar-striped h-full bg-green-700 absolute'
+                className='progress-bar progress-bar-primary progress-bar-striped h-full bg-blue-700 absolute'
                 id='cut-progress'
                 style={{
-                  transition: "width 0.3s ease-in-out",
+                  width: `${(currentTime / (duration || 1)) * 100}%`,
                 }}
               >
                 <span className='sr-only'></span>
@@ -244,7 +181,7 @@ const Cuts = () => {
             <MultiSlider
               defaultValue={sliderValue}
               min={0}
-              max={videoRef.current ? videoRef.current.getDuration() : 100}
+              max={duration}
               value={sliderValue}
               onValueChange={handleSliderChange}
             />
@@ -273,7 +210,7 @@ const Cuts = () => {
                     <Button
                       size='icon'
                       variant={"outline"}
-                      onClick={vidoPlay}
+                      onClick={togglePlay}
                       className='w-12 h-10'
                     >
                       {play ? (
@@ -295,7 +232,7 @@ const Cuts = () => {
                     <Button
                       size='icon'
                       variant={"outline"}
-                      onClick={muted}
+                      onClick={toggleMute}
                       className='w-12 h-10'
                     >
                       {!mute ? (
@@ -320,13 +257,21 @@ const Cuts = () => {
                   type='text'
                   placeholder='00:00:00'
                   className='w-full bg-transparent outline-none'
-                  value={update}
+                  value={formatTime(sliderValue[0])}
                   readOnly
                 />
-                <Button size='icon' onClick={minus} className='w-12 h-8'>
+                <Button
+                  size='icon'
+                  onClick={decrementStart}
+                  className='w-12 h-8'
+                >
                   <Minus className='w-4 h-4' />
                 </Button>
-                <Button size='icon' onClick={plus} className='w-12 h-8'>
+                <Button
+                  size='icon'
+                  onClick={incrementStart}
+                  className='w-12 h-8'
+                >
                   <Plus className='w-4 h-4' />
                 </Button>
               </div>
@@ -336,13 +281,13 @@ const Cuts = () => {
                   type='text'
                   placeholder='00:00:00'
                   className='w-full bg-transparent outline-none'
-                  value={duration}
+                  value={formatTime(sliderValue[1])}
                   readOnly
                 />
-                <Button size='icon' onClick={dec} className='w-12 h-8'>
+                <Button size='icon' onClick={decrementEnd} className='w-12 h-8'>
                   <Minus className='w-4 h-4' />
                 </Button>
-                <Button size='icon' onClick={updateplus} className='w-12 h-8'>
+                <Button size='icon' onClick={incrementEnd} className='w-12 h-8'>
                   <Plus className='w-4 h-4' />
                 </Button>
               </div>
@@ -368,9 +313,12 @@ const Cuts = () => {
             </div>
           </CardContent>
         </Card>
-        <Article />
-        <Accordin />
-        <Btn />
+
+        <section>
+          <Article />
+          <Accordin />
+          <Btn />
+        </section>
       </main>
     </div>
   );
