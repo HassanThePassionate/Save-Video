@@ -34,7 +34,7 @@ const Cuts = () => {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [sliderValue, setSliderValue] = useState([0, 0]);
-  // const [startpoint, setStartpoint] = useState(false);
+
   const formatTime = (time) => {
     const hours = Math.floor(time / 3600);
     const minutes = Math.floor((time / 60) % 60);
@@ -43,6 +43,7 @@ const Cuts = () => {
       .toString()
       .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   };
+
   useEffect(() => {
     if (play && currentTime >= sliderValue[1]) {
       setPlay(false);
@@ -51,6 +52,7 @@ const Cuts = () => {
       }
     }
   }, [currentTime, play, sliderValue]);
+
   const handleDuration = (duration) => {
     setDuration(duration);
     setSliderValue([0, duration]);
@@ -83,10 +85,16 @@ const Cuts = () => {
 
   const incrementStart = () => {
     setSliderValue(([start, end]) => [Math.min(start + 1, end), end]);
+    if (videoRef.current) {
+      videoRef.current.seekTo(sliderValue[0] + 1);
+    }
   };
 
   const decrementStart = () => {
     setSliderValue(([start, end]) => [Math.max(start - 1, 0), end]);
+    if (videoRef.current) {
+      videoRef.current.seekTo(sliderValue[0] - 1);
+    }
   };
 
   const incrementEnd = () => {
@@ -146,7 +154,7 @@ const Cuts = () => {
             </div>
             <div className='progress bg-green-500 h-[20px] w-full relative mt-4 rounded-full overflow-hidden'>
               <div
-                className='progress-bar progress-bar-primary progress-bar-striped h-full bg-red-500 absolute left-0 delay-300 transition-all duration-400'
+                className=' h-full bg-red-500 absolute left-0 delay-300 transition-all duration-400 z-20'
                 id='cut-left'
                 style={{
                   width: `${(sliderValue[0] / (duration || 1)) * 100}%`,
@@ -156,7 +164,7 @@ const Cuts = () => {
                 <span className='sr-only'></span>
               </div>
               <div
-                className='progress-bar progress-bar-primary progress-bar-striped h-full bg-red-500 absolute right-0'
+                className=' h-full bg-red-500 absolute right-0 z-20'
                 id='cut-right'
                 style={{
                   width: `${
@@ -168,7 +176,7 @@ const Cuts = () => {
                 <span className='sr-only'></span>
               </div>
               <div
-                className='progress-bar progress-bar-primary progress-bar-striped h-full bg-blue-700 absolute'
+                className=' h-full bg-blue-700 absolute z-10'
                 id='cut-progress'
                 style={{
                   width: `${(currentTime / (duration || 1)) * 100}%`,
@@ -259,7 +267,7 @@ const Cuts = () => {
                 <input
                   type='text'
                   placeholder='00:00:00'
-                  className='w-full bg-transparent outline-none'
+                  className='w-full bg-transparent outline-none first'
                   value={formatTime(sliderValue[0])}
                   readOnly
                 />
