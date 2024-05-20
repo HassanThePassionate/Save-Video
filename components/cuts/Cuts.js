@@ -106,6 +106,18 @@ const Cuts = () => {
     setSliderValue(([start, end]) => [start, Math.max(end - 1, start)]);
   };
 
+  const handleProgressBarClick = (event) => {
+    const progressBar = event.currentTarget;
+    const clickPosition = event.nativeEvent.offsetX;
+    const progressBarWidth = progressBar.offsetWidth;
+    const newCurrentTime = (clickPosition / progressBarWidth) * duration;
+
+    setCurrentTime(newCurrentTime);
+    if (videoRef.current) {
+      videoRef.current.seekTo(newCurrentTime);
+    }
+  };
+
   return (
     <div>
       <main className='max-w-3xl px-4 mx-auto my-4 md:my-12 space-y-8'>
@@ -153,7 +165,10 @@ const Cuts = () => {
                 className='absolute top-0 left-0'
               />
             </div>
-            <div className='progress bg-green-500 h-[20px] w-full relative mt-4 rounded-full overflow-hidden'>
+            <div
+              className='progress bg-green-500 h-[20px] w-full relative mt-4 rounded-full overflow-hidden'
+              onClick={handleProgressBarClick}
+            >
               <div
                 className=' h-full bg-red-500 absolute left-0 delay-300 transition-all duration-400 z-20'
                 id='cut-left'
