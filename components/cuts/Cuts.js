@@ -27,11 +27,12 @@ import Btn from "../hero/Btn";
 
 const Cuts = () => {
   const [play, setPlay] = useState(false);
-  const [mute, setMute] = useState(false);
+  const [mute, setMute] = useState();
   const videoRef = useRef(null);
   const [duration, setDuration] = useState("00:00:00");
   const [update, setUpdate] = useState("00:00:00");
   const [sliderValue, setSliderValue] = useState([0, 0]);
+  const [playbtn, setPlaybtn] = useState(false);
 
   const formatTime = (time) => {
     const hours = Math.floor(time / 3600);
@@ -45,13 +46,14 @@ const Cuts = () => {
   useEffect(() => {
     const onPlayerReady = (event) => {
       const videoDuration = event.target.getDuration();
-      setDuration(formatTime(videoDuration)); // Set the end duration to video length
+      setDuration(formatTime(videoDuration));
       setSliderValue([0, videoDuration]);
     };
 
     const onPlayerStateChange = (event) => {
       if (event.data === YT.PlayerState.PLAYING) {
         setPlay(true);
+        setPlaybtn(true);
       } else {
         setPlay(false);
       }
@@ -74,7 +76,7 @@ const Cuts = () => {
 
   const timeUpdate = () => {
     const currentTime = videoRef.current.getCurrentTime();
-    setUpdate(formatTime(currentTime));
+    // setUpdate(formatTime(currentTime));
 
     const progress = (currentTime / videoRef.current.getDuration()) * 100;
     document.getElementById("cut-progress").style.width = `${progress}%`;
@@ -93,28 +95,32 @@ const Cuts = () => {
     setUpdate(formatTime(value[0]));
     setDuration(formatTime(value[1]));
   };
-
-  const videoPlay = () => {
-    setPlay(!play);
-    if (play) {
-      videoRef.current.pauseVideo();
-    } else {
-      videoRef.current.playVideo();
+  const vidoPlay = () => {
+    if (playbtn === true) {
+      setPlay(!play);
+      if (play) {
+        videoRef.current.pauseVideo();
+      } else {
+        videoRef.current.playVideo();
+      }
     }
   };
 
   const replay = () => {
-    videoRef.current.seekTo(0);
-  };
-
-  const muted = () => {
-    setMute(!mute);
-    videoRef.current.mute();
-    if (!mute) {
-      videoRef.current.unMute();
+    if (playbtn === true) {
+      videoRef.current.seekTo(0);
     }
   };
 
+  const muted = () => {
+    if (playbtn === true) {
+      setMute(!mute);
+      videoRef.current.mute();
+    }
+    if (mute) {
+      videoRef.current.unMute();
+    }
+  };
   const updateplus = () => {
     const videoDuration = videoRef.current.getDuration();
     const currentEndTime = sliderValue[1];
@@ -266,7 +272,7 @@ const Cuts = () => {
                     <Button
                       size='icon'
                       variant={"outline"}
-                      onClick={videoPlay}
+                      onClick={vidoPlay}
                       className='w-12 h-10'
                     >
                       {play ? (

@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "save-video-two.vercel.app",
       },
+      {
+        protocol: "https",
+        hostname: "m2.getsitecontrol.com",
+      },
     ],
   },
 };
