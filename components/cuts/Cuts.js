@@ -150,6 +150,7 @@ const Cuts = () => {
                 id='cut-left'
                 style={{
                   width: `${(sliderValue[0] / (duration || 1)) * 100}%`,
+                  transition: "width 0.3s ease-in-out",
                 }}
               >
                 <span className='sr-only'></span>
@@ -161,6 +162,7 @@ const Cuts = () => {
                   width: `${
                     ((duration - sliderValue[1]) / (duration || 1)) * 100
                   }%`,
+                  transition: "width 0.3s ease-in-out",
                 }}
               >
                 <span className='sr-only'></span>
@@ -170,6 +172,7 @@ const Cuts = () => {
                 id='cut-progress'
                 style={{
                   width: `${(currentTime / (duration || 1)) * 100}%`,
+                  transition: "width 0.3s ease-in-out",
                 }}
               >
                 <span className='sr-only'></span>
