@@ -42,28 +42,54 @@ const Cuts = () => {
       .toString()
       .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   };
-
   useEffect(() => {
-    const video = videoRef.current;
-
-    if (video) {
-      const videoDuration = video.duration;
-      setDuration(formatTime(videoDuration));
+    const onPlayerReady = (event) => {
+      const videoDuration = event.target.getDuration();
+      setDuration(formatTime(videoDuration)); // Set the end duration to video length
       setSliderValue([0, videoDuration]);
-    }
+    };
+
+    const onPlayerStateChange = (event) => {
+      if (event.data === YT.PlayerState.PLAYING) {
+        setPlay(true);
+      } else {
+        setPlay(false);
+      }
+    };
+
+    const tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.onYouTubeIframeAPIReady = () => {
+      videoRef.current = new YT.Player("video-player", {
+        events: {
+          onReady: onPlayerReady,
+          onStateChange: onPlayerStateChange,
+        },
+      });
+    };
   }, []);
 
   const timeUpdate = () => {
-    const currentTime = videoRef.current.currentTime;
+    const currentTime = videoRef.current.getCurrentTime();
     setUpdate(formatTime(currentTime));
 
-    const progress = (currentTime / videoRef.current.duration) * 100;
+    const progress = (currentTime / videoRef.current.getDuration()) * 100;
     document.getElementById("cut-progress").style.width = `${progress}%`;
   };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (videoRef.current && videoRef.current.getCurrentTime) {
+        timeUpdate();
+      }
+    }, 1000);
 
+    return () => clearInterval(interval);
+  }, []);
   const handleSliderChange = (value) => {
     setSliderValue(value);
-    videoRef.current.currentTime = value[0];
     setUpdate(formatTime(value[0]));
     setDuration(formatTime(value[1]));
   };
@@ -71,50 +97,70 @@ const Cuts = () => {
   const videoPlay = () => {
     setPlay(!play);
     if (play) {
-      videoRef.current.pause();
+      videoRef.current.pauseVideo();
     } else {
-      videoRef.current.play();
+      videoRef.current.playVideo();
     }
   };
 
   const replay = () => {
-    videoRef.current.currentTime = 0;
+    videoRef.current.seekTo(0);
   };
 
   const muted = () => {
     setMute(!mute);
-    videoRef.current.muted = !mute;
+    videoRef.current.mute();
+    if (!mute) {
+      videoRef.current.unMute();
+    }
   };
 
   const updateplus = () => {
-    videoRef.current.currentTime += 1;
-    setUpdate(formatTime(videoRef.current.currentTime));
+    const videoDuration = videoRef.current.getDuration();
+    const currentEndTime = sliderValue[1];
+    const newEndTime = Math.min(currentEndTime + 1, videoDuration);
+
+    setSliderValue([sliderValue[0], newEndTime]);
+    setDuration(formatTime(newEndTime));
   };
 
   const dec = () => {
-    videoRef.current.currentTime -= 1;
-    if (videoRef.current.currentTime <= 0) {
-      videoRef.current.currentTime = 0;
-    }
-    setUpdate(formatTime(videoRef.current.currentTime));
-  };
+    const currentEndTime = sliderValue[1];
+    const newEndTime = Math.max(currentEndTime - 1, 1);
 
+    setSliderValue([sliderValue[0], newEndTime]);
+    setDuration(formatTime(newEndTime));
+  };
+  const minus = () => {
+    const currentStartTime = sliderValue[0];
+    const newStartTime = Math.max(currentStartTime - 1, 1);
+
+    setSliderValue([newStartTime, sliderValue[1]]);
+    setUpdate(formatTime(newStartTime));
+  };
+  const plus = () => {
+    const currentStartTime = sliderValue[0];
+    const newStartTime = Math.max(currentStartTime + 1, 1);
+
+    setSliderValue([newStartTime, sliderValue[1]]);
+    setUpdate(formatTime(newStartTime));
+  };
   return (
     <div>
-      <main className="max-w-3xl px-4 mx-auto my-4 md:my-12 space-y-8">
-        <Card className=" ">
-          <CardHeader className="px-0 sm:px-10 md:pt-10 flex flex-row items-center gap-4">
+      <main className='max-w-3xl px-4 mx-auto my-4 md:my-12 space-y-8'>
+        <Card className=' '>
+          <CardHeader className='px-0 sm:px-10 md:pt-10 flex flex-row items-center gap-4'>
             <TooltipProvider delayDuration={0}>
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Link
-                    href="/"
+                    href='/'
                     className={buttonVariants({
                       variant: "secondary",
                       className: "!px-2",
                     })}
                   >
-                    <ChevronLeft className="w-4 h-4" />
+                    <ChevronLeft className='w-4 h-4' />
                   </Link>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -124,79 +170,88 @@ const Cuts = () => {
             </TooltipProvider>
 
             <div>
-              <h1 className="scroll-m-20 text-2xl md:text-4xl font-bold tracking-tight">
+              <h1 className='scroll-m-20 text-2xl md:text-4xl font-bold tracking-tight'>
                 Youtube Video Downloader
               </h1>
-              <p className="text-lg text-muted-foreground">
+              <p className='text-lg text-muted-foreground'>
                 A carousel with motion and swipe build using Embla.
               </p>
             </div>
           </CardHeader>
-          <div className="px-0 sm:px-10 pb-10">
-            <video
-              ref={videoRef}
-              src="/video.mp4"
-              controls={false}
-              className="h-full w-full rounded-md"
-              onTimeUpdate={timeUpdate}
-              onLoadedMetadata={() => {
-                setDuration(formatTime(videoRef.current.duration));
-                setSliderValue([0, videoRef.current.duration]);
-              }}
-            />
-            <div className="progress bg-red-500 h-[20px] w-full relative">
+          <div className='px-0 sm:px-10 pb-10'>
+            <div className='relative h-0 pb-[56.25%]'>
+              <iframe
+                id='video-player'
+                width='560'
+                height='315'
+                src='https://www.youtube.com/embed/RD4JPW6mKaU?enablejsapi=1'
+                title='YouTube video player'
+                allowFullScreen
+                className='absolute top-0 left-0 w-full h-full'
+              ></iframe>
+            </div>
+
+            <div className='progress bg-yellow-500 h-[20px] w-full relative mt-4 rounded-full overflow-hidden'>
               <div
-                className="progress-bar progress-bar-primary progress-bar-striped h-full bg-green-500 absolute left-0"
-                id="cut-left"
+                className='progress-bar progress-bar-primary progress-bar-striped h-full bg-blue-500 absolute left-0 delay-300 transition-all duration-400 '
+                id='cut-left'
                 style={{
                   width: `${
-                    (sliderValue[0] / (videoRef.current?.duration || 1)) * 100
-                  }%`,
-                }}
-              >
-                <span className="sr-only"></span>
-              </div>
-              <div
-                className="progress-bar progress-bar-primary progress-bar-striped h-full bg-green-500 absolute right-0"
-                id="cut-right"
-                style={{
-                  width: `${
-                    (((videoRef.current?.duration || 1) - sliderValue[1]) /
-                      (videoRef.current?.duration || 1)) *
+                    (sliderValue[0] / (videoRef.current?.getDuration() || 1)) *
                     100
                   }%`,
+                  transition: "width 0.3s ease-in-out",
+                  transitionDelay: "0.3s", // Add a delay of 0.3 seconds
                 }}
               >
-                <span className="sr-only"></span>
+                <span className='sr-only'></span>
               </div>
               <div
-                className="progress-bar progress-bar-primary progress-bar-striped h-full bg-blue-500 absolute"
-                id="cut-progress"
+                className='progress-bar progress-bar-primary progress-bar-striped h-full bg-blue-500 absolute right-0'
+                id='cut-right'
+                style={{
+                  width: `${
+                    (((videoRef.current?.getDuration() || 1) - sliderValue[1]) /
+                      (videoRef.current?.getDuration() || 1)) *
+                    100
+                  }%`,
+                  transition: "width 0.3s ease-in-out",
+                  transitionDelay: "0.3s", // Add a delay of 0.3 seconds
+                }}
               >
-                <span className="sr-only"></span>
+                <span className='sr-only'></span>
+              </div>
+              <div
+                className='progress-bar progress-bar-primary progress-bar-striped h-full bg-green-700 absolute'
+                id='cut-progress'
+                style={{
+                  transition: "width 0.3s ease-in-out",
+                }}
+              >
+                <span className='sr-only'></span>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center flex-col gap-4 text-center px-0 sm:px-10">
+          <div className='flex items-center flex-col gap-4 text-center px-0 sm:px-10'>
             <MultiSlider
               defaultValue={sliderValue}
               min={0}
-              max={videoRef.current ? videoRef.current.duration : 100}
+              max={videoRef.current ? videoRef.current.getDuration() : 100}
               value={sliderValue}
               onValueChange={handleSliderChange}
             />
-            <div className="flex items-center gap-4">
+            <div className='flex items-center gap-4'>
               <TooltipProvider delayDuration={0}>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
-                      size="icon"
+                      size='icon'
                       variant={"outline"}
                       onClick={replay}
-                      className="w-12 h-10"
+                      className='w-12 h-10'
                     >
-                      <ReplyAll className="w-4 h-4" />
+                      <ReplyAll className='w-4 h-4' />
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
@@ -209,15 +264,15 @@ const Cuts = () => {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
-                      size="icon"
+                      size='icon'
                       variant={"outline"}
                       onClick={videoPlay}
-                      className="w-12 h-10"
+                      className='w-12 h-10'
                     >
                       {play ? (
-                        <Pause className="w-4 h-4" />
+                        <Pause className='w-4 h-4' />
                       ) : (
-                        <Play className="w-4 h-4" />
+                        <Play className='w-4 h-4' />
                       )}
                     </Button>
                   </TooltipTrigger>
@@ -231,15 +286,15 @@ const Cuts = () => {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
-                      size="icon"
+                      size='icon'
                       variant={"outline"}
                       onClick={muted}
-                      className="w-12 h-10"
+                      className='w-12 h-10'
                     >
                       {!mute ? (
-                        <Volume2 className="h-4 w-4" />
+                        <Volume2 className='h-4 w-4' />
                       ) : (
-                        <VolumeX className="h-4 w-4" />
+                        <VolumeX className='h-4 w-4' />
                       )}
                     </Button>
                   </TooltipTrigger>
@@ -251,51 +306,51 @@ const Cuts = () => {
             </div>
           </div>
 
-          <CardContent className="px-0 sm:px-10 pt-8 pb-20 flex gap-4 items-center justify-between flex-wrap">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-1 rounded-md border border-input bg-transparent pl-2 pr-1 h-10 text-sm shadow-sm transition-colors w-full sm:max-w-[13rem]">
+          <CardContent className='px-0 sm:px-10 pt-8 pb-20 flex gap-4 items-center justify-between flex-wrap'>
+            <div className='flex items-center gap-4'>
+              <div className='flex items-center gap-1 rounded-md border border-input bg-transparent pl-2 pr-1 h-10 text-sm shadow-sm transition-colors w-full sm:max-w-[13rem]'>
                 <input
-                  type="text"
-                  placeholder="00:00:00"
-                  className="w-full bg-transparent outline-none"
+                  type='text'
+                  placeholder='00:00:00'
+                  className='w-full bg-transparent outline-none'
                   value={update}
                   readOnly
                 />
-                <Button size="icon" onClick={dec} className="w-12 h-8">
-                  <Minus className="w-4 h-4" />
+                <Button size='icon' onClick={minus} className='w-12 h-8'>
+                  <Minus className='w-4 h-4' />
                 </Button>
-                <Button size="icon" onClick={updateplus} className="w-12 h-8">
-                  <Plus className="w-4 h-4" />
+                <Button size='icon' onClick={plus} className='w-12 h-8'>
+                  <Plus className='w-4 h-4' />
                 </Button>
               </div>
 
-              <div className="flex items-center gap-1 rounded-md border border-input bg-transparent pl-2 pr-1 h-10 text-sm shadow-sm transition-colors w-full sm:max-w-[13rem]">
+              <div className='flex items-center gap-1 rounded-md border border-input bg-transparent pl-2 pr-1 h-10 text-sm shadow-sm transition-colors w-full sm:max-w-[13rem]'>
                 <input
-                  type="text"
-                  placeholder="00:00:00"
-                  className="w-full bg-transparent outline-none"
+                  type='text'
+                  placeholder='00:00:00'
+                  className='w-full bg-transparent outline-none'
                   value={duration}
                   readOnly
                 />
-                <Button size="icon" onClick={dec} className="w-12 h-8">
-                  <Minus className="w-4 h-4" />
+                <Button size='icon' onClick={dec} className='w-12 h-8'>
+                  <Minus className='w-4 h-4' />
                 </Button>
-                <Button size="icon" onClick={updateplus} className="w-12 h-8">
-                  <Plus className="w-4 h-4" />
+                <Button size='icon' onClick={updateplus} className='w-12 h-8'>
+                  <Plus className='w-4 h-4' />
                 </Button>
               </div>
             </div>
-            <div className="flex items-center gap-4">
-              <Button className="h-10">Download</Button>
+            <div className='flex items-center gap-4'>
+              <Button className='h-10'>Download</Button>
               <TooltipProvider delayDuration={0}>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <Button
-                      size="icon"
+                      size='icon'
                       variant={"outline"}
-                      className="w-12 h-10"
+                      className='w-12 h-10'
                     >
-                      <Music className="h-4 w-4" />
+                      <Music className='h-4 w-4' />
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>
