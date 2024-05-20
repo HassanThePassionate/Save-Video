@@ -80,14 +80,13 @@ const Cuts = () => {
 
   const replay = () => {
     if (videoRef.current) {
-      videoRef.current.seekTo(sliderValue[0] + 1);
+      videoRef.current.seekTo(sliderValue[0]);
     }
   };
-
   const incrementStart = () => {
     setSliderValue(([start, end]) => [Math.min(start + 1, end), end]);
     if (videoRef.current) {
-      videoRef.current.seekTo(sliderValue[0] + 1);
+      videoRef.current.seekTo(sliderValue[0] - 1);
     }
   };
 
@@ -112,9 +111,11 @@ const Cuts = () => {
     const progressBarWidth = progressBar.offsetWidth;
     const newCurrentTime = (clickPosition / progressBarWidth) * duration;
 
-    setCurrentTime(newCurrentTime);
-    if (videoRef.current) {
-      videoRef.current.seekTo(newCurrentTime);
+    if (newCurrentTime >= sliderValue[0] && newCurrentTime <= sliderValue[1]) {
+      setCurrentTime(newCurrentTime);
+      if (videoRef.current) {
+        videoRef.current.seekTo(newCurrentTime);
+      }
     }
   };
 
