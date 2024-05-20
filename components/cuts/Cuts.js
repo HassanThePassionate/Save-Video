@@ -64,6 +64,7 @@ const Cuts = () => {
 
   const handleSliderChange = (value) => {
     setSliderValue(value);
+
     if (videoRef.current) {
       videoRef.current.seekTo(value[0]);
     }
@@ -79,7 +80,7 @@ const Cuts = () => {
 
   const replay = () => {
     if (videoRef.current) {
-      videoRef.current.seekTo(0);
+      videoRef.current.seekTo(sliderValue[0] + 1);
     }
   };
 
