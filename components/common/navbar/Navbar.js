@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { RxCross2 } from "react-icons/rx";
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -24,6 +25,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Language from "./Language";
 import MobileNav from "./MobileNav";
+import DropDown from "./DropDown";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(true);
@@ -45,7 +47,7 @@ const Navbar = () => {
     <>
       <div className='wrap border-b border-[#f3f3f3] dark:border-[#333]'>
         <div className='container'>
-          <div className='flex items-center justify-between p-[10px]'>
+          <div className='flex items-center justify-between px-[10px] py-5'>
             {toggle ? (
               <Menu onClick={handleMenu} className='ico' />
             ) : (
@@ -153,16 +155,19 @@ const Navbar = () => {
                       </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant='ghost' size='icon' onClick={toogle}>
-                        <Sun className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
-                        <Moon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
-                        <span className='sr-only'>Toggle theme</span>
-                      </Button>
-                    </DropdownMenuTrigger>
-                  </DropdownMenu>
-                  <Language />
+                  <NavigationMenuItem>
+                    <Language />
+                  </NavigationMenuItem>
+                  <NavigationMenuItem className='px-4'>
+                    <DropDown />
+                  </NavigationMenuItem>
+
+                  <Button variant='outline' size='icon' onClick={toogle}>
+                    <Sun className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
+                    <Moon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
+                    <span className='sr-only'>Toggle theme</span>
+                  </Button>
+                  <NavigationMenuItem></NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
             </div>

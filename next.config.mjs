@@ -10,6 +10,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "m2.getsitecontrol.com",
       },
+      {
+        protocol: "https",
+        hostname: "savemp3.net",
+      },
     ],
   },
 };

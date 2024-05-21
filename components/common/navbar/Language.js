@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
@@ -11,75 +11,147 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import Image from "next/image";
 
 const components = [
-  { name: "Afrikaans", flag: "🇿🇦" },
-  { name: "Albanian", flag: "🇦🇱" },
-  { name: "Amharic", flag: "🇪🇹" },
-  { name: "Arabic", flag: "🇸🇦" },
-  { name: "Armenian", flag: "🇦🇲" },
-  { name: "Azerbaijani", flag: "🇦🇿" },
-  { name: "Basque", flag: "🇪🇺" },
-  { name: "Belarusian", flag: "🇧🇾" },
-  { name: "Bengali", flag: "🇧🇩" },
-  { name: "Bosnian", flag: "🇧🇦" },
-  { name: "Bulgarian", flag: "🇧🇬" },
-  { name: "Catalan", flag: "🇪🇸" },
-  { name: "Cebuano", flag: "🇵🇭" },
-  { name: "Chichewa", flag: "🇲🇼" },
-  { name: "Chinese (Simplified)", flag: "🇨🇳" },
-  { name: "Chinese (Traditional)", flag: "🇹🇼" },
-  { name: "Corsican", flag: "🇫🇷" },
-  { name: "Croatian", flag: "🇭🇷" },
-  { name: "Czech", flag: "🇨🇿" },
-  { name: "Danish", flag: "🇩🇰" },
-  { name: "Dutch", flag: "🇳🇱" },
-  { name: "English", flag: "🇬🇧" },
-  { name: "Esperanto", flag: "🌍" },
-  { name: "Estonian", flag: "🇪🇪" },
-  { name: "Filipino", flag: "🇵🇭" },
-  { name: "Finnish", flag: "🇫🇮" },
-  { name: "French", flag: "🇫🇷" },
-  { name: "Frisian", flag: "🇳🇱" },
-  { name: "Galician", flag: "🇪🇸" },
-  { name: "Georgian", flag: "🇬🇪" },
-  { name: "German", flag: "🇩🇪" },
-  { name: "Greek", flag: "🇬🇷" },
-  { name: "Gujarati", flag: "🇮🇳" },
-  { name: "Haitian Creole", flag: "🇭🇹" },
-  { name: "Hausa", flag: "🇳🇬" },
-  { name: "Hawaiian", flag: "🇺🇸" },
-  { name: "Hebrew", flag: "🇮🇱" },
-  { name: "Hindi", flag: "🇮🇳" },
-  { name: "Hmong", flag: "🇱🇦" },
-  { name: "Hungarian", flag: "🇭🇺" },
-  { name: "Icelandic", flag: "🇮🇸" },
-  { name: "Igbo", flag: "🇳🇬" },
-  { name: "Indonesian", flag: "🇮🇩" },
-  { name: "Irish", flag: "🇮🇪" },
-  { name: "Italian", flag: "🇮🇹" },
-  { name: "Japanese", flag: "🇯🇵" },
-  { name: "Javanese", flag: "🇮🇩" },
-  { name: "Kannada", flag: "🇮🇳" },
-  { name: "Kazakh", flag: "🇰🇿" },
-  { name: "Khmer", flag: "🇰🇭" },
-  { name: "Kinyarwanda", flag: "🇷🇼" },
+  {
+    name: "العربية",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/ar.png",
+  },
+  {
+    name: "简体中文",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/zh-hans.png",
+  },
+  {
+    name: "Nederlands",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/nl.png",
+  },
+  {
+    name: "English",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/en.png",
+  },
+  {
+    name: "Français",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/fr.png",
+  },
+  {
+    name: "Deutsch",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/de.png",
+  },
+  {
+    name: "हिन्दी",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/hi.png",
+  },
+  {
+    name: "עברית",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/he.png",
+  },
+  {
+    name: "Italiano",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/it.png",
+  },
+  {
+    name: "Indonesia",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/id.png",
+  },
+  {
+    name: "日本語",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/ja.png",
+  },
+  {
+    name: "한국어",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/ko.png",
+  },
+  {
+    name: "Melayu",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/ms.png",
+  },
+  {
+    name: "Polski",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/pl.png",
+  },
+  {
+    name: "Português",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/pt-pt.png",
+  },
+  {
+    name: "فارسی",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/fa.png",
+  },
+  {
+    name: "Română",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/ro.png",
+  },
+  {
+    name: "Русский",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/ru.png",
+  },
+  {
+    name: "Español",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/es.png",
+  },
+  {
+    name: "Svenska",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/sv.png",
+  },
+  {
+    name: "ไทย",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/th.png",
+  },
+  {
+    name: "Türkçe",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/tr.png",
+  },
+  {
+    name: "Українська",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/uk.png",
+  },
+  {
+    name: "Tiếng Việt",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/vi.png",
+  },
 ];
 
 const Language = () => {
+  const [selectedCountry, setSelectedCountry] = useState({
+    name: "Country",
+    flag: "",
+  });
+
+  const handleLanguageClick = (language) => {
+    setSelectedCountry(language);
+  };
+
   return (
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Country</NavigationMenuTrigger>
+          <NavigationMenuTrigger>
+            <div className='flex items-center gap-3'>
+              {selectedCountry.flag && (
+                <Image
+                  src={selectedCountry.flag}
+                  alt='selected flag'
+                  height={16}
+                  width={24}
+                />
+              )}
+              {selectedCountry.name}
+            </div>
+          </NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className='grid w-[250px] md:w-[350px] gap-2 p-2 md:grid-cols-2 max-h-[25rem] overflow-auto'>
               {components.map((component) => (
                 <ListItem
                   key={component.name}
-                  title={component.flag}
-                  href={component.name}
+                  onClick={() => handleLanguageClick(component)}
                 >
+                  <Image
+                    src={component.flag}
+                    alt='flags'
+                    height={16}
+                    width={24}
+                  />
                   {component.name}
                 </ListItem>
               ))}
@@ -90,28 +162,30 @@ const Language = () => {
     </NavigationMenu>
   );
 };
+
 export default Language;
 
-const ListItem = React.forwardRef(function ListItem(
-  { className, title, children, ...props },
-  ref
-) {
+const ListItem = React.forwardRef(function ListItem({
+  className,
+  title,
+  children,
+  ...props
+}) {
   return (
     <li>
       <NavigationMenuLink asChild>
-        <a
-          ref={ref}
+        <div
           className={cn(
-            "flex items-center gap-2 select-none space-y-1 rounded-md p-2 md:p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            "flex items-center cursor-pointer gap-2 select-none space-y-1 rounded-md p-2 md:p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
             className
           )}
           {...props}
         >
           <div className='text-sm font-medium leading-none'>{title}</div>
-          <p className='line-clamp-2 text-sm leading-snug text-muted-foreground'>
+          <p className='line-clamp-2 text-sm leading-snug text-muted-foreground flex items-center gap-2 '>
             {children}
           </p>
-        </a>
+        </div>
       </NavigationMenuLink>
     </li>
   );
