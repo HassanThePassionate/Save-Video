@@ -24,14 +24,14 @@ const Accordin = () => {
     },
   ];
   return (
-    <div className='max-w-3xl px-4 mx-auto my-4 md:my-12 space-y-8'>
+    <div className='max-w-3xl  mx-auto my-4 md:my-12 space-y-8'>
       <Card>
-        <CardHeader className='px-0 sm:px-10 pt-10'>
+        <CardHeader className='p-4 sm:px-10 pt-10'>
           <h2 className='scroll-m-20 text-3xl font-semibold tracking-tight border-b pb-2'>
             The King&apos;s Plan
           </h2>
         </CardHeader>
-        <CardContent className='px-0 sm:px-10 pt-4 pb-20'>
+        <CardContent className='p-4 sm:px-10 pt-4 pb-10'>
           {data.map((ele) => {
             return (
               <Accordion type='single' collapsible key={ele.title}>

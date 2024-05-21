@@ -67,7 +67,7 @@ const Hero = () => {
             </p>
           </div>
         </CardHeader>
-        <CardContent className='px-0 sm:px-10 pt-8 pb-20 flex gap-4 flex-col flex-wrap'>
+        <CardContent className='px-0 sm:px-10 pt-8 pb-10 flex gap-4 flex-col flex-wrap'>
           <div className='flex w-full items-center space-x-4 px-0 '>
             <Input
               type='url'

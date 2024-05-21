@@ -2,9 +2,9 @@ import React from "react";
 import { Card, CardContent, CardHeader } from "../ui/card";
 const Article = () => {
   return (
-    <div className='max-w-3xl px-4 mx-auto my-4 md:my-12 space-y-8'>
+    <div className='max-w-3xl  mx-auto my-4 md:my-12 space-y-8'>
       <Card>
-        <CardHeader className='px-0 sm:px-10 md:pt-10'>
+        <CardHeader className=' p-4 sm:px-10 md:pt-10'>
           <h2 className='scroll-m-20 text-3xl font-semibold tracking-tight border-b pb-2'>
             The King&apos;s Plan
           </h2>
@@ -13,7 +13,7 @@ const Article = () => {
             plan: he would tax the jokes in the kingdom
           </p>
         </CardHeader>
-        <CardContent className='px-0 sm:px-10 pt-4 pb-20'>
+        <CardContent className=' p-4 sm:px-10 pt-4 pb-10'>
           <h3 className=' font-heading scroll-m-20 text-2xl font-semibold tracking-tight '>
             The Joke Tax
           </h3>

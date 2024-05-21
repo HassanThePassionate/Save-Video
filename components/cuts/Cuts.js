@@ -19,14 +19,10 @@ import {
   Volume2,
   VolumeX,
 } from "lucide-react";
-import Link from "next/link";
 import { MultiSlider } from "../ui/slider";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { Button, buttonVariants } from "../ui/button";
 import Pop from "../hero/Pop";
-import Article from "../hero/Article";
-import Accordin from "../hero/Accordin";
-import Btn from "../hero/Btn";
 
 const Cuts = () => {
   const [play, setPlay] = useState(false);
@@ -348,12 +344,6 @@ const Cuts = () => {
             </div>
           </CardContent>
         </Card>
-
-        <section>
-          <Article />
-          <Accordin />
-          <Btn />
-        </section>
       </main>
     </div>
   );
