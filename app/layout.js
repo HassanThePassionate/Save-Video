@@ -1,10 +1,9 @@
 import "../style/globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Inter as FontSans } from "next/font/google";
-import Head from "next/head";
 import { cn } from "@/lib/utils";
-import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/footer/Footer";
+import Navbar from "@/components/common/navbar/Navbar";
+import Footer from "@/components/common/Footer";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -18,7 +17,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="light">
+    <html lang='en' className='light'>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased ",
@@ -26,8 +25,8 @@ export default function RootLayout({ children }) {
         )}
       >
         <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
+          attribute='class'
+          defaultTheme='system'
           enableSystem
           disableTransitionOnChange
         >

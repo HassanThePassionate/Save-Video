@@ -1,9 +1,8 @@
 import React from "react";
 import Hero from "@/components/hero/Hero";
-import Article from "@/components/hero/Article";
-import Accordin from "@/components/hero/Accordin";
-import Btn from "@/components/hero/Btn";
-import Pop from "@/components/hero/Pop";
+import Article from "@/components/common/Article";
+import Accordin from "@/components/common/Accordin";
+import Btn from "@/components/common/Btn";
 
 const page = () => {
   return (

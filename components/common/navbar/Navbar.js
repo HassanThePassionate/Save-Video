@@ -22,7 +22,7 @@ import {
   DropdownMenu,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Language from "../hero/Language";
+import Language from "./Language";
 import MobileNav from "./MobileNav";
 
 const Navbar = () => {

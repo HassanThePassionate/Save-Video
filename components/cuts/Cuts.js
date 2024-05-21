@@ -6,7 +6,7 @@ import Controls from "./Controls";
 import TimeAdjuster from "./TimeAdjuster";
 import { MultiSlider } from "../ui/slider";
 import { Card, CardContent, CardHeader } from "../ui/card";
-import Pop from "../hero/Pop";
+import Pop from "../common/Pop";
 import {
   TooltipProvider,
   Tooltip,
@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Music } from "lucide-react";
 import { Button } from "../ui/button";
+import Header from "../common/Header";
 
 const Cuts = () => {
   const [play, setPlay] = useState(false);
@@ -107,14 +108,7 @@ const Cuts = () => {
       <main className='max-w-3xl mx-auto my-4 md:my-12 space-y-8'>
         <Card>
           <CardHeader className='px-4 sm:px-10 md:pt-10 flex flex-row items-center gap-4'>
-            <div>
-              <h1 className='scroll-m-20 text-2xl md:text-4xl font-bold tracking-tight'>
-                Youtube Video Downloader
-              </h1>
-              <p className='text-lg text-muted-foreground'>
-                A carousel with motion and swipe build using Embla.
-              </p>
-            </div>
+            <Header />
           </CardHeader>
           <div className='px-4 sm:px-10 pb-10'>
             <VideoPlayer

@@ -1,7 +1,7 @@
 import Cuts from "@/components/cuts/Cuts";
-import Accordin from "@/components/hero/Accordin";
-import Article from "@/components/hero/Article";
-import Btn from "@/components/hero/Btn";
+import Accordin from "@/components/common/Accordin";
+import Article from "@/components/common/Article";
+import Btn from "@/components/common/Btn";
 import React from "react";
 
 const page = () => {

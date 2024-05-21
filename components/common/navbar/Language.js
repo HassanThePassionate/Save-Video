@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
 
 import { cn } from "@/lib/utils";
 import {
@@ -74,7 +73,7 @@ const Language = () => {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Country</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[250px] md:w-[350px] gap-2 p-2 md:grid-cols-2 max-h-[25rem] overflow-auto">
+            <ul className='grid w-[250px] md:w-[350px] gap-2 p-2 md:grid-cols-2 max-h-[25rem] overflow-auto'>
               {components.map((component) => (
                 <ListItem
                   key={component.name}
@@ -108,8 +107,8 @@ const ListItem = React.forwardRef(function ListItem(
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <div className='text-sm font-medium leading-none'>{title}</div>
+          <p className='line-clamp-2 text-sm leading-snug text-muted-foreground'>
             {children}
           </p>
         </a>
