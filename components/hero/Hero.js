@@ -55,9 +55,9 @@ const Hero = () => {
   };
 
   return (
-    <div className='max-w-3xl px-4 mx-auto my-4 md:my-12 space-y-8'>
+    <div className='max-w-3xl  mx-auto my-4 md:my-12 space-y-8'>
       <Card>
-        <CardHeader className='px-0 sm:px-10 md:pt-10'>
+        <CardHeader className='p-4 sm:px-10 md:pt-10'>
           <div>
             <h1 className='scroll-m-20 text-2xl md:text-4xl font-bold tracking-tight'>
               Youtube Video Downloader
@@ -67,7 +67,7 @@ const Hero = () => {
             </p>
           </div>
         </CardHeader>
-        <CardContent className='px-0 sm:px-10 pt-8 pb-10 flex gap-4 flex-col flex-wrap'>
+        <CardContent className='p-4 sm:px-10 pt-8 pb-10 flex gap-4 flex-col flex-wrap'>
           <div className='flex w-full items-center space-x-4 px-0 '>
             <Input
               type='url'
