@@ -51,7 +51,7 @@ const Hero = () => {
     setLink(e.target.value);
     setTimeout(() => {
       setLoading(false);
-    }, 2000); // Wait for 2 seconds
+    }, 2000);
   };
 
   return (
@@ -133,7 +133,8 @@ const Hero = () => {
                                 MP4
                                 <span className='ml-2'>720p</span>
                               </p>
-                              HD
+                              <Badge variant='secondary'>HD</Badge>
+
                               <DropdownMenuShortcut className='ml-0'>
                                 64.6MB
                               </DropdownMenuShortcut>
@@ -165,7 +166,7 @@ const Hero = () => {
                                 MP4
                                 <span className='ml-2'>1080p</span>
                               </p>
-                              HD
+                              <Badge variant='secondary'>HD</Badge>
                               <DropdownMenuShortcut className='ml-0'>
                                 185.5MB
                               </DropdownMenuShortcut>
@@ -185,7 +186,7 @@ const Hero = () => {
                                       MP4
                                       <span className='ml-2'>720p</span>
                                     </p>
-                                    HD
+                                    <Badge variant='secondary'>HD</Badge>
                                     <DropdownMenuShortcut className='ml-0'>
                                       64.6MB
                                     </DropdownMenuShortcut>
@@ -217,7 +218,7 @@ const Hero = () => {
                                       MP4
                                       <span className='ml-2'>1080p</span>
                                     </p>
-                                    HD
+                                    <Badge variant='secondary'>HD</Badge>
                                     <DropdownMenuShortcut className='ml-0'>
                                       185.5MB
                                     </DropdownMenuShortcut>
@@ -288,7 +289,7 @@ const Hero = () => {
                                 MP4
                                 <span className='ml-2'>720p</span>
                               </p>
-                              HD
+                              <Badge variant='secondary'>HD</Badge>
                               <DropdownMenuShortcut className='ml-0'>
                                 64.6MB
                               </DropdownMenuShortcut>
@@ -320,7 +321,7 @@ const Hero = () => {
                                 MP4
                                 <span className='ml-2'>1080p</span>
                               </p>
-                              HD
+                              <Badge variant='secondary'>HD</Badge>
                               <DropdownMenuShortcut className='ml-0'>
                                 185.5MB
                               </DropdownMenuShortcut>
@@ -340,7 +341,7 @@ const Hero = () => {
                                       MP4
                                       <span className='ml-2'>720p</span>
                                     </p>
-                                    HD
+                                    <Badge variant='secondary'>HD</Badge>
                                     <DropdownMenuShortcut className='ml-0'>
                                       64.6MB
                                     </DropdownMenuShortcut>
@@ -372,7 +373,7 @@ const Hero = () => {
                                       MP4
                                       <span className='ml-2'>1080p</span>
                                     </p>
-                                    HD
+                                    <Badge variant='secondary'>HD</Badge>
                                     <DropdownMenuShortcut className='ml-0'>
                                       185.5MB
                                     </DropdownMenuShortcut>
@@ -417,11 +418,6 @@ const Hero = () => {
           </div>
         </CardContent>
       </Card>
-      {/* <div className='box sm:p-[40px] rounded-lg sm:shadow-lg sm:border-[#dadada] sm:border dark:border-[#333]'>
-        <h1 className='text-4xl font-bold'>Youtube Video Downloader</h1>
-        <p className='text-lg text-[#71717a] mb-6 mt-1'>
-          A carousel with motion and swipe build using Embla.
-        </p> */}
     </div>
   );
 };

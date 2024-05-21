@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Card, CardContent, CardHeader } from "../ui/card";
 const Accordin = () => {
   const data = [
     {
@@ -23,24 +24,26 @@ const Accordin = () => {
     },
   ];
   return (
-    <div className=" max-w-[768px] sm:mx-auto  my-12">
-      <div className="box  sm:p-[40px] rounded-lg sm:shadow-lg sm:border-[#dadada] sm:border dark:border-[#333]">
-        <h2 className=" pb-2 border-[#dadada] border-b text-3xl font-semibold dark:border-[#333]">
-          The King&apos;s Plan
-        </h2>
-        <div className="py-[30px]">
+    <div className='max-w-3xl px-4 mx-auto my-4 md:my-12 space-y-8'>
+      <Card>
+        <CardHeader className='px-0 sm:px-10 pt-10'>
+          <h2 className='scroll-m-20 text-3xl font-semibold tracking-tight border-b pb-2'>
+            The King&apos;s Plan
+          </h2>
+        </CardHeader>
+        <CardContent className='px-0 sm:px-10 pt-4 pb-20'>
           {data.map((ele) => {
             return (
-              <Accordion type="single" collapsible key={ele.title}>
-                <AccordionItem value="item-1">
+              <Accordion type='single' collapsible key={ele.title}>
+                <AccordionItem value='item-1'>
                   <AccordionTrigger>{ele.title}</AccordionTrigger>
                   <AccordionContent>{ele.content}</AccordionContent>
                 </AccordionItem>
               </Accordion>
             );
           })}
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };

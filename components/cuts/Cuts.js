@@ -1,14 +1,13 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Article from "../hero/Article";
-import Accordin from "../hero/Accordin";
 import ReactPlayer from "react-player";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "../ui/tooltip";
+} from "@/components/ui/tooltip";
+
 import {
   ChevronLeft,
   Minus,
@@ -24,8 +23,10 @@ import Link from "next/link";
 import { MultiSlider } from "../ui/slider";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { Button, buttonVariants } from "../ui/button";
-import Btn from "../hero/Btn";
 import Pop from "../hero/Pop";
+import Article from "../hero/Article";
+import Accordin from "../hero/Accordin";
+import Btn from "../hero/Btn";
 
 const Cuts = () => {
   const [play, setPlay] = useState(false);
@@ -34,6 +35,8 @@ const Cuts = () => {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [sliderValue, setSliderValue] = useState([0, 0]);
+  const [hoverTime, setHoverTime] = useState(null);
+  const [hoverPosition, setHoverPosition] = useState(0);
 
   const formatTime = (time) => {
     const hours = Math.floor(time / 3600);
@@ -83,6 +86,7 @@ const Cuts = () => {
       videoRef.current.seekTo(sliderValue[0]);
     }
   };
+
   const incrementStart = () => {
     setSliderValue(([start, end]) => [Math.min(start + 1, end), end]);
     if (videoRef.current) {
@@ -118,30 +122,26 @@ const Cuts = () => {
       }
     }
   };
+
+  const handleProgressBarHover = (event) => {
+    const progressBar = event.currentTarget;
+    const hoverPosition = event.nativeEvent.offsetX;
+    const progressBarWidth = progressBar.offsetWidth;
+    const newHoverTime = (hoverPosition / progressBarWidth) * duration;
+    setHoverTime(newHoverTime);
+    setHoverPosition(hoverPosition);
+  };
+
+  const handleProgressBarLeave = () => {
+    setHoverTime(null);
+    setHoverPosition(0);
+  };
+
   return (
     <div>
       <main className='max-w-3xl px-4 mx-auto my-4 md:my-12 space-y-8'>
         <Card>
           <CardHeader className='px-0 sm:px-10 md:pt-10 flex flex-row items-center gap-4'>
-            <TooltipProvider delayDuration={0}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Link
-                    href='/'
-                    className={buttonVariants({
-                      variant: "secondary",
-                      className: "!px-2",
-                    })}
-                  >
-                    <ChevronLeft className='w-4 h-4' />
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Go Home</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-
             <div>
               <h1 className='scroll-m-20 text-2xl md:text-4xl font-bold tracking-tight'>
                 Youtube Video Downloader
@@ -164,23 +164,35 @@ const Cuts = () => {
                 height='100%'
                 className='absolute top-0 left-0'
               />
+              {hoverTime !== null && (
+                <div
+                  className=' bg-gray-800 text-white absolute bottom-0 w-fit text-xs px-2 py-1 rounded'
+                  style={{
+                    left: `${hoverPosition}px`,
+                    transform: "translateX(-50%)",
+                  }}
+                >
+                  {formatTime(hoverTime)}
+                </div>
+              )}
             </div>
+
             <div
               className='progress bg-green-500 h-[20px] w-full relative mt-4 rounded-full overflow-hidden cursor-pointer'
               onClick={handleProgressBarClick}
+              onMouseMove={handleProgressBarHover}
+              onMouseLeave={handleProgressBarLeave}
             >
               <div
-                className=' h-full bg-red-500 absolute left-0 delay-300 transition-all duration-400 z-20'
+                className='h-full bg-red-500 absolute left-0 z-20'
                 id='cut-left'
                 style={{
                   width: `${(sliderValue[0] / (duration || 1)) * 100}%`,
                   transition: "width 0.3s ease-in-out",
                 }}
-              >
-                <span className='sr-only'></span>
-              </div>
+              ></div>
               <div
-                className=' h-full bg-red-500 absolute right-0 z-20'
+                className='h-full bg-red-500 absolute right-0 z-20'
                 id='cut-right'
                 style={{
                   width: `${
@@ -188,26 +200,22 @@ const Cuts = () => {
                   }%`,
                   transition: "width 0.3s ease-in-out",
                 }}
-              >
-                <span className='sr-only'></span>
-              </div>
+              ></div>
               <div
-                className=' h-full bg-blue-700 absolute z-10'
+                className='h-full bg-blue-700 absolute z-10'
                 id='cut-progress'
                 style={{
                   width: `${(currentTime / (duration || 1)) * 100}%`,
                   transition: "width 0.3s ease-in-out",
                 }}
-              >
-                <span className='sr-only'></span>
-              </div>
+              ></div>
             </div>
           </div>
 
           <div className='flex items-center flex-col gap-4 text-center px-0 sm:px-10'>
             <MultiSlider
               defaultValue={sliderValue}
-              min={10}
+              min={0}
               max={duration}
               value={sliderValue}
               onValueChange={handleSliderChange}
@@ -277,7 +285,7 @@ const Cuts = () => {
             </div>
           </div>
 
-          <CardContent className='px-0 sm:px-10 pt-8 pb-20 flex gap-4 items-center justify-between flex-wrap'>
+          <CardContent className='px-0 sm:px-10 pt-8 pb-20 flex gap-5 sm:gap-4 items-center justify-center sm:justify-between flex-wrap'>
             <div className='flex items-center gap-4'>
               <div className='flex items-center gap-1 rounded-md border border-input bg-transparent pl-2 pr-1 h-10 text-sm shadow-sm transition-colors w-full sm:max-w-[13rem]'>
                 <input
