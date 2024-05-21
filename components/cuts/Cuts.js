@@ -1,28 +1,20 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import ReactPlayer from "react-player";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-
-import {
-  ChevronLeft,
-  Minus,
-  Music,
-  Pause,
-  Play,
-  Plus,
-  ReplyAll,
-  Volume2,
-  VolumeX,
-} from "lucide-react";
+import VideoPlayer from "./VideoPlayer";
+import ProgressBar from "./ProgressBar";
+import Controls from "./Controls";
+import TimeAdjuster from "./TimeAdjuster";
 import { MultiSlider } from "../ui/slider";
 import { Card, CardContent, CardHeader } from "../ui/card";
-import { Button, buttonVariants } from "../ui/button";
 import Pop from "../hero/Pop";
+import {
+  TooltipProvider,
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
+import { Music } from "lucide-react";
+import { Button } from "../ui/button";
 
 const Cuts = () => {
   const [play, setPlay] = useState(false);
@@ -63,7 +55,6 @@ const Cuts = () => {
 
   const handleSliderChange = (value) => {
     setSliderValue(value);
-
     if (videoRef.current) {
       videoRef.current.seekTo(value[0]);
     }
@@ -81,28 +72,6 @@ const Cuts = () => {
     if (videoRef.current) {
       videoRef.current.seekTo(sliderValue[0]);
     }
-  };
-
-  const incrementStart = () => {
-    setSliderValue(([start, end]) => [Math.min(start + 1, end), end]);
-    if (videoRef.current) {
-      videoRef.current.seekTo(sliderValue[0] - 1);
-    }
-  };
-
-  const decrementStart = () => {
-    setSliderValue(([start, end]) => [Math.max(start - 1, 0), end]);
-    if (videoRef.current) {
-      videoRef.current.seekTo(sliderValue[0] - 1);
-    }
-  };
-
-  const incrementEnd = () => {
-    setSliderValue(([start, end]) => [start, Math.min(end + 1, duration)]);
-  };
-
-  const decrementEnd = () => {
-    setSliderValue(([start, end]) => [start, Math.max(end - 1, start)]);
   };
 
   const handleProgressBarClick = (event) => {
@@ -135,9 +104,9 @@ const Cuts = () => {
 
   return (
     <div>
-      <main className='max-w-3xl px-4 mx-auto my-4 md:my-12 space-y-8'>
+      <main className='max-w-3xl mx-auto my-4 md:my-12 space-y-8'>
         <Card>
-          <CardHeader className='px-0 sm:px-10 md:pt-10 flex flex-row items-center gap-4'>
+          <CardHeader className='px-4 sm:px-10 md:pt-10 flex flex-row items-center gap-4'>
             <div>
               <h1 className='scroll-m-20 text-2xl md:text-4xl font-bold tracking-tight'>
                 Youtube Video Downloader
@@ -147,68 +116,28 @@ const Cuts = () => {
               </p>
             </div>
           </CardHeader>
-          <div className='px-0 sm:px-10 pb-10'>
-            <div className='relative h-0 pb-[56.25%]'>
-              <ReactPlayer
-                url='https://www.youtube.com/embed/RD4JPW6mKaU'
-                ref={videoRef}
-                playing={play}
-                muted={mute}
-                onDuration={handleDuration}
-                onProgress={handleProgress}
-                width='100%'
-                height='100%'
-                className='absolute top-0 left-0'
-              />
-              {hoverTime !== null && (
-                <div
-                  className=' bg-gray-800 text-white absolute bottom-0 w-fit text-xs px-2 py-1 rounded'
-                  style={{
-                    left: `${hoverPosition}px`,
-                    transform: "translateX(-50%)",
-                  }}
-                >
-                  {formatTime(hoverTime)}
-                </div>
-              )}
-            </div>
-
-            <div
-              className='progress bg-green-500 h-[20px] w-full relative mt-4 rounded-full overflow-hidden cursor-pointer'
-              onClick={handleProgressBarClick}
-              onMouseMove={handleProgressBarHover}
-              onMouseLeave={handleProgressBarLeave}
-            >
-              <div
-                className='h-full bg-red-500 absolute left-0 z-20'
-                id='cut-left'
-                style={{
-                  width: `${(sliderValue[0] / (duration || 1)) * 100}%`,
-                  transition: "width 0.3s ease-in-out",
-                }}
-              ></div>
-              <div
-                className='h-full bg-red-500 absolute right-0 z-20'
-                id='cut-right'
-                style={{
-                  width: `${
-                    ((duration - sliderValue[1]) / (duration || 1)) * 100
-                  }%`,
-                  transition: "width 0.3s ease-in-out",
-                }}
-              ></div>
-              <div
-                className='h-full bg-blue-700 absolute z-10'
-                id='cut-progress'
-                style={{
-                  width: `${(currentTime / (duration || 1)) * 100}%`,
-                  transition: "width 0.3s ease-in-out",
-                }}
-              ></div>
-            </div>
+          <div className='px-4 sm:px-10 pb-10'>
+            <VideoPlayer
+              url='https://www.youtube.com/embed/RD4JPW6mKaU'
+              playing={play}
+              muted={mute}
+              onDuration={handleDuration}
+              onProgress={handleProgress}
+              videoRef={videoRef}
+            />
+            <ProgressBar
+              duration={duration}
+              currentTime={currentTime}
+              sliderValue={sliderValue}
+              handleProgressBarClick={handleProgressBarClick}
+              handleProgressBarHover={handleProgressBarHover}
+              handleProgressBarLeave={handleProgressBarLeave}
+              hoverTime={hoverTime}
+              hoverPosition={hoverPosition}
+              formatTime={formatTime}
+            />
           </div>
-
-          <div className='flex items-center flex-col gap-4 text-center px-0 sm:px-10'>
+          <div className='flex items-center flex-col gap-4 text-center px-4 sm:px-10'>
             <MultiSlider
               defaultValue={sliderValue}
               min={0}
@@ -216,123 +145,28 @@ const Cuts = () => {
               value={sliderValue}
               onValueChange={handleSliderChange}
             />
-            <div className='flex items-center gap-4'>
-              <TooltipProvider delayDuration={0}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      size='icon'
-                      variant={"outline"}
-                      onClick={replay}
-                      className='w-12 h-10'
-                    >
-                      <ReplyAll className='w-4 h-4' />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Replay</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-
-              <TooltipProvider delayDuration={0}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      size='icon'
-                      variant={"outline"}
-                      onClick={togglePlay}
-                      className='w-12 h-10'
-                    >
-                      {play ? (
-                        <Pause className='w-4 h-4' />
-                      ) : (
-                        <Play className='w-4 h-4' />
-                      )}
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{play ? "Pause" : "Play"}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-
-              <TooltipProvider delayDuration={0}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      size='icon'
-                      variant={"outline"}
-                      onClick={toggleMute}
-                      className='w-12 h-10'
-                    >
-                      {!mute ? (
-                        <Volume2 className='h-4 w-4' />
-                      ) : (
-                        <VolumeX className='h-4 w-4' />
-                      )}
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{!mute ? "Mute" : "Unmute"}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
+            <Controls
+              play={play}
+              mute={mute}
+              togglePlay={togglePlay}
+              toggleMute={toggleMute}
+              replay={replay}
+            />
           </div>
-
-          <CardContent className='px-0 sm:px-10 pt-8 pb-20 flex gap-5 sm:gap-4 items-center justify-center sm:justify-between flex-wrap'>
-            <div className='flex items-center gap-4'>
-              <div className='flex items-center gap-1 rounded-md border border-input bg-transparent pl-2 pr-1 h-10 text-sm shadow-sm transition-colors w-full sm:max-w-[13rem]'>
-                <input
-                  type='text'
-                  placeholder='00:00:00'
-                  className='w-full bg-transparent outline-none first'
-                  value={formatTime(sliderValue[0])}
-                  readOnly
-                />
-                <Button
-                  size='icon'
-                  onClick={decrementStart}
-                  className='w-12 h-8'
-                >
-                  <Minus className='w-4 h-4' />
-                </Button>
-                <Button
-                  size='icon'
-                  onClick={incrementStart}
-                  className='w-12 h-8'
-                >
-                  <Plus className='w-4 h-4' />
-                </Button>
-              </div>
-
-              <div className='flex items-center gap-1 rounded-md border border-input bg-transparent pl-2 pr-1 h-10 text-sm shadow-sm transition-colors w-full sm:max-w-[13rem]'>
-                <input
-                  type='text'
-                  placeholder='00:00:00'
-                  className='w-full bg-transparent outline-none'
-                  value={formatTime(sliderValue[1])}
-                  readOnly
-                />
-                <Button size='icon' onClick={decrementEnd} className='w-12 h-8'>
-                  <Minus className='w-4 h-4' />
-                </Button>
-                <Button size='icon' onClick={incrementEnd} className='w-12 h-8'>
-                  <Plus className='w-4 h-4' />
-                </Button>
-              </div>
-            </div>
+          <CardContent className='px-4 sm:px-10 pt-8 pb-20 flex gap-5 sm:gap-4 items-center justify-center sm:justify-between flex-wrap'>
+            <TimeAdjuster
+              sliderValue={sliderValue}
+              setSliderValue={setSliderValue}
+              duration={duration}
+              formatTime={formatTime}
+              videoRef={videoRef}
+            />
             <div className='flex items-center gap-4'>
               <Pop />
               <TooltipProvider delayDuration={0}>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Button
-                      size='icon'
-                      variant={"outline"}
-                      className='w-12 h-10'
-                    >
+                    <Button size='icon' variant='outline' className='w-12 h-10'>
                       <Music className='h-4 w-4' />
                     </Button>
                   </TooltipTrigger>
