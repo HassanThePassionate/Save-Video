@@ -1,18 +1,26 @@
+"use client";
 import React from "react";
 import Hero from "@/components/hero/Hero";
 import Article from "@/components/common/Article";
-import Accordin from "@/components/common/Accordin";
+// Corrected the import
 import Btn from "@/components/common/Btn";
+import { useSelector } from "react-redux";
+import Accordin from "@/components/common/Accordin";
 
-const page = () => {
+const Page = () => {
+  const toggled = useSelector((state) => state.toggle.toggled);
   return (
     <>
       <Hero />
-      <Article />
-      <Accordin />
-      <Btn />
+      {toggled && (
+        <>
+          <Article />
+          <Accordin />
+          <Btn />
+        </>
+      )}
     </>
   );
 };
 
-export default page;
+export default Page;

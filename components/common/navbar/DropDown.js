@@ -1,27 +1,21 @@
-import React, { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuPortal,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { IoSettingsOutline } from "react-icons/io5";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRight, EyeOff, Music2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useSelector, useDispatch } from "react-redux";
+import { toggle } from "../../../redux/toggle/toggleSlice"; // Ensure the path is correct
 const DropDown = () => {
-  const [open, setOpen] = useState(false);
-  const handleBadge = () => {
-    setOpen(!open);
-  };
+  const dispatch = useDispatch();
+  const toggled = useSelector((state) => state.toggle.toggled);
   return (
     <div>
       <DropdownMenu>
@@ -36,17 +30,25 @@ const DropDown = () => {
           <DropdownMenuGroup>
             <DropdownMenuItem className='my-[10px]'>
               <div className='flex items-center justify-between gap-2 w-full'>
-                <div
-                  className='flex items-center gap-2 cursor-pointer'
-                  onclick={handleBadge}
-                >
+                <div className='flex items-center gap-2 cursor-pointer'>
                   <EyeOff size={16} />
                   <span>Clean Up</span>
                 </div>
-                {open ? (
-                  <Badge variant='destructive'>Off</Badge>
+                {toggled ? (
+                  <Badge
+                    variant='destructive'
+                    className='cursor-pointer'
+                    onClick={() => dispatch(toggle())}
+                  >
+                    Off
+                  </Badge>
                 ) : (
-                  <Badge className='bg-green-600'>ON</Badge>
+                  <Badge
+                    className='bg-green-600 cursor-pointer'
+                    onClick={() => dispatch(toggle())}
+                  >
+                    ON
+                  </Badge>
                 )}
               </div>
             </DropdownMenuItem>

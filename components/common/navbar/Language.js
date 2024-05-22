@@ -1,18 +1,14 @@
 "use client";
 
-import * as React from "react";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+import React, { useState } from "react";
 import Image from "next/image";
-
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@/components/ui/select";
+import { ScrollArea } from "@/components/ui/scroll-area";
 const components = [
   {
     name: "العربية",
@@ -117,80 +113,49 @@ const Language = () => {
     name: "Country",
     flag: "",
   });
+  const [open, setOpen] = useState(false);
 
   const handleLanguageClick = (language) => {
     setSelectedCountry(language);
+    setOpen(false); // Close the select content after selection
   };
 
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>
-            <div className='flex items-center gap-3'>
-              {selectedCountry.flag && (
-                <Image
-                  src={selectedCountry.flag}
-                  alt='selected flag'
-                  height={16}
-                  width={24}
-                />
-              )}
-              {selectedCountry.name}
-            </div>
-          </NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className='grid w-[250px] md:w-[350px] gap-2 p-2 md:grid-cols-2 max-h-[25rem] overflow-auto'>
-              {components.map((component) => (
-                <ListItem
-                  key={component.name}
-                  onClick={() => handleLanguageClick(component)}
-                >
-                  <Image
-                    src={component.flag}
-                    alt='flags'
-                    height={16}
-                    width={24}
-                  />
-                  {component.name}
-                </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+    <Select open={open} onOpenChange={setOpen}>
+      <SelectTrigger className='w-[180px]'>
+        <div className='flex items-center gap-3'>
+          {selectedCountry.flag && (
+            <Image
+              src={selectedCountry.flag}
+              alt='selected flag'
+              height={18}
+              width={18}
+            />
+          )}
+          {selectedCountry.name}
+        </div>
+      </SelectTrigger>
+      <SelectContent>
+        <ul className='grid w-[250px] md:w-[350px] gap-2 p-2 md:grid-cols-2 max-h-[25rem] overflow-auto scrollbar-thin scrollbar-webkit'>
+          {components.map((component) => (
+            <li
+              key={component.name}
+              onClick={() => handleLanguageClick(component)}
+              className='flex items-center cursor-pointer gap-2 p-2 hover:bg-gray-100 hover:dark:bg-[#333]'
+            >
+              <Image
+                src={component.flag}
+                alt={`${component.name} flag`}
+                height={18}
+                width={18}
+              />
+              {component.name}
+            </li>
+          ))}
+        </ul>
+      </SelectContent>
+    </Select>
   );
 };
 
 export default Language;
-
-const ListItem = React.forwardRef(function ListItem({
-  className,
-  title,
-  children,
-  ...props
-}) {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <div
-          className={cn(
-            "flex items-center cursor-pointer gap-2 select-none space-y-1 rounded-md p-2 md:p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          {...props}
-        >
-          <div className='text-sm font-medium leading-none'>{title}</div>
-          <p className='line-clamp-2 text-sm leading-snug text-muted-foreground flex items-center gap-2 '>
-            {children}
-          </p>
-        </div>
-      </NavigationMenuLink>
-    </li>
-  );
-});
-
-ListItem.displayName = "ListItem";
-
-export { ListItem };
