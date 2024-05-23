@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 import Language from "./Language";
 import MobileNav from "./MobileNav";
 import DropDown from "./DropDown";
-
+import Image from "next/image";
 const Navbar = () => {
   const [toggle, setToggle] = useState(true);
   const [mode, setMode] = useState(true);
@@ -111,44 +111,9 @@ const Navbar = () => {
                         </NavigationMenuLink>
                       </Link>
                     </NavigationMenuItem>
-                    <NavigationMenuItem>
-                      <Link href='/docs' legacyBehavior passHref>
-                        <NavigationMenuLink
-                          className={navigationMenuTriggerStyle()}
-                        >
-                          Browser Extension
-                        </NavigationMenuLink>
-                      </Link>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                      <Link href='/docs' legacyBehavior passHref>
-                        <NavigationMenuLink
-                          className={navigationMenuTriggerStyle()}
-                        >
-                          Help
-                        </NavigationMenuLink>
-                      </Link>
-                    </NavigationMenuItem>
                   </div>
 
                   <div className='theme'></div>
-                  <NavigationMenuItem>
-                    <Link href='/docs' legacyBehavior passHref>
-                      <NavigationMenuLink
-                        className={navigationMenuTriggerStyle()}
-                      >
-                        <svg
-                          className='h-3 w-3 fill-current'
-                          height='23'
-                          viewBox='0 0 1200 1227'
-                          width='23'
-                          xmlns='http://www.w3.org/2000/svg'
-                        >
-                          <path d='M714.163 519.284L1160.89 0H1055.03L667.137 450.887L357.328 0H0L468.492 681.821L0 1226.37H105.866L515.491 750.218L842.672 1226.37H1200L714.137 519.284H714.163ZM569.165 687.828L521.697 619.934L144.011 79.6944H306.615L611.412 515.685L658.88 583.579L1055.08 1150.3H892.476L569.165 687.854V687.828Z'></path>
-                        </svg>
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
                   <NavigationMenuItem className='pl-4'>
                     <Language />
                   </NavigationMenuItem>
@@ -160,7 +125,17 @@ const Navbar = () => {
                     </Button>
                   </NavigationMenuItem>
                   <DropDown />
-                  <NavigationMenuItem></NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <button className='px-5 py-3 hidden bg-black text-white sm:flex items-center gap-2 text-base font-semibold rounded-md ml-[30px] transition-all hover:bg-[#333]'>
+                      <Image
+                        src='/Chrome.png'
+                        alt='img'
+                        width={20}
+                        height={20}
+                      />
+                      Add to chorme
+                    </button>
+                  </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>
             </div>

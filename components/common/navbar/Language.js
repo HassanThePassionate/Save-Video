@@ -122,7 +122,7 @@ const Language = () => {
 
   return (
     <Select open={open} onOpenChange={setOpen}>
-      <SelectTrigger className='w-[180px]'>
+      <SelectTrigger className='sm:w-[180px] w-[130px]'>
         <div className='flex items-center gap-3'>
           {selectedCountry.flag && (
             <Image
