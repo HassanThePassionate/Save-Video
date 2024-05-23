@@ -157,12 +157,10 @@ const DropDown = () => {
   ];
 
   const quality = [
-    { quality: "720p" },
     { quality: "1080p" },
     { quality: "1440p" },
     { quality: "2160p" },
     { quality: "2320p" },
-    { quality: "720p" },
   ];
 
   return (
