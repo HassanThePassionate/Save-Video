@@ -6,7 +6,10 @@ const Footer = () => {
     <footer className='wrap border-t border-[#f3f3f3] dark:border-[#333]'>
       <div className='w-full px-4'>
         <div className='flex items-center justify-center sm:justify-between px-[10px] py-[20px] gap-3  flex-wrap  '>
-          <div className='logo text-[16px] font-bold flex items-center gap-3 '>
+          <Link
+            href='/'
+            className='logo text-[16px] font-bold flex items-center gap-3 '
+          >
             <svg
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 256 256'
@@ -37,26 +40,31 @@ const Footer = () => {
               ></line>
             </svg>
             <span>SaveVideo</span>
-          </div>
+          </Link>
           <ul className='menu flex items-center gap-4 flex-wrap justify-center'>
             <li>
-              <Link href='#' className=' hover:underline '>
-                Demo Page
+              <Link href='/privacy' className=' hover:underline '>
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link href='/privacy' className=' hover:underline '>
+                Cookies Policy
               </Link>
             </li>
             <li>
               <Link href='#' className=' hover:underline '>
-                Shadcn page
+                EULA
               </Link>
             </li>
             <li>
               <Link href='#' className=' hover:underline '>
-                Documention
+                Terms and Conditions
               </Link>
             </li>
             <li>
-              <Link href='#' className=' hover:underline '>
-                Help
+              <Link href='/contact' className=' hover:underline '>
+                Contact Us
               </Link>
             </li>
           </ul>

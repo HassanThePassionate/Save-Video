@@ -26,7 +26,7 @@ const styles = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang='en' className='light'>
+    <html lang='en'>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased ",

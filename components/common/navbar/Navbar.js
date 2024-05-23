@@ -37,7 +37,10 @@ const Navbar = () => {
               <RxCross2 onClick={handleMenu} className='ico' />
             )}
 
-            <div className='Desk_logo text-[16px] font-bold flex items-center gap-3'>
+            <Link
+              href='/'
+              className='Desk_logo text-[16px] font-bold flex items-center gap-3'
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 viewBox='0 0 256 256'
@@ -68,7 +71,7 @@ const Navbar = () => {
                 ></line>
               </svg>
               <span>SaveVideo</span>
-            </div>
+            </Link>
             <div className='flex items-center gap-4'>
               <NavigationMenu>
                 <NavigationMenuList>
