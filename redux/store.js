@@ -4,7 +4,6 @@ import toggleReducer from "./toggle/toggleSlice"; // Ensure the path is correct
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import { combineReducers } from "redux";
-
 const persistConfig = {
   key: "root",
   storage,
