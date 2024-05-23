@@ -6,7 +6,8 @@ import { cn } from "@/lib/utils";
 import Navbar from "@/components/common/navbar/Navbar";
 import Footer from "@/components/common/Footer";
 import { Provider } from "react-redux";
-import store from "../redux/store"; // Ensure the path is correct
+import { store, pr, persistor } from "@/redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -39,11 +40,13 @@ export default function RootLayout({ children }) {
           disableTransitionOnChange
         >
           <Provider store={store}>
-            <div style={styles.root}>
-              <Navbar />
-              <div style={styles.content}>{children}</div>
-              <Footer />
-            </div>
+            <PersistGate loading={null} persistor={persistor}>
+              <div style={styles.root}>
+                <Navbar />
+                <div style={styles.content}>{children}</div>
+                <Footer />
+              </div>
+            </PersistGate>
           </Provider>
         </ThemeProvider>
       </body>

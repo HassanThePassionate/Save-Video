@@ -105,23 +105,23 @@
 }
 
 /* width */
-::-webkit-scrollbar {
+.content::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 
 /* Track */
-::-webkit-scrollbar-track {
+.content::-webkit-scrollbar-track {
   background: transparent;
 }
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+.content::-webkit-scrollbar-thumb {
   background: var(--scrollColor);
   border-radius: 5px;
 }
 
 /* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
+.content::-webkit-scrollbar-thumb:hover {
   background: #555;
 }

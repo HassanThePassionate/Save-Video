@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const Article = () => {
   const toggled = useSelector((state) => state.toggle.toggled);
   return (
-    toggled && (
+    !toggled && (
       <div className='max-w-3xl  mx-auto my-4 md:my-12 space-y-8'>
         <Card>
           <CardHeader className=' p-4 sm:px-10 md:pt-10'>

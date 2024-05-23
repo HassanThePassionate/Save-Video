@@ -29,7 +29,7 @@ const Accordin = () => {
   ];
 
   return (
-    toggled && (
+    !toggled && (
       <div className='max-w-3xl mx-auto my-4 md:my-12 space-y-8'>
         <Card>
           <CardHeader className='p-4 sm:px-10 pt-10'>

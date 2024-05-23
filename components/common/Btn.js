@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const Btn = () => {
   const toggled = useSelector((state) => state.toggle.toggled);
   return (
-    toggled && (
+    !toggled && (
       <div className=' max-w-[768px] mx-auto p-4 my-12'>
         <div className='flex flex-col items-center justify-center'>
           <h3 className=' text-xl font-light '>Get Tairo now</h3>

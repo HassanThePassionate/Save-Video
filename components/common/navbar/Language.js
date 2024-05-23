@@ -8,7 +8,7 @@ import {
   SelectItem,
   SelectTrigger,
 } from "@/components/ui/select";
-import { ScrollArea } from "@/components/ui/scroll-area";
+
 const components = [
   {
     name: "العربية",
@@ -110,8 +110,8 @@ const components = [
 
 const Language = () => {
   const [selectedCountry, setSelectedCountry] = useState({
-    name: "Country",
-    flag: "",
+    name: "English",
+    flag: "https://savemp3.net/wp-content/plugins/sitepress-multilingual-cms/res/flags/en.png",
   });
   const [open, setOpen] = useState(false);
 
@@ -121,40 +121,42 @@ const Language = () => {
   };
 
   return (
-    <Select open={open} onOpenChange={setOpen}>
-      <SelectTrigger className='sm:w-[180px] w-[130px]'>
-        <div className='flex items-center gap-3'>
-          {selectedCountry.flag && (
-            <Image
-              src={selectedCountry.flag}
-              alt='selected flag'
-              height={18}
-              width={18}
-            />
-          )}
-          {selectedCountry.name}
-        </div>
-      </SelectTrigger>
-      <SelectContent>
-        <ul className='grid w-[250px] md:w-[350px] gap-2 p-2 md:grid-cols-2 max-h-[25rem] overflow-auto scrollbar-thin scrollbar-webkit'>
-          {components.map((component) => (
-            <li
-              key={component.name}
-              onClick={() => handleLanguageClick(component)}
-              className='flex items-center cursor-pointer gap-2 p-2 hover:bg-gray-100 hover:dark:bg-[#333]'
-            >
+    <div>
+      <Select open={open} onOpenChange={setOpen}>
+        <SelectTrigger className='sm:w-[180px] w-[130px]'>
+          <div className='flex items-center gap-3'>
+            {selectedCountry.flag && (
               <Image
-                src={component.flag}
-                alt={`${component.name} flag`}
+                src={selectedCountry.flag}
+                alt='selected flag'
                 height={18}
                 width={18}
               />
-              {component.name}
-            </li>
-          ))}
-        </ul>
-      </SelectContent>
-    </Select>
+            )}
+            {selectedCountry.name}
+          </div>
+        </SelectTrigger>
+        <SelectContent>
+          <ul className='grid w-[250px] md:w-[350px] gap-2 p-2 md:grid-cols-2 max-h-[25rem] overflow-auto content '>
+            {components.map((component) => (
+              <li
+                key={component.name}
+                onClick={() => handleLanguageClick(component)}
+                className='flex items-center cursor-pointer gap-2 p-2 hover:bg-gray-100 hover:dark:bg-[#333]'
+              >
+                <Image
+                  src={component.flag}
+                  alt={`${component.name} flag`}
+                  height={18}
+                  width={18}
+                />
+                {component.name}
+              </li>
+            ))}
+          </ul>
+        </SelectContent>
+      </Select>
+    </div>
   );
 };
 

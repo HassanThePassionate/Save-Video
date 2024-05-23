@@ -14,29 +14,19 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-import { Menu, Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
+
 import Language from "./Language";
 import MobileNav from "./MobileNav";
 import DropDown from "./DropDown";
 import Image from "next/image";
 const Navbar = () => {
   const [toggle, setToggle] = useState(true);
-  const [mode, setMode] = useState(true);
-  const toogle = () => {
-    setMode(!mode);
-  };
 
   const handleMenu = () => {
     setToggle(!toggle);
   };
-  const { setTheme } = useTheme();
-  if (mode) {
-    setTheme("light");
-  } else {
-    setTheme("dark");
-  }
+
   return (
     <>
       <div className='wrap border-b border-[#f3f3f3] dark:border-[#333]'>
@@ -117,16 +107,10 @@ const Navbar = () => {
                   <NavigationMenuItem className='pl-4'>
                     <Language />
                   </NavigationMenuItem>
-                  <NavigationMenuItem className='px-4'>
-                    <Button variant='outline' size='icon' onClick={toogle}>
-                      <Sun className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
-                      <Moon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
-                      <span className='sr-only'>Toggle theme</span>
-                    </Button>
-                  </NavigationMenuItem>
+
                   <DropDown />
                   <NavigationMenuItem>
-                    <button className='px-5 py-3 hidden bg-black text-white sm:flex items-center gap-2 text-base font-semibold rounded-md ml-[30px] transition-all hover:bg-[#333]'>
+                    <button className='px-5 py-3 hidden bg-black text-white sm:flex items-center gap-2 text-base font-semibold rounded-md ml-[30px] transition-all hover:bg-[#444] dark:hover:bg-[#555] dark:bg-[#333]'>
                       <Image
                         src='/Chrome.png'
                         alt='img'
