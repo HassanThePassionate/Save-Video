@@ -20,7 +20,7 @@ const Contact = () => {
       <div>
         <h2 className='text-center text-6xl font-bold'>Contact Us</h2>
         <p className='text-center mt-6 text-[20px] text-[#71717a] mb-[20px] '>
-          We're here to provide the support you need. Whether you have
+          We&apos;re here to provide the support you need. Whether you have
           questions, comments, or need assistance, we are ready to help.
         </p>
       </div>
