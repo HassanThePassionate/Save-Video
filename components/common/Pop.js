@@ -10,9 +10,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-
-// import Image from "next/image";
-// import { RxCross2 } from "react-icons/rx";
 import { Button } from "../ui/button";
 import Link from "next/link";
 const Pop = () => {
@@ -29,7 +26,7 @@ const Pop = () => {
               A responsive modal component for shadcn/ui.
             </AlertDialogDescription>
             <p className='mb-[10px]'>
-              This component is built using shadcn/ui's dialog and drawer
+              This component is built using shadcn/ui&apos;s dialog and drawer
               component, which is built on top of Vaul.
             </p>
             <p className='mb-[10px]'>
