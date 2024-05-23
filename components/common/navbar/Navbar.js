@@ -16,7 +16,6 @@ import {
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { Menu } from "lucide-react";
 
-import Language from "./Language";
 import MobileNav from "./MobileNav";
 import DropDown from "./DropDown";
 import Image from "next/image";
@@ -75,7 +74,7 @@ const Navbar = () => {
                 <NavigationMenuList>
                   <div className='nav flex items-center '>
                     <NavigationMenuItem>
-                      <Link href='#' legacyBehavior passHref>
+                      <Link href='/' legacyBehavior passHref>
                         <NavigationMenuLink
                           className={navigationMenuTriggerStyle()}
                         >
@@ -92,21 +91,9 @@ const Navbar = () => {
                         </NavigationMenuLink>
                       </Link>
                     </NavigationMenuItem>
-                    <NavigationMenuItem>
-                      <Link href='/docs' legacyBehavior passHref>
-                        <NavigationMenuLink
-                          className={navigationMenuTriggerStyle()}
-                        >
-                          Youtube To MP3
-                        </NavigationMenuLink>
-                      </Link>
-                    </NavigationMenuItem>
                   </div>
 
                   <div className='theme'></div>
-                  <NavigationMenuItem className='pl-4'>
-                    <Language />
-                  </NavigationMenuItem>
 
                   <DropDown />
                   <NavigationMenuItem>

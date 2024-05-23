@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -21,25 +21,11 @@ import { ChevronDown, Download, Scissors, Music } from "lucide-react";
 
 const Dropdown = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedQuality, setSelectedQuality] = useState("720p");
   const dropdownRef = useRef(null);
-
-  useEffect(() => {
-    const savedQuality = localStorage.getItem("qualty");
-    if (savedQuality) {
-      setSelectedQuality(savedQuality);
-    }
-  }, [selectedQuality]);
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
   };
-
-  const handleQualityChange = (qualty) => {
-    setSelectedQuality(qualty);
-    localStorage.setItem("qualty", qualty);
-  };
-
   const dropdownItems = [
     { label: "720p", size: "64.6MB", badge: true },
     { label: "360p", size: "17.7MB", badge: false },
@@ -56,7 +42,7 @@ const Dropdown = () => {
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Button variant='outline' className='rounded-l-none'>
-              <span>MP4 {selectedQuality}</span>
+              <span>MP4 720</span>
               <span className='pl-2'>
                 <ChevronDown size={14} />
               </span>
@@ -65,11 +51,7 @@ const Dropdown = () => {
           <DropdownMenuContent className='w-[17.5rem] mr-[-4.1rem]'>
             <DropdownMenuGroup>
               {dropdownItems.map((item, index) => (
-                <DropdownMenuItem
-                  key={index}
-                  className='justify-between'
-                  onClick={() => handleQualityChange(item.label)}
-                >
+                <DropdownMenuItem key={index} className='justify-between'>
                   <p>
                     MP4
                     <span className='ml-2'>{item.label}</span>
