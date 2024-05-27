@@ -53,9 +53,9 @@ const DropDown = () => {
     localStorage.setItem("theme", mode);
   };
 
-  const handleQualityClick = (quality) => {
-    setSelectedQuality(quality);
-  };
+  // const handleQualityClick = (quality) => {
+  //   setSelectedQuality(quality);
+  // };
 
   const handleLanguageClick = (language) => {
     setSelectedLanguage(language);
@@ -230,11 +230,9 @@ const DropDown = () => {
                     key={e.quality}
                     variant='outline'
                     className={` ${
-                      selectedQuality === e.quality
-                        ? " bg-black dark:bg-[#666]"
-                        : ""
-                    } ${selectedQuality === e.quality ? "text-white" : ""}   `}
-                    onClick={() => handleQualityClick(e.quality)}
+                      quality === e.quality ? " bg-black dark:bg-[#666]" : ""
+                    } ${quality === e.quality ? "text-white" : ""}   `}
+                    onClick={() => handleQualityChange(e.quality)}
                   >
                     {e.quality}
                   </Button>
