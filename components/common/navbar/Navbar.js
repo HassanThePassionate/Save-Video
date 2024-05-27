@@ -30,13 +30,7 @@ const Navbar = () => {
     <>
       <div className='wrap border-b border-[#f3f3f3] dark:border-[#333]'>
         <div className='container'>
-          <div className='flex items-center justify-between px-[10px] py-5'>
-            {toggle ? (
-              <Menu onClick={handleMenu} className='ico' />
-            ) : (
-              <RxCross2 onClick={handleMenu} className='ico' />
-            )}
-
+          <div className='flex items-center float-right sm:float-none sm:justify-between px-[10px] py-5'>
             <Link
               href='/'
               className='Desk_logo text-[16px] font-bold flex items-center gap-3'
@@ -113,6 +107,11 @@ const Navbar = () => {
                 </NavigationMenuList>
               </NavigationMenu>
             </div>
+            {toggle ? (
+              <Menu onClick={handleMenu} className='ico absoulte right-0' />
+            ) : (
+              <RxCross2 onClick={handleMenu} className='ico' size={24} />
+            )}
           </div>
         </div>
       </div>

@@ -17,8 +17,10 @@ const Contact = () => {
   };
   return (
     <div className='max-w-2xl  mx-auto my-4 md:my-12 space-y-8'>
-      <div>
-        <h2 className='text-center text-6xl font-bold'>Contact Us</h2>
+      <div className='px-4'>
+        <h2 className='text-center  text-5xl sm:text-6xl font-bold'>
+          Contact Us
+        </h2>
         <p className='text-center mt-6 text-[20px] text-[#71717a] mb-[20px] '>
           We&apos;re here to provide the support you need. Whether you have
           questions, comments, or need assistance, we are ready to help.
@@ -35,12 +37,14 @@ const Contact = () => {
               <label>E-mail address</label>
               <Input placeholder='Your e-mail address' className='mt-3' />
             </div>
-            <div className='flex gap-3'>
+            <div className='flex gap-3 flex-wrap'>
               <Button
                 variant='outline'
                 style={{
                   backgroundColor:
-                    lastClicked === "General Contact" ? "black" : "",
+                    lastClicked === "General Contact"
+                      ? "black dark:[#999]"
+                      : "",
                   color: lastClicked === "General Contact" ? "white" : "",
                 }}
                 onClick={() => handleClick("General Contact")}
@@ -50,7 +54,8 @@ const Contact = () => {
               <Button
                 variant='outline'
                 style={{
-                  backgroundColor: lastClicked === "Feedback" ? "black" : "",
+                  backgroundColor:
+                    lastClicked === "Feedback" ? "black dark:[#999]" : "",
                   color: lastClicked === "Feedback" ? "white" : "",
                 }}
                 onClick={() => handleClick("Feedback")}
@@ -60,8 +65,10 @@ const Contact = () => {
               <Button
                 variant='outline'
                 style={{
-                  backgroundColor: lastClicked === "Bug Report" ? "black" : "",
-                  color: lastClicked === "Bug Report" ? "white" : "",
+                  backgroundColor:
+                    lastClicked === "Bug Report" ? "black dark:[#999]" : "",
+                  color:
+                    lastClicked === "Bug Report" ? " black dark:white" : "",
                 }}
                 onClick={() => handleClick("Bug Report")}
               >
@@ -71,7 +78,9 @@ const Contact = () => {
                 variant='outline'
                 style={{
                   backgroundColor:
-                    lastClicked === "Feature Request" ? "black" : "",
+                    lastClicked === "Feature Request"
+                      ? "black dark:[#999]"
+                      : "",
                   color: lastClicked === "Feature Request" ? "white" : "",
                 }}
                 onClick={() => handleClick("Feature Request")}

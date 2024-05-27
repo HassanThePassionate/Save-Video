@@ -174,134 +174,137 @@ const DropDown = () => {
             Customize
           </Button>
         </SheetTrigger>
+
         <SheetContent className='content'>
-          <SheetHeader>
-            <SheetTitle>Setting</SheetTitle>
-            <SheetDescription>
-              Pick a style and color for your components.
-            </SheetDescription>
-          </SheetHeader>
-          <div className='flex items-center justify-between gap-2 mt-5 '>
-            <div>
-              <h3 className='mb-2'>Customize </h3>
+          <div className='max-w-3xl mx-auto my-4 md:my-12 space-y-8'>
+            <SheetHeader>
+              <SheetTitle>Setting</SheetTitle>
               <SheetDescription>
-                <p>Pick a style and color for your components.</p>{" "}
+                Pick a style and color for your components.
               </SheetDescription>
+            </SheetHeader>
+            <div className='flex items-center justify-between gap-2 mt-5 '>
+              <div>
+                <h3 className='mb-2'>Customize </h3>
+                <SheetDescription>
+                  <p>Pick a style and color for your components.</p>{" "}
+                </SheetDescription>
+              </div>
+
+              <Switch
+                checked={toggled}
+                onCheckedChange={() => dispatch(toggle())}
+              />
             </div>
 
-            <Switch
-              checked={toggled}
-              onCheckedChange={() => dispatch(toggle())}
-            />
-          </div>
-
-          <div>
-            <h3 className='my-5'> Default Qualities</h3>
-            <div className='flex gap-4'>
-              <Button
-                variant='outline'
-                className={` ${
-                  selectedQuality === "720p" ? " bg-black dark:bg-[#666]" : ""
-                } ${selectedQuality === "720p" ? "text-white" : ""}   `}
-                onClick={() => handleQualityClick("720p")}
-              >
-                720px
-              </Button>
-              <Button
-                variant='outline'
-                className={` ${
-                  selectedQuality === "360p" ? " bg-black dark:bg-[#666]" : ""
-                } ${selectedQuality === "360p" ? "text-white" : ""}   `}
-                onClick={() => handleQualityClick("360p")}
-              >
-                360px
-              </Button>
-            </div>
-            <h3 className='my-5'>All Qualities</h3>
-            <div className='grid grid-cols-3 gap-4'>
-              {quality.map((e) => (
+            <div>
+              <h3 className='my-5'> Default Qualities</h3>
+              <div className='grid grid-cols-3 sm:grid-cols-6  gap-4'>
                 <Button
-                  key={e.quality}
                   variant='outline'
                   className={` ${
-                    selectedQuality === e.quality
-                      ? " bg-black dark:bg-[#666]"
-                      : ""
-                  } ${selectedQuality === e.quality ? "text-white" : ""}   `}
-                  onClick={() => handleQualityClick(e.quality)}
+                    selectedQuality === "720p" ? " bg-black dark:bg-[#666]" : ""
+                  } ${selectedQuality === "720p" ? "text-white" : ""}   `}
+                  onClick={() => handleQualityClick("720p")}
                 >
-                  {e.quality}
+                  720px
                 </Button>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className='my-5'>Languages</h3>
-            <div className='grid grid-cols-3 gap-4'>
-              {components.map((component) => (
                 <Button
-                  key={component.name}
-                  onClick={() => handleLanguageClick(component.name)}
                   variant='outline'
                   className={` ${
-                    selectedLanguage === component.name
-                      ? " bg-black dark:bg-[#666]"
-                      : ""
+                    selectedQuality === "360p" ? " bg-black dark:bg-[#666]" : ""
+                  } ${selectedQuality === "360p" ? "text-white" : ""}   `}
+                  onClick={() => handleQualityClick("360p")}
+                >
+                  360px
+                </Button>
+              </div>
+              <h3 className='my-5'>All Qualities</h3>
+              <div className='grid grid-cols-3 sm:grid-cols-6 gap-4'>
+                {quality.map((e) => (
+                  <Button
+                    key={e.quality}
+                    variant='outline'
+                    className={` ${
+                      selectedQuality === e.quality
+                        ? " bg-black dark:bg-[#666]"
+                        : ""
+                    } ${selectedQuality === e.quality ? "text-white" : ""}   `}
+                    onClick={() => handleQualityClick(e.quality)}
+                  >
+                    {e.quality}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className='my-5'>Languages</h3>
+              <div className='grid grid-cols-3 sm:grid-cols-6 gap-4'>
+                {components.map((component) => (
+                  <Button
+                    key={component.name}
+                    onClick={() => handleLanguageClick(component.name)}
+                    variant='outline'
+                    className={` ${
+                      selectedLanguage === component.name
+                        ? " bg-black dark:bg-[#666]"
+                        : ""
+                    } ${
+                      selectedLanguage === component.name ? "text-white" : ""
+                    }   flex items-center cursor-pointer gap-1 `}
+                  >
+                    <Image
+                      src={component.flag}
+                      alt={`${component.name} flag`}
+                      height={18}
+                      width={18}
+                    />
+                    <span className='text-[12px]'> {component.name}</span>
+                  </Button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 className='my-5'>Modes</h3>
+              <div className='grid grid-cols-3 sm:grid-cols-6 gap-4'>
+                <Button
+                  variant='outline'
+                  className={` ${
+                    selectedMode === "light" ? " bg-black dark:bg-[#666]" : ""
                   } ${
-                    selectedLanguage === component.name ? "text-white" : ""
+                    selectedMode === "light" ? "text-white" : ""
                   }   flex items-center cursor-pointer gap-1 `}
+                  onClick={() => handleModeClick("light")}
                 >
-                  <Image
-                    src={component.flag}
-                    alt={`${component.name} flag`}
-                    height={18}
-                    width={18}
-                  />
-                  <span className='text-[12px]'> {component.name}</span>
+                  <Sun />
+                  Light
                 </Button>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className='my-5'>Modes</h3>
-            <div className='flex gap-4'>
-              <Button
-                variant='outline'
-                className={` ${
-                  selectedMode === "light" ? " bg-black dark:bg-[#666]" : ""
-                } ${
-                  selectedMode === "light" ? "text-white" : ""
-                }   flex items-center cursor-pointer gap-1 `}
-                onClick={() => handleModeClick("light")}
-              >
-                <Sun />
-                Light
-              </Button>
-              <Button
-                variant='outline'
-                className={` ${
-                  selectedMode === "dark" ? " bg-black dark:bg-[#666]" : ""
-                } ${
-                  selectedMode === "dark" ? "text-white" : ""
-                }   flex items-center cursor-pointer gap-1 `}
-                onClick={() => handleModeClick("dark")}
-              >
-                <Moon />
-                Dark
-              </Button>
-              <Button
-                variant='outline'
-                className={` ${
-                  selectedMode === "system" ? " bg-black dark:bg-[#666]" : ""
-                } ${
-                  selectedMode === "system" ? "text-white" : ""
-                }     flex items-center cursor-pointer gap-1`}
-                onClick={() => handleModeClick("system")}
-              >
-                <MdOutlineDesktopWindows />
-                System
-              </Button>
+                <Button
+                  variant='outline'
+                  className={` ${
+                    selectedMode === "dark" ? " bg-black dark:bg-[#666]" : ""
+                  } ${
+                    selectedMode === "dark" ? "text-white" : ""
+                  }   flex items-center cursor-pointer gap-1 `}
+                  onClick={() => handleModeClick("dark")}
+                >
+                  <Moon />
+                  Dark
+                </Button>
+                <Button
+                  variant='outline'
+                  className={` ${
+                    selectedMode === "system" ? " bg-black dark:bg-[#666]" : ""
+                  } ${
+                    selectedMode === "system" ? "text-white" : ""
+                  }     flex items-center cursor-pointer gap-1`}
+                  onClick={() => handleModeClick("system")}
+                >
+                  <MdOutlineDesktopWindows size={20} />
+                  System
+                </Button>
+              </div>
             </div>
           </div>
         </SheetContent>

@@ -5,9 +5,11 @@ const MobileNav = ({ toggle }) => {
   return (
     <div>
       <div
-        className={`mobile_nav h-[80vh] bg-[#f2f2f2]  dark:bg-[#333]  mt-1 ${
-          toggle === true ? "translate-x-[-150%]" : "translate-x-[0]"
-        }  transition-all absolute z-10 rounded-sm p-6`}
+        className={`mobile_nav h-[80vh] bg-[#f2f2f2]  dark:bg-[#333]   mt-1 ${
+          toggle === true
+            ? "translate-x-[100%] translate-y-[-150%]"
+            : "translate-x-[100%]"
+        }  transition-all duration-1000 ease-in-out absolute z-10 rounded-sm p-6`}
       >
         <div className='logo text-[16px] font-bold flex items-center gap-3 pb-4 '>
           <svg
