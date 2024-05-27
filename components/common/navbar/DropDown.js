@@ -206,8 +206,12 @@ const DropDown = () => {
                 <Button
                   variant='outline'
                   className={` ${
-                    quality === "720p" ? " bg-black dark:bg-[#666]" : ""
-                  } ${quality === "720p" ? "text-white" : ""}   `}
+                    quality === "720p"
+                      ? " bg-black dark:bg-[#666] hover:bg-black"
+                      : ""
+                  } ${
+                    quality === "720p" ? "text-white hover:text-white" : ""
+                  }   `}
                   onClick={() => handleQualityChange("720p")}
                 >
                   720px
@@ -215,8 +219,12 @@ const DropDown = () => {
                 <Button
                   variant='outline'
                   className={` ${
-                    quality === "360p" ? " bg-black dark:bg-[#666]" : ""
-                  } ${quality === "360p" ? "text-white" : ""}   `}
+                    quality === "360p"
+                      ? " bg-black dark:bg-[#666] hover:bg-black"
+                      : ""
+                  } ${
+                    quality === "360p" ? "text-white hover:text-white" : ""
+                  }   `}
                   onClick={() => handleQualityChange("360p")}
                 >
                   360px
@@ -229,8 +237,12 @@ const DropDown = () => {
                     key={e.quality}
                     variant='outline'
                     className={` ${
-                      quality === e.quality ? " bg-black dark:bg-[#666]" : ""
-                    } ${quality === e.quality ? "text-white" : ""}   `}
+                      quality === e.quality
+                        ? " bg-black dark:bg-[#666] hover:bg-black"
+                        : ""
+                    } ${
+                      quality === e.quality ? "text-white hover:text-white" : ""
+                    }   `}
                     onClick={() => handleQualityChange(e.quality)}
                   >
                     {e.quality}
@@ -249,10 +261,12 @@ const DropDown = () => {
                     variant='outline'
                     className={` ${
                       selectedLanguage === component.name
-                        ? " bg-black dark:bg-[#666]"
+                        ? " bg-black dark:bg-[#666] hover:bg-black"
                         : ""
                     } ${
-                      selectedLanguage === component.name ? "text-white" : ""
+                      selectedLanguage === component.name
+                        ? "text-white hover:text-white"
+                        : ""
                     }   flex items-center cursor-pointer gap-1 `}
                   >
                     <Image
@@ -273,9 +287,13 @@ const DropDown = () => {
                 <Button
                   variant='outline'
                   className={` ${
-                    selectedMode === "light" ? " bg-black dark:bg-[#666]" : ""
+                    selectedMode === "light"
+                      ? " bg-black dark:bg-[#666] hover:bg-black"
+                      : ""
                   } ${
-                    selectedMode === "light" ? "text-white" : ""
+                    selectedMode === "light"
+                      ? "text-white hover:text-white"
+                      : ""
                   }   flex items-center cursor-pointer gap-1 `}
                   onClick={() => handleModeClick("light")}
                 >
@@ -285,9 +303,11 @@ const DropDown = () => {
                 <Button
                   variant='outline'
                   className={` ${
-                    selectedMode === "dark" ? " bg-black dark:bg-[#666]" : ""
+                    selectedMode === "dark"
+                      ? " bg-black dark:bg-[#666] hover:bg-black"
+                      : ""
                   } ${
-                    selectedMode === "dark" ? "text-white" : ""
+                    selectedMode === "dark" ? "text-white hover:text-white" : ""
                   }   flex items-center cursor-pointer gap-1 `}
                   onClick={() => handleModeClick("dark")}
                 >
@@ -297,9 +317,13 @@ const DropDown = () => {
                 <Button
                   variant='outline'
                   className={` ${
-                    selectedMode === "system" ? " bg-black dark:bg-[#666]" : ""
+                    selectedMode === "system"
+                      ? " bg-black dark:bg-[#666] hover:bg-black"
+                      : ""
                   } ${
-                    selectedMode === "system" ? "text-white" : ""
+                    selectedMode === "system"
+                      ? "text-white hover:text-white"
+                      : ""
                   }     flex items-center cursor-pointer gap-1`}
                   onClick={() => handleModeClick("system")}
                 >
