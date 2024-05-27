@@ -64,9 +64,6 @@ const Cuts = () => {
 
   const handleSliderChange = (value) => {
     setSliderValue(value);
-    if (videoRef.current) {
-      videoRef.current.seekTo(value[0]);
-    }
   };
 
   const togglePlay = () => {

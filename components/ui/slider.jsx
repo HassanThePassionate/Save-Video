@@ -51,7 +51,7 @@ const MultiSlider = React.forwardRef(function MultiSlider(
           <TooltipTrigger asChild>
             <SliderPrimitive.Thumb className='block h-5 w-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50' />
           </TooltipTrigger>
-          <TooltipContent className=' p-2 text-white text-sm bg-blue-400'>
+          <TooltipContent className='rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md'>
             <p>{props?.value?.[0] || 0}</p>
           </TooltipContent>
         </Tooltip>
@@ -62,7 +62,7 @@ const MultiSlider = React.forwardRef(function MultiSlider(
           <TooltipTrigger asChild>
             <SliderPrimitive.Thumb className='block h-5 w-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50' />
           </TooltipTrigger>
-          <TooltipContent className=' p-2 text-white text-sm bg-blue-400'>
+          <TooltipContent className='rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md'>
             <p>{props?.value?.[1] || 0}</p>
           </TooltipContent>
         </Tooltip>

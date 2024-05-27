@@ -182,14 +182,13 @@ const DropDown = () => {
         <SheetContent className='content'>
           <div className='max-w-3xl mx-auto my-4 md:my-12 space-y-8'>
             <SheetHeader>
-              <SheetTitle>Setting</SheetTitle>
-              <SheetDescription>
-                Pick a style and color for your components.
-              </SheetDescription>
+              <SheetTitle>
+                <h1 className='font-semibold'>Setting</h1>
+              </SheetTitle>
             </SheetHeader>
             <div className='flex items-center justify-between gap-2 mt-5 '>
               <div>
-                <h3 className='mb-2'>Customize </h3>
+                <h2 className='mb-2 font-semibold'>Customize </h2>
                 <SheetDescription>
                   <p>Pick a style and color for your components.</p>{" "}
                 </SheetDescription>
@@ -200,9 +199,9 @@ const DropDown = () => {
                 onCheckedChange={() => dispatch(toggle())}
               />
             </div>
-
+            <div className='divider div-transparent '></div>
             <div>
-              <h3 className='my-5'> Default Qualities</h3>
+              <h2 className='my-5 font-semibold'> Default Qualities</h2>
               <div className='grid grid-cols-3 sm:grid-cols-6  gap-4'>
                 <Button
                   variant='outline'
@@ -223,7 +222,7 @@ const DropDown = () => {
                   360px
                 </Button>
               </div>
-              <h3 className='my-5'>All Qualities</h3>
+              <h2 className='my-5 font-semibold'>All Qualities</h2>
               <div className='grid grid-cols-3 sm:grid-cols-6 gap-4'>
                 {qualits.map((e) => (
                   <Button
@@ -239,9 +238,9 @@ const DropDown = () => {
                 ))}
               </div>
             </div>
-
+            <div className='divider div-transparent '></div>
             <div>
-              <h3 className='my-5'>Languages</h3>
+              <h2 className='my-5 font-semibold'>Languages</h2>
               <div className='grid grid-cols-3 sm:grid-cols-6 gap-4'>
                 {components.map((component) => (
                   <Button
@@ -268,7 +267,8 @@ const DropDown = () => {
               </div>
             </div>
             <div>
-              <h3 className='my-5'>Modes</h3>
+              <div className='divider div-transparent '></div>
+              <h2 className='my-5 font-semibold'>Modes</h2>
               <div className='grid grid-cols-3 sm:grid-cols-6 gap-4'>
                 <Button
                   variant='outline'
