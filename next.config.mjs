@@ -14,6 +14,14 @@ const nextConfig = {
         protocol: "https",
         hostname: "savemp3.net",
       },
+      {
+        protocol: "https",
+        hostname: "i0.wp.com",
+      },
+      {
+        protocol: "https",
+        hostname: "i3.wp.com",
+      },
     ],
   },
 };
