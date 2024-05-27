@@ -94,7 +94,10 @@ const Navbar = () => {
 
                   <DropDown />
                   <NavigationMenuItem>
-                    <button className='px-5 py-3 hidden bg-black text-white sm:flex items-center gap-2 text-base font-semibold rounded-md ml-[30px] transition-all hover:bg-[#444] dark:hover:bg-[#555] dark:bg-[#333]'>
+                    <button
+                      id='chorme_btn'
+                      className='  px-5 py-3  bg-black text-white lg:flex items-center gap-2 text-base font-semibold rounded-md ml-[30px] transition-all hover:bg-[#444] dark:hover:bg-[#555] dark:bg-[#333]'
+                    >
                       <Image
                         src='/Chrome.png'
                         alt='img'

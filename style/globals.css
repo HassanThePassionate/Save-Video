@@ -79,6 +79,9 @@
   .ico {
     display: block;
   }
+  #chorme_btn {
+    display: none;
+  }
 }
 
 .img {

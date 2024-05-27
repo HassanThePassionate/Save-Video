@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -6,10 +7,8 @@ const MobileNav = ({ toggle }) => {
     <div>
       <div
         className={`mobile_nav h-[80vh] bg-[#f2f2f2]  dark:bg-[#333]   mt-1 ${
-          toggle === true
-            ? "translate-x-[100%] translate-y-[-150%]"
-            : "translate-x-[100%]"
-        }  transition-all duration-1000 ease-in-out absolute z-10 rounded-sm p-6`}
+          toggle === true ? " translate-y-[-150%]" : "float-right"
+        }  transition-all duration-1000 ease-in-out right-0 absolute z-10 rounded-sm p-6`}
       >
         <div className='logo text-[16px] font-bold flex items-center gap-3 pb-4 '>
           <svg
@@ -59,6 +58,12 @@ const MobileNav = ({ toggle }) => {
           <li>
             <Link href='#'>Help</Link>
           </li>
+          <div className='flex items-end h-[35vh]'>
+            <button className='px-5 py-3 hidden bg-black text-white lg:flex items-center justify-center  gap-2 text-base font-semibold rounded-md ml-[30px] transition-all hover:bg-[#444] dark:hover:bg-[#555] dark:bg-[#333]'>
+              <Image src='/Chrome.png' alt='img' width={20} height={20} />
+              Add to chorme
+            </button>
+          </div>
         </ul>
       </div>
     </div>
