@@ -39,8 +39,10 @@ const Cuts = () => {
   useEffect(() => {
     if (play && currentTime >= sliderValue[1]) {
       setPlay(false);
-      if (videoRef.current) {
-        videoRef.current.seekTo(sliderValue[0]);
+      if (play === true) {
+        if (videoRef.current) {
+          videoRef.current.seekTo(sliderValue[0]);
+        }
       }
     }
   }, [currentTime, play, sliderValue]);
@@ -55,11 +57,15 @@ const Cuts = () => {
   };
 
   const handleSliderChange = (value) => {
-    setSliderValue(value);
-    if (play === true) {
-      if (videoRef.current) {
-        videoRef.current.seekTo(value[0]);
+    if (value[0] !== sliderValue[0]) {
+      setSliderValue(value);
+      if (play === true) {
+        if (videoRef.current) {
+          videoRef.current.seekTo(value[0]);
+        }
       }
+    } else {
+      setSliderValue(value);
     }
   };
 
