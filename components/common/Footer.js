@@ -4,7 +4,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className='wrap border-t border-[#f3f3f3] dark:border-[#333]'>
-      <div className='w-full px-4'>
+      <div className='container'>
         <div className='flex items-center justify-center sm:justify-between px-[10px] py-[20px] gap-3  flex-wrap  '>
           <Link
             href='/'
