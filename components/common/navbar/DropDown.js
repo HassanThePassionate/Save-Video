@@ -183,7 +183,7 @@ const DropDown = () => {
           <div className='max-w-3xl mx-auto my-4 md:my-12 space-y-8'>
             <SheetHeader>
               <SheetTitle>
-                <h1 className='font-semibold'>Setting</h1>
+                <h1 className='font-semibold text-xl'>Setting</h1>
               </SheetTitle>
             </SheetHeader>
             <div className='flex items-center justify-between gap-2 mt-5 '>
