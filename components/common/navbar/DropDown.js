@@ -24,11 +24,13 @@ import { useTheme } from "next-themes";
 import { Switch } from "@/components/ui/switch";
 import { useSelector, useDispatch } from "react-redux";
 import { toggle } from "../../../redux/toggle/toggleSlice";
+import { setQuality } from "@/redux/quality/qualitySlice";
 import Image from "next/image";
 
 const DropDown = () => {
   const dispatch = useDispatch();
   const toggled = useSelector((state) => state.toggle.toggled);
+  const quality = useSelector((state) => state.quality.quality);
   const { setTheme } = useTheme();
 
   const [selectedLanguage, setSelectedLanguage] = useState("English");
@@ -42,7 +44,9 @@ const DropDown = () => {
       setSelectedMode(savedTheme); // Ensure the mode button is selected on load
     }
   }, [setTheme]);
-
+  const handleQualityChange = (newQuality) => {
+    dispatch(setQuality(newQuality));
+  };
   const handleModeClick = (mode) => {
     setSelectedMode(mode);
     setTheme(mode);
@@ -156,7 +160,7 @@ const DropDown = () => {
     },
   ];
 
-  const quality = [
+  const qualits = [
     { quality: "1080p" },
     { quality: "1440p" },
     { quality: "2160p" },
@@ -203,25 +207,25 @@ const DropDown = () => {
                 <Button
                   variant='outline'
                   className={` ${
-                    selectedQuality === "720p" ? " bg-black dark:bg-[#666]" : ""
-                  } ${selectedQuality === "720p" ? "text-white" : ""}   `}
-                  onClick={() => handleQualityClick("720p")}
+                    quality === "720p" ? " bg-black dark:bg-[#666]" : ""
+                  } ${quality === "720p" ? "text-white" : ""}   `}
+                  onClick={() => handleQualityChange("720p")}
                 >
                   720px
                 </Button>
                 <Button
                   variant='outline'
                   className={` ${
-                    selectedQuality === "360p" ? " bg-black dark:bg-[#666]" : ""
-                  } ${selectedQuality === "360p" ? "text-white" : ""}   `}
-                  onClick={() => handleQualityClick("360p")}
+                    quality === "360p" ? " bg-black dark:bg-[#666]" : ""
+                  } ${quality === "360p" ? "text-white" : ""}   `}
+                  onClick={() => handleQualityChange("360p")}
                 >
                   360px
                 </Button>
               </div>
               <h3 className='my-5'>All Qualities</h3>
               <div className='grid grid-cols-3 sm:grid-cols-6 gap-4'>
-                {quality.map((e) => (
+                {qualits.map((e) => (
                   <Button
                     key={e.quality}
                     variant='outline'

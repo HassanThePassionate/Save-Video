@@ -18,8 +18,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ChevronDown, Download, Scissors, Music } from "lucide-react";
-
+import { useSelector } from "react-redux";
 const Dropdown = () => {
+  const quality = useSelector((state) => state.quality.quality);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -42,7 +43,7 @@ const Dropdown = () => {
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Button variant='outline' className='rounded-l-none'>
-              <span>MP4 720</span>
+              <span>MP4 {quality}</span>
               <span className='pl-2'>
                 <ChevronDown size={14} />
               </span>
