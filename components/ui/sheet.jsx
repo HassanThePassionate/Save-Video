@@ -40,7 +40,7 @@ const sheetVariants = cva(
       },
     },
     defaultVariants: {
-      side: "bottom",
+      side: " bottom",
     },
   }
 );
