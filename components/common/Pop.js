@@ -47,8 +47,6 @@ const Pop = () => {
     }
     return e;
   });
-
-  // Move the matched browser to the top of the list
   updatedBtn.sort((a, b) => (a.label.startsWith("Add to") ? -1 : 1));
 
   return (
