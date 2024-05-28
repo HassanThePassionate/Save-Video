@@ -109,8 +109,8 @@ const UserList = () => {
       {visibleItems < item.length && (
         <div className='flex items-center justify-center'>
           <Button onClick={loadMore} variant='outline' className='mt-3 w-fit '>
-            Load More
-            <ArrowDown size={16} />
+            Loadmore
+            <ArrowDown size={16} className='ml-1' />
           </Button>
         </div>
       )}
