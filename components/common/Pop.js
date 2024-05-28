@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -11,8 +11,8 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "../ui/button";
-import Link from "next/link";
 import Image from "next/image";
+import { X } from "lucide-react";
 const Pop = () => {
   return (
     <div>
@@ -20,8 +20,11 @@ const Pop = () => {
         <AlertDialogTrigger>
           <Button>Download</Button>
         </AlertDialogTrigger>
-        <AlertDialogContent>
-          <div className='flex justify-between items-center gap-10'>
+        <AlertDialogContent className='mb-3'>
+          <AlertDialogCancel className='rounded-full border border-black p-1'>
+            <X />
+          </AlertDialogCancel>
+          <div className='flex justify-between items-center gap-10 mb-6'>
             <div>
               <Image src='/img.webp' alt='img' width={365} height={365} />
             </div>
@@ -42,27 +45,36 @@ const Pop = () => {
               </AlertDialogHeader>
             </div>
           </div>
-          <AlertDialogFooter className='mt-2'>
+          <div className='divider div-transparent mb-4'></div>
+          <AlertDialogFooter>
             <AlertDialogAction>
               <div className='flex items-center gap-2 '>
                 <Image src='/Chrome.png' alt='img' width={22} height={22} />
-                <span className='text-[15px] uppercase'>Chorme</span>
+                <span className='text-[15px] '>Add to Chorme</span>
               </div>
             </AlertDialogAction>
             <AlertDialogAction>
               <div className='flex items-center gap-2 '>
                 <Image src='/firefoxs.png' alt='img' width={22} height={22} />
-                <span className='text-[15px] uppercase'>Fire Fox</span>
+                <span className='text-[15px] '>Add to Firefox</span>
               </div>
             </AlertDialogAction>
-            {/* <AlertDialogAction>
+            <AlertDialogAction>
               <div className='flex items-center gap-2 '>
                 <Image src='/edges.webp' alt='img' width={22} height={22} />
-                <span className='text-[15px] uppercase'>Edge</span>
+                <span className='text-[15px] '>Add to Edge</span>
               </div>
-            </AlertDialogAction> */}
-            <AlertDialogCancel>Close</AlertDialogCancel>
+            </AlertDialogAction>
+            <AlertDialogAction>
+              <div className='flex items-center gap-2 '>
+                <Image src='/opera.png' alt='img' width={22} height={22} />
+              </div>
+            </AlertDialogAction>
           </AlertDialogFooter>
+          <p className='mt-2 text-[12px]'>
+            Foxified extension is needed to make YouTube Video Downloader work
+            properly.
+          </p>
         </AlertDialogContent>
       </AlertDialog>
     </div>
