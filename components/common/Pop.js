@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,38 +16,38 @@ import { VideoIcon, X } from "lucide-react";
 import browser from "browser-detect";
 
 const Pop = () => {
-  const result = browser();
+  const [sortedBtn, setSortedBtn] = useState([]);
 
-  const btn = [
-    {
-      img: "/Chrome.png",
-      label: "Chrome",
-    },
-    {
-      img: "/firefoxs.png",
-      label: "Fire Fox",
-    },
-    {
-      img: "/edges.webp",
-      label: "Edge",
-    },
-    {
-      img: "/opera.png",
-      label: "Opera",
-    },
-  ];
+  useEffect(() => {
+    const result = browser();
+    const btn = [
+      {
+        img: "/Chrome.png",
+        label: "Add to Chrome",
+        browser: "chrome",
+      },
+      {
+        img: "/firefoxs.png",
+        label: "Fire Fox",
+        browser: "firefox",
+      },
+      {
+        img: "/edges.webp",
+        label: "Edge",
+        browser: "edge",
+      },
+      {
+        img: "/opera.png",
+        label: "Opera",
+        browser: "opera",
+      },
+    ];
 
-  // Adjust the button list based on detected browser
-  const updatedBtn = btn.map((e) => {
-    if (
-      result.name &&
-      e.label.toLowerCase().includes(result.name.toLowerCase())
-    ) {
-      return { ...e, label: `Add to ${e.label}` };
-    }
-    return e;
-  });
-  updatedBtn.sort((a, b) => (a.label.startsWith("Add to") ? -1 : 1));
+    const sorted = btn.sort((a, b) =>
+      a.browser === result.name ? -1 : b.browser === result.name ? 1 : 0
+    );
+    setSortedBtn(sorted);
+  }, []);
 
   return (
     <div>
@@ -96,11 +96,11 @@ const Pop = () => {
           </div>
           <div className='divider div-transparent mb-4'></div>
           <AlertDialogFooter>
-            {updatedBtn.map((e) => (
+            {sortedBtn.map((e) => (
               <AlertDialogAction variant='outline' key={e.img}>
-                <div className='flex items-center gap-2'>
+                <div className='flex items-center gap-2 '>
                   <Image src={e.img} alt='img' width={22} height={22} />
-                  <span className='text-[15px]'>{e.label}</span>
+                  <span className='text-[15px] '>{e.label}</span>
                 </div>
               </AlertDialogAction>
             ))}
