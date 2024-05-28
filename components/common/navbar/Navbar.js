@@ -71,7 +71,7 @@ const Navbar = () => {
             <div className='flex items-center gap-4'>
               <NavigationMenu>
                 <NavigationMenuList>
-                  <div className='nav flex items-center '>
+                  <div className='nav flex items-center gap-2'>
                     <NavigationMenuItem>
                       <Link href='/' legacyBehavior passHref>
                         <NavigationMenuLink
