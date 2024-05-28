@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { Menu } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 import MobileNav from "./MobileNav";
 import DropDown from "./DropDown";
@@ -67,6 +68,7 @@ const Navbar = () => {
                 ></line>
               </svg>
               <span>SaveVideo</span>
+              <Badge>100% Ad-Free!</Badge>
             </Link>
             <div className='flex items-center gap-4'>
               <NavigationMenu>

@@ -2,7 +2,6 @@ import React from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { LoaderCircle } from "lucide-react";
-import Content from "../common/Content";
 
 const LinkInput = ({ link, setLink, loading, setLoading }) => {
   const pasteLink = async () => {
@@ -43,7 +42,6 @@ const LinkInput = ({ link, setLink, loading, setLoading }) => {
           )}
         </Button>
       </div>
-      <Content />
     </>
   );
 };
