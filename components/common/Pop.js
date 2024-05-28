@@ -96,11 +96,13 @@ const Pop = () => {
           </div>
           <div className='divider div-transparent mb-4'></div>
           <AlertDialogFooter>
-            {sortedBtn.map((e) => (
+            {sortedBtn.map((e, index) => (
               <AlertDialogAction variant='outline' key={e.img}>
-                <div className='flex items-center gap-2 '>
+                <div className='flex items-center gap-2'>
                   <Image src={e.img} alt='img' width={22} height={22} />
-                  <span className='text-[15px] '>{e.label}</span>
+                  <span className='text-[15px] '>
+                    {index === 0 ? `Add to ${e.label.split(" ")[2]}` : e.label}
+                  </span>
                 </div>
               </AlertDialogAction>
             ))}
