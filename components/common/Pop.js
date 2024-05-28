@@ -23,7 +23,7 @@ const Pop = () => {
     const btn = [
       {
         img: "/Chrome.png",
-        label: "Add to Chrome",
+        label: "Chrome",
         browser: "chrome",
       },
       {
@@ -43,9 +43,10 @@ const Pop = () => {
       },
     ];
 
-    const sorted = btn.sort((a, b) =>
-      a.browser === result.name ? -1 : b.browser === result.name ? 1 : 0
-    );
+    const detectedBrowser = btn.find((b) => b.browser === result.name);
+    const otherBrowsers = btn.filter((b) => b.browser !== result.name);
+
+    const sorted = detectedBrowser ? [detectedBrowser, ...otherBrowsers] : btn;
     setSortedBtn(sorted);
   }, []);
 
@@ -101,7 +102,7 @@ const Pop = () => {
                 <div className='flex items-center gap-2'>
                   <Image src={e.img} alt='img' width={22} height={22} />
                   <span className='text-[15px] '>
-                    {index === 0 ? `Add to ${e.label.split(" ")[2]}` : e.label}
+                    {index === 0 ? `Add to ${e.label}` : e.label}
                   </span>
                 </div>
               </AlertDialogAction>
