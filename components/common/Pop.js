@@ -47,7 +47,7 @@ const Pop = () => {
     let detectedBrowser = btn.find((b) => {
       if (result.name === "chrome" && b.browser === "chrome") return true;
       if (result.name === "firefox" && b.browser === "firefox") return true;
-      if (result.name === "edge-chromium" && b.browser === "edge") return true;
+      if (result.name === "edge" && b.browser === "edge") return true;
       if (result.name === "opera" && b.browser === "opera") return true;
       return false;
     });

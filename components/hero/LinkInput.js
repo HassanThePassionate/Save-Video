@@ -2,6 +2,7 @@ import React from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
 import { LoaderCircle } from "lucide-react";
+import Content from "../common/Content";
 
 const LinkInput = ({ link, setLink, loading, setLoading }) => {
   const pasteLink = async () => {
@@ -22,25 +23,28 @@ const LinkInput = ({ link, setLink, loading, setLoading }) => {
   };
 
   return (
-    <div className='flex w-full items-center space-x-4 px-0'>
-      <Input
-        type='url'
-        placeholder='Enter URL'
-        value={link}
-        onChange={inputHandler}
-        className='!h-10'
-      />
-      <Button disabled={loading} onClick={pasteLink} variant={"secondary"}>
-        {loading ? (
-          <>
-            <LoaderCircle className='mr-2 h-4 w-4 animate-spin' />
-            Please wait
-          </>
-        ) : (
-          "Paste Link"
-        )}
-      </Button>
-    </div>
+    <>
+      <div className='flex w-full items-center space-x-4 px-0'>
+        <Input
+          type='url'
+          placeholder='Enter URL'
+          value={link}
+          onChange={inputHandler}
+          className='!h-10'
+        />
+        <Button disabled={loading} onClick={pasteLink} variant={"secondary"}>
+          {loading ? (
+            <>
+              <LoaderCircle className='mr-2 h-4 w-4 animate-spin' />
+              Please wait
+            </>
+          ) : (
+            "Paste Link"
+          )}
+        </Button>
+      </div>
+      <Content />
+    </>
   );
 };
 

@@ -41,7 +41,7 @@ const Footer = () => {
             </svg>
             <span>SaveVideo</span>
           </Link>
-          <ul className='menu flex items-center gap-4 flex-wrap justify-center'>
+          <ul className='menu flex items-center gap-8 flex-wrap justify-center'>
             <li>
               <Link href='/privacy' className=' hover:underline '>
                 Privacy Policy
