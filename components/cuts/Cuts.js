@@ -59,10 +59,9 @@ const Cuts = () => {
   const handleSliderChange = (value) => {
     if (value[0] !== sliderValue[0]) {
       setSliderValue(value);
-      if (play === true) {
-        if (videoRef.current) {
-          videoRef.current.seekTo(value[0]);
-        }
+
+      if (videoRef.current) {
+        videoRef.current.seekTo(value[0]);
       }
     } else {
       setSliderValue(value);

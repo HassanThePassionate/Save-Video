@@ -179,7 +179,7 @@ const DropDown = () => {
           </Button>
         </SheetTrigger>
 
-        <SheetContent className='content'>
+        <SheetContent className='content' side='bottom'>
           <div className='max-w-3xl mx-auto my-4 md:my-12 space-y-8'>
             <SheetHeader>
               <SheetTitle>
