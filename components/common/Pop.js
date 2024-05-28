@@ -43,10 +43,18 @@ const Pop = () => {
       },
     ];
 
-    const detectedBrowser = btn.find((b) => b.browser === result.name);
-    const otherBrowsers = btn.filter((b) => b.browser !== result.name);
+    // Identify the browser and place its button at the beginning
+    let detectedBrowser = btn.find((b) => {
+      if (result.name === "chrome" && b.browser === "chrome") return true;
+      if (result.name === "firefox" && b.browser === "firefox") return true;
+      if (result.name === "edge-chromium" && b.browser === "edge") return true;
+      if (result.name === "opera" && b.browser === "opera") return true;
+      return false;
+    });
 
+    const otherBrowsers = btn.filter((b) => b !== detectedBrowser);
     const sorted = detectedBrowser ? [detectedBrowser, ...otherBrowsers] : btn;
+
     setSortedBtn(sorted);
   }, []);
 
