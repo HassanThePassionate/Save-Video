@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import UserItem from "./UserItem";
 import { Button } from "../ui/button";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ChevronRight } from "lucide-react";
 
 const UserList = () => {
   const item = [
@@ -109,8 +109,8 @@ const UserList = () => {
       {visibleItems < item.length && (
         <div className='flex items-center justify-center'>
           <Button onClick={loadMore} variant='outline' className='mt-3 w-fit '>
-            Loadmore
-            <ArrowDown size={16} className='ml-1' />
+            View more
+            <ChevronRight size={16} className='ml-1' />
           </Button>
         </div>
       )}
