@@ -12,13 +12,18 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "../ui/button";
 import Image from "next/image";
-import { X } from "lucide-react";
+import { VideoIcon, X } from "lucide-react";
+import browser from "browser-detect";
 const Pop = () => {
+  const result = browser();
   return (
     <div>
       <AlertDialog>
         <AlertDialogTrigger>
-          <Button>Download</Button>
+          <Button className='flex gap-2'>
+            <VideoIcon />
+            Download
+          </Button>
         </AlertDialogTrigger>
         <AlertDialogContent className='mb-3'>
           <AlertDialogCancel className='rounded-full border border-black dark:border-white p-1'>
@@ -97,18 +102,19 @@ const Pop = () => {
             <AlertDialogAction>
               <div className='flex items-center gap-2 '>
                 <Image src='/firefoxs.png' alt='img' width={22} height={22} />
-                <span className='text-[15px] '>Add to Firefox</span>
+                <span className='text-[15px] '>Firefox</span>
               </div>
             </AlertDialogAction>
             <AlertDialogAction>
               <div className='flex items-center gap-2 '>
                 <Image src='/edges.webp' alt='img' width={22} height={22} />
-                <span className='text-[15px] '>Add to Edge</span>
+                <span className='text-[15px] '>Edge</span>
               </div>
             </AlertDialogAction>
             <AlertDialogAction>
               <div className='flex items-center gap-2 '>
                 <Image src='/opera.png' alt='img' width={22} height={22} />
+                <span className='text-[15px] '>Opera</span>
               </div>
             </AlertDialogAction>
           </AlertDialogFooter>
