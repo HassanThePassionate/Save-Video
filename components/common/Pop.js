@@ -16,6 +16,9 @@ import { VideoIcon, X } from "lucide-react";
 import browser from "browser-detect";
 const Pop = () => {
   const result = browser();
+  if (result.name === "firefox") {
+    alert("yes");
+  }
   return (
     <div>
       <AlertDialog>
