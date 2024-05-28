@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,11 +14,43 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 import { VideoIcon, X } from "lucide-react";
 import browser from "browser-detect";
+
 const Pop = () => {
   const result = browser();
-  if (result.name === "firefox") {
-    alert("yes");
-  }
+
+  const btn = [
+    {
+      img: "/Chrome.png",
+      label: "Chrome",
+    },
+    {
+      img: "/firefoxs.png",
+      label: "Fire Fox",
+    },
+    {
+      img: "/edges.webp",
+      label: "Edge",
+    },
+    {
+      img: "/opera.png",
+      label: "Opera",
+    },
+  ];
+
+  // Adjust the button list based on detected browser
+  const updatedBtn = btn.map((e) => {
+    if (
+      result.name &&
+      e.label.toLowerCase().includes(result.name.toLowerCase())
+    ) {
+      return { ...e, label: `Add to ${e.label}` };
+    }
+    return e;
+  });
+
+  // Move the matched browser to the top of the list
+  updatedBtn.sort((a, b) => (a.label.startsWith("Add to") ? -1 : 1));
+
   return (
     <div>
       <AlertDialog>
@@ -41,12 +73,12 @@ const Pop = () => {
                 <AlertDialogTitle>Browser Extension</AlertDialogTitle>
                 <AlertDialogDescription>
                   <div className='flex items-center gap-1 cursor-pointer'>
-                    <div className=' px-[10px] py-[2px] dark:bg-[#555]  bg-[#F6F6F7] rounded'>
+                    <div className='px-[10px] py-[2px] dark:bg-[#555] bg-[#F6F6F7] rounded'>
                       <span className='text-black font-semibold dark:text-white'>
                         Chrome Extension
                       </span>
                     </div>
-                    <div className=' px-[10px] py-[2px] dark:bg-[#555] dark:text-white bg-[#F6F6F7] rounded'>
+                    <div className='px-[10px] py-[2px] dark:bg-[#555] dark:text-white bg-[#F6F6F7] rounded'>
                       <span className='text-black font-semibold dark:text-white'>
                         Free & Unlimited
                       </span>
@@ -66,30 +98,14 @@ const Pop = () => {
           </div>
           <div className='divider div-transparent mb-4'></div>
           <AlertDialogFooter>
-            <AlertDialogAction variant='outline'>
-              <div className='flex items-center gap-2 '>
-                <Image src='/Chrome.png' alt='img' width={22} height={22} />
-                <span className='text-[15px] '>Add to Chorme</span>
-              </div>
-            </AlertDialogAction>
-            <AlertDialogAction>
-              <div className='flex items-center gap-2 '>
-                <Image src='/firefoxs.png' alt='img' width={22} height={22} />
-                <span className='text-[15px] '>Firefox</span>
-              </div>
-            </AlertDialogAction>
-            <AlertDialogAction>
-              <div className='flex items-center gap-2 '>
-                <Image src='/edges.webp' alt='img' width={22} height={22} />
-                <span className='text-[15px] '>Edge</span>
-              </div>
-            </AlertDialogAction>
-            <AlertDialogAction>
-              <div className='flex items-center gap-2 '>
-                <Image src='/opera.png' alt='img' width={22} height={22} />
-                <span className='text-[15px] '>Opera</span>
-              </div>
-            </AlertDialogAction>
+            {updatedBtn.map((e) => (
+              <AlertDialogAction variant='outline' key={e.img}>
+                <div className='flex items-center gap-2'>
+                  <Image src={e.img} alt='img' width={22} height={22} />
+                  <span className='text-[15px]'>{e.label}</span>
+                </div>
+              </AlertDialogAction>
+            ))}
           </AlertDialogFooter>
           <p className='mt-2 text-[12px]'>
             Foxified extension is needed to make YouTube Video Downloader work
