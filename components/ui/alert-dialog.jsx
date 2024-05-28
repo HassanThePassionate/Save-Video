@@ -82,7 +82,7 @@ const AlertDialogAction = React.forwardRef(({ className, ...props }, ref) => (
   <AlertDialogPrimitive.Action
     ref={ref}
     onClick={(e) => e.preventDefault()} // Prevents the dialog from closing
-    className={cn(buttonVariants(), className)}
+    className={cn(buttonVariants({ variant: "outline" }), className)}
     {...props}
   />
 ));
