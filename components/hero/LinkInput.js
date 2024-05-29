@@ -63,25 +63,30 @@ const LinkInput = ({ link, setLink, loading, setLoading }) => {
           )}
         </Button>
       </div>
-      <div className='relative flex w-full items-center space-x-4 px-0'>
-        <Input
-          onClick={handleClick}
-          type='url'
-          placeholder='Enter URL'
-          value={link}
-          onChange={inputHandler}
-          className={`!h-10 pr-10 text-[16px] ${link && "pointer-events-none"}`}
-        />
-        {link && (
-          <button
-            onClick={clearInput}
-            className={`absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-transform duration-300 ease-in-out text-2xl ${
-              isAnimating ? "scale-75" : "scale-100"
-            }`}
-          >
-            &times;
-          </button>
-        )}
+      <div className=' flex  items-center space-x-4 px-0'>
+        <div className='w-full relative'>
+          <Input
+            onClick={handleClick}
+            type='url'
+            placeholder='Enter URL'
+            value={link}
+            onChange={inputHandler}
+            className={`!h-10 pr-10 text-[16px] ${
+              link && "pointer-events-none"
+            }  `}
+          />
+          {link && (
+            <button
+              onClick={clearInput}
+              className={`absolute right-3 top-1 transform  text-gray-400 hover:text-gray-600 transition-transform duration-300 ease-in-out text-2xl ${
+                isAnimating ? "scale-75" : "scale-100"
+              }`}
+            >
+              &times;
+            </button>
+          )}
+        </div>
+
         <Button
           disabled={loading}
           onClick={pasteLink}
