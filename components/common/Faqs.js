@@ -37,12 +37,17 @@ const Faqs = () => {
   return (
     !toggled && (
       <div>
-        <h2 className='scroll-m-20 text-3xl font-semibold tracking-tight  py-10'>
+        <h2 className='scroll-m-20 text-xl sm:text-3xl font-semibold tracking-tight px-4  py-10'>
           Frequently Ask Questions
         </h2>
 
         {data.map((ele) => (
-          <Accordion type='single' collapsible key={ele.title} className='mb-4'>
+          <Accordion
+            type='single'
+            collapsible
+            key={ele.title}
+            className='mb-4 px-4'
+          >
             <AccordionItem
               value='item-1'
               className='border-none bg-[#F4F4F5] dark:bg-[#444] px-4 rounded'

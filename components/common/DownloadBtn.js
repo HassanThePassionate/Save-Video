@@ -18,7 +18,7 @@ const DownloadBtn = () => {
     },
   ];
   return (
-    <div className='flex flex-col gap-4 mb-5'>
+    <div className='flex flex-col gap-4 mb-5 w-[50%]'>
       {btn.map((e, index) => (
         <Button className='dark:bg-[#444] dark:text-white' key={index}>
           <div className='flex items-center gap-2'>
