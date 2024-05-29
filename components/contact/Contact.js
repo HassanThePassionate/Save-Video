@@ -65,7 +65,7 @@ const Contact = () => {
                     type='button'
                     className={`${
                       lastClicked === "General Contact"
-                        ? "bg-black text-white dark:bg-[#444]"
+                        ? "bg-black text-white hover:text-white dark:bg-[#444] hover:bg-black dark:hover:bg-[#444]"
                         : ""
                     }`}
                     onClick={() => handleClick("General Contact")}
@@ -77,7 +77,7 @@ const Contact = () => {
                     type='button'
                     className={`${
                       lastClicked === "Feedback"
-                        ? "bg-black text-white dark:bg-[#444]"
+                        ? "bg-black text-white hover:text-white dark:bg-[#444] hover:bg-black dark:hover:bg-[#444]"
                         : ""
                     }`}
                     onClick={() => handleClick("Feedback")}
@@ -89,7 +89,7 @@ const Contact = () => {
                     variant='outline'
                     className={`${
                       lastClicked === "Bug Report"
-                        ? "bg-black text-white dark:bg-[#444]"
+                        ? "bg-black text-white hover:text-white dark:bg-[#444] hover:bg-black dark:hover:bg-[#444]"
                         : ""
                     }`}
                     onClick={() => handleClick("Bug Report")}
@@ -101,7 +101,7 @@ const Contact = () => {
                     variant='outline'
                     className={`${
                       lastClicked === "Feature Request"
-                        ? "bg-black text-white dark:bg-[#444] "
+                        ? "bg-black text-white hover:text-white dark:bg-[#444] hover:bg-black dark:hover:bg-[#444]  "
                         : ""
                     }`}
                     onClick={() => handleClick("Feature Request")}

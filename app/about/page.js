@@ -6,6 +6,8 @@ import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import { CiMail } from "react-icons/ci";
 import Link from "next/link";
+import Faqs from "@/components/common/Faqs";
+import DownloadBtn from "@/components/common/DownloadBtn";
 const page = () => {
   return (
     <div className='max-w-6xl mx-auto my-4 md:my-12 space-y-8'>
@@ -56,54 +58,7 @@ const page = () => {
         </div>
 
         <div className='lg:pl-20'>
-          <ul className='flex flex-col gap-5 mb-8'>
-            <li>
-              <Link
-                href='#'
-                className='flex items-center gap-3 text-sm font-medium hover:text-[#666]'
-              >
-                <span>
-                  <RiTwitterXLine />
-                </span>
-                <span className='hover:text-[#666]'>Follow on X</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href='#'
-                className='flex items-center gap-3 text-sm font-medium hover:text-[#666]'
-              >
-                <span>
-                  <FaInstagram />
-                </span>
-                <span className='hover:text-[#666]'>Follow on Instagram</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href='#'
-                className='flex items-center gap-3 text-sm font-medium hover:text-[#666]'
-              >
-                <span>
-                  <FaGithub />
-                </span>
-                <sp className='hover:text-[#666]' an>
-                  Follow on Github
-                </sp>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href='#'
-                className='flex items-center gap-3 text-sm font-medium hover:text-[#666]'
-              >
-                <span>
-                  <FaLinkedin />
-                </span>
-                <span className='hover:text-[#666]'>Follow on Linkedin</span>
-              </Link>
-            </li>
-          </ul>
+          <DownloadBtn />
           <div className='divider div-transparent'></div>
           <div className='flex items-center gap-3 mt-6'>
             <CiMail />
@@ -113,6 +68,7 @@ const page = () => {
           </div>
         </div>
       </div>
+      <Faqs />
     </div>
   );
 };
