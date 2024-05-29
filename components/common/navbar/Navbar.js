@@ -26,7 +26,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [toggle, setToggle] = useState(true);
 
-  const handleLogoClick = () => {
+  const handleClick = () => {
     if (!toggle) {
       setToggle(true);
     }
@@ -43,7 +43,7 @@ const Navbar = () => {
           <div className='flex items-center  justify-between px-[10px] py-5'>
             <Link
               href='/'
-              onClick={handleLogoClick}
+              onClick={handleClick}
               className='Desk_logo text-[16px] font-bold flex items-center gap-3 '
             >
               <svg
@@ -171,7 +171,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <MobileNav toggle={toggle} menu={handleMenu} />
+        <MobileNav toggle={toggle} menu={handleClick} />
       </div>
     </>
   );
