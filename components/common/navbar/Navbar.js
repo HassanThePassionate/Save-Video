@@ -76,7 +76,7 @@ const Navbar = () => {
                 ></line>
               </svg>
               <span>SaveVideo</span>
-              <Badge className='sm:visible hidden'>100% Ad-Free!</Badge>
+              <Badge className='hidden sm:flex'>100% Ad-Free!</Badge>
             </Link>
             <div className='flex items-center gap-4'>
               <NavigationMenu>
