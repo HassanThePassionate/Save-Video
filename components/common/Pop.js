@@ -67,11 +67,11 @@ const Pop = () => {
             Download
           </Button>
         </AlertDialogTrigger>
-        <AlertDialogContent className='mb-3'>
+        <AlertDialogContent className='mb-3 overflow-y-auto max-h-[calc(100vh-4rem)]'>
           <AlertDialogCancel className='rounded-full border border-black dark:border-white p-1'>
             <X />
           </AlertDialogCancel>
-          <div className='flex justify-between items-center gap-10 mb-6'>
+          <div className='flex justify-between items-center gap-10 mb-6 flex-col sm:flex-row'>
             <div>
               <Image src='/img.webp' alt='img' width={365} height={365} />
             </div>
@@ -104,7 +104,7 @@ const Pop = () => {
             </div>
           </div>
           <div className='divider div-transparent mb-4'></div>
-          <AlertDialogFooter>
+          <AlertDialogFooter className='gap-2 sm:gap-0'>
             {sortedBtn.map((e, index) => (
               <AlertDialogAction variant='outline' key={e.img}>
                 <div className='flex items-center gap-2'>

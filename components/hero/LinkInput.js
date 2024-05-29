@@ -1,44 +1,105 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
-import { LoaderCircle } from "lucide-react";
+import { LoaderCircle, Clipboard } from "lucide-react"; // Import the Clipboard icon
 
 const LinkInput = ({ link, setLink, loading, setLoading }) => {
+  const [btnVisible, setBtnVisible] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const handleClick = () => {
+    setBtnVisible(true);
+  };
+
   const pasteLink = async () => {
     const text = await navigator.clipboard.readText();
     setLink(text);
     setLoading(true);
     setTimeout(() => {
+      setBtnVisible(false);
       setLoading(false);
     }, 2000); // Wait for 2 seconds
   };
 
   const inputHandler = (e) => {
-    setLoading(true);
     setLink(e.target.value);
+  };
+
+  const clearInput = () => {
+    setIsAnimating(true);
     setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+      setLink("");
+      setBtnVisible(false);
+      setIsAnimating(false);
+    }, 300); // Animation duration
   };
 
   return (
     <>
-      <div className='flex w-full items-center space-x-4 px-0'>
-        <Input
-          type='url'
-          placeholder='Enter URL'
-          value={link}
-          onChange={inputHandler}
-          className='!h-10'
-        />
-        <Button disabled={loading} onClick={pasteLink} variant={"secondary"}>
+      <div
+        className={`flex sm:hidden  items-center justify-center transition-all duration-500 ${
+          btnVisible ? "max-h-10 " : "max-h-0"
+        } overflow-hidden`}
+      >
+        <Button
+          variant='secondary'
+          disabled={loading}
+          onClick={pasteLink}
+          className={`transition-transform duration-300 ${
+            loading ? "transform scale-95" : ""
+          }`}
+        >
           {loading ? (
             <>
               <LoaderCircle className='mr-2 h-4 w-4 animate-spin' />
               Please wait
             </>
           ) : (
-            "Paste Link"
+            <>
+              <Clipboard className='mr-2 h-4 w-4' />
+              Paste Link
+            </>
+          )}
+        </Button>
+      </div>
+      <div className='relative flex w-full items-center space-x-4 px-0'>
+        <Input
+          onClick={handleClick}
+          type='url'
+          placeholder='Enter URL'
+          value={link}
+          onChange={inputHandler}
+          className={`!h-10 pr-10 ${link && "pointer-events-none"}`}
+        />
+        {link && (
+          <button
+            onClick={clearInput}
+            className={`absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-transform duration-300 ease-in-out text-2xl ${
+              isAnimating ? "scale-75" : "scale-100"
+            }`}
+          >
+            &times;
+          </button>
+        )}
+        <Button
+          disabled={loading}
+          onClick={pasteLink}
+          variant='secondary'
+          className={`hidden sm:flex transition-transform duration-300 ${
+            loading ? "transform scale-95" : ""
+          }`}
+        >
+          {loading ? (
+            <>
+              <LoaderCircle className='mr-2 h-4 w-4 animate-spin' />
+              Please wait
+            </>
+          ) : (
+            <>
+              <Clipboard className='mr-2 h-4 w-4' />
+              Paste Link
+            </>
           )}
         </Button>
       </div>

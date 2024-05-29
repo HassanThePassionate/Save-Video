@@ -145,7 +145,7 @@ const Cuts = () => {
               formatTime={formatTime}
             />
           </div>
-          <div className='flex items-center flex-col gap-4 text-center px-4 sm:px-10'>
+          <div className='flex items-center flex-col gap-4 text-center px-7 sm:px-10'>
             <MultiSlider
               defaultValue={sliderValue}
               min={0}

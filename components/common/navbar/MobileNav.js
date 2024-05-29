@@ -1,48 +1,30 @@
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@radix-ui/react-popover";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 const MobileNav = ({ toggle }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div>
       <div
-        className={`mobile_nav h-[80vh] bg-[#f2f2f2]  dark:bg-[#333]   mt-1 ${
-          toggle === true ? " translate-y-[-150%]" : "float-right"
-        }  transition-all duration-1000 ease-in-out right-0 absolute z-10 rounded-sm p-6`}
+        className={`mobile_nav transition-all duration-1000 ease-in-out rounded-sm px-6  ${
+          toggle ? "opacity-0 max-h-0" : "opacity-100 max-h-screen"
+        }`}
+        style={{
+          transitionProperty: "opacity, max-height",
+        }}
       >
-        <div className='logo text-[16px] font-bold flex items-center gap-3 pb-4 '>
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            viewBox='0 0 256 256'
-            class='h-6 w-6'
-          >
-            <rect width='256' height='256' fill='none'></rect>
-            <line
-              x1='208'
-              y1='128'
-              x2='128'
-              y2='208'
-              fill='none'
-              stroke='currentColor'
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              stroke-width='16'
-            ></line>
-            <line
-              x1='192'
-              y1='40'
-              x2='40'
-              y2='192'
-              fill='none'
-              stroke='currentColor'
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              stroke-width='16'
-            ></line>
-          </svg>
-          <span>SaveVideo</span>
-        </div>
-        <ul className='flex flex-col gap-8'>
+        <ul className='flex flex-col gap-6'>
           <li>
             <Link href='#'>Youtube To MP4</Link>
           </li>
@@ -53,17 +35,74 @@ const MobileNav = ({ toggle }) => {
             <Link href='#'>Youtube To MP3</Link>
           </li>
           <li>
-            <Link href='#'>Browser Extension</Link>
+            <Popover open={open} onOpenChange={setOpen}>
+              <PopoverTrigger asChild>
+                <button className='px-5 py-3 bg-black text-white flex items-center gap-2 text-base font-semibold rounded-md transition-all hover:bg-[#444] dark:hover:bg-[#555] dark:bg-[#333]'>
+                  <Image src='/Chrome.png' alt='img' width={20} height={20} />
+                  Add to Chrome
+                </button>
+              </PopoverTrigger>
+              <PopoverContent
+                className={`bg-white p-4 mt-2 rounded-md shadow-md z-50 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl transition-opacity ${
+                  open ? "opacity-100" : "opacity-0"
+                }`}
+                side='bottom'
+                align='start'
+                onInteractOutside={() => setOpen(false)} // Close when clicking outside
+              >
+                <div className='flex justify-end'>
+                  <button
+                    onClick={handleClose}
+                    className='text-gray-500 hover:text-gray-700 transition-colors'
+                  >
+                    <svg
+                      xmlns='http://www.w3.org/2000/svg'
+                      className='h-6 w-6'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                      stroke='currentColor'
+                    >
+                      <path
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                        strokeWidth='2'
+                        d='M6 18L18 6M6 6l12 12'
+                      />
+                    </svg>
+                  </button>
+                </div>
+                <div className='flex flex-col items-center gap-4 mt-2 text-center sm:text-left'>
+                  <div className='w-16 h-16'>
+                    <Image
+                      src='https://i0.wp.com/addoncrop.com/wp-content/uploads/2021/03/Foxified-icon.png'
+                      alt='img'
+                      layout='responsive'
+                      height={62}
+                      width={62}
+                    />
+                  </div>
+                  <div>
+                    <h3>
+                      Foxified extension is needed to make YouTube Video
+                      Downloader work properly.
+                    </h3>
+                  </div>
+                </div>
+                <div className='flex flex-col sm:flex-row gap-6 items-center justify-center mt-3'>
+                  <button className='flex items-center gap-2 bg-[#F4F4F5] px-6 py-3 rounded-full'>
+                    <Image
+                      src='https://i3.wp.com/addoncrop.com/wp-content/themes/addoncrop/assets/images/icon-webstore.png'
+                      alt='img'
+                      height={20}
+                      width={20}
+                    />
+                    Let&apos;s Go
+                  </button>
+                  <button className='hover:underline'>Watch video</button>
+                </div>
+              </PopoverContent>
+            </Popover>
           </li>
-          <li>
-            <Link href='#'>Help</Link>
-          </li>
-          <div className='flex items-end h-[35vh]'>
-            <button className='px-5 py-3 hidden bg-black text-white lg:flex items-center justify-center  gap-2 text-base font-semibold rounded-md ml-[30px] transition-all hover:bg-[#444] dark:hover:bg-[#555] dark:bg-[#333]'>
-              <Image src='/Chrome.png' alt='img' width={20} height={20} />
-              Add to chorme
-            </button>
-          </div>
         </ul>
       </div>
     </div>

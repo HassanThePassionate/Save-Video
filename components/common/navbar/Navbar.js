@@ -33,7 +33,7 @@ const Navbar = () => {
     <>
       <div className='wrap border-b border-[#f3f3f3] dark:border-[#333]'>
         <div className='container'>
-          <div className='flex items-center float-right sm:float-none sm:justify-between px-[10px] py-5'>
+          <div className='flex items-center  justify-between px-[10px] py-5'>
             <Link
               href='/'
               className='Desk_logo text-[16px] font-bold flex items-center gap-3'
@@ -68,7 +68,7 @@ const Navbar = () => {
                 ></line>
               </svg>
               <span>SaveVideo</span>
-              <Badge>100% Ad-Free!</Badge>
+              <Badge className='sm:visible hidden'>100% Ad-Free!</Badge>
             </Link>
             <div className='flex items-center gap-4'>
               <NavigationMenu>
@@ -97,6 +97,14 @@ const Navbar = () => {
                   <div className='theme'></div>
 
                   <DropDown />
+                  {toggle ? (
+                    <Menu
+                      onClick={handleMenu}
+                      className='ico absoulte right-0'
+                    />
+                  ) : (
+                    <RxCross2 onClick={handleMenu} className='ico' size={24} />
+                  )}
                   <NavigationMenuItem>
                     <Popover open={open} onOpenChange={setOpen}>
                       <PopoverTrigger>
@@ -151,15 +159,10 @@ const Navbar = () => {
                 </NavigationMenuList>
               </NavigationMenu>
             </div>
-            {toggle ? (
-              <Menu onClick={handleMenu} className='ico absoulte right-0' />
-            ) : (
-              <RxCross2 onClick={handleMenu} className='ico' size={24} />
-            )}
           </div>
         </div>
+        <MobileNav toggle={toggle} />
       </div>
-      <MobileNav toggle={toggle} />
     </>
   );
 };
