@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
-const MobileNav = ({ toggle }) => {
+const MobileNav = ({ toggle, menu }) => {
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -24,14 +24,14 @@ const MobileNav = ({ toggle }) => {
           transitionProperty: "opacity, max-height",
         }}
       >
-        <ul className='flex flex-col gap-6'>
-          <li>
+        <ul className='flex flex-col gap-6 mb-4'>
+          <li onClick={menu}>
             <Link href='#'>Youtube To MP4</Link>
           </li>
-          <li>
+          <li onClick={menu}>
             <Link href='/cut'>Youtube Cutter</Link>
           </li>
-          <li>
+          <li onClick={menu}>
             <Link href='#'>Youtube To MP3</Link>
           </li>
           <li>

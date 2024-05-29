@@ -21,9 +21,16 @@ import { Badge } from "@/components/ui/badge";
 import MobileNav from "./MobileNav";
 import DropDown from "./DropDown";
 import Image from "next/image";
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [toggle, setToggle] = useState(true);
+
+  const handleLogoClick = () => {
+    if (!toggle) {
+      setToggle(true);
+    }
+  };
 
   const handleMenu = () => {
     setToggle(!toggle);
@@ -36,6 +43,7 @@ const Navbar = () => {
           <div className='flex items-center  justify-between px-[10px] py-5'>
             <Link
               href='/'
+              onClick={handleLogoClick}
               className='Desk_logo text-[16px] font-bold flex items-center gap-3'
             >
               <svg
@@ -161,7 +169,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <MobileNav toggle={toggle} />
+        <MobileNav toggle={toggle} menu={handleMenu} />
       </div>
     </>
   );

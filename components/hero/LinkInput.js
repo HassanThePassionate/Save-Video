@@ -70,7 +70,7 @@ const LinkInput = ({ link, setLink, loading, setLoading }) => {
           placeholder='Enter URL'
           value={link}
           onChange={inputHandler}
-          className={`!h-10 pr-10 ${link && "pointer-events-none"}`}
+          className={`!h-10 pr-10 text-[16px] ${link && "pointer-events-none"}`}
         />
         {link && (
           <button
