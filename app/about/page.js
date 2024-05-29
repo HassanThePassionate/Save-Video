@@ -43,7 +43,7 @@ const page = () => {
             </p>
           </article>
         </div>
-        <div className=' sticky top-0 self-start'>
+        <div className=' sticky top-1 h-full'>
           <div className='lg:pl-20'>
             <div className='max-w-xs px-2.5 lg:max-w-none'>
               <Image
