@@ -150,7 +150,7 @@ const Navbar = () => {
                           </div>
                         </div>
                         <div className='flex gap-6 items-center justify-center mt-3'>
-                          <button className='flex items-center gap-2 bg-[#F4F4F5] px-6 py-3 rounded-full'>
+                          <button className='flex items-center gap-2 bg-[#F4F4F5] dark:bg-[#555] px-6 py-3 rounded-full'>
                             <Image
                               src='https://i3.wp.com/addoncrop.com/wp-content/themes/addoncrop/assets/images/icon-webstore.png'
                               alt='img'

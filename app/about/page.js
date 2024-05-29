@@ -60,52 +60,54 @@ const page = () => {
             <li>
               <Link
                 href='#'
-                className='flex items-center gap-3 text-sm font-medium'
+                className='flex items-center gap-3 text-sm font-medium hover:text-[#666]'
               >
                 <span>
                   <RiTwitterXLine />
                 </span>
-                <span>Follow on X</span>
+                <span className='hover:text-[#666]'>Follow on X</span>
               </Link>
             </li>
             <li>
               <Link
                 href='#'
-                className='flex items-center gap-3 text-sm font-medium'
+                className='flex items-center gap-3 text-sm font-medium hover:text-[#666]'
               >
                 <span>
                   <FaInstagram />
                 </span>
-                <span>Follow on Instagram</span>
+                <span className='hover:text-[#666]'>Follow on Instagram</span>
               </Link>
             </li>
             <li>
               <Link
                 href='#'
-                className='flex items-center gap-3 text-sm font-medium'
+                className='flex items-center gap-3 text-sm font-medium hover:text-[#666]'
               >
                 <span>
                   <FaGithub />
                 </span>
-                <span>Follow on Github</span>
+                <sp className='hover:text-[#666]' an>
+                  Follow on Github
+                </sp>
               </Link>
             </li>
             <li>
               <Link
                 href='#'
-                className='flex items-center gap-3 text-sm font-medium'
+                className='flex items-center gap-3 text-sm font-medium hover:text-[#666]'
               >
                 <span>
                   <FaLinkedin />
                 </span>
-                <span>Follow on Linkedin</span>
+                <span className='hover:text-[#666]'>Follow on Linkedin</span>
               </Link>
             </li>
           </ul>
           <div className='divider div-transparent'></div>
           <div className='flex items-center gap-3 mt-6'>
             <CiMail />
-            <Link href='#' className='text-sm font-medium'>
+            <Link href='#' className='text-sm font-medium hover:underline'>
               web@gmail.com
             </Link>
           </div>
