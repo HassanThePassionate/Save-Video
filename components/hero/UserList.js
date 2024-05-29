@@ -55,10 +55,6 @@ const UserList = () => {
     );
   };
 
-  const showLess = () => {
-    setVisibleItems((prevVisibleItems) => Math.max(prevVisibleItems - 5, 2));
-  };
-
   return (
     <>
       <div className='grid'>
@@ -71,12 +67,6 @@ const UserList = () => {
           <Button onClick={loadMore} variant='outline' className='w-fit'>
             View more
             <ChevronRight size={16} className='ml-1' />
-          </Button>
-        )}
-        {visibleItems >= items.length && visibleItems > 2 && (
-          <Button onClick={showLess} variant='outline' className='w-fit'>
-            Show less
-            <ChevronUp size={16} className='ml-1' />
           </Button>
         )}
       </div>
