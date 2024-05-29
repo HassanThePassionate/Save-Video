@@ -13,31 +13,25 @@ const Faqs = () => {
   const toggled = useSelector((state) => state.toggle.toggled);
   const data = [
     {
-      title: "Which browsers does Savemp4 YouTube to mp4 converter work with?",
-      content:
-        "It works for all browsers, including Chrome, Firefox, Opera, Safari etc.",
+      title: "Is it accessible?",
+      content: "Yes. It adheres to the WAI-ARIA design pattern.",
     },
     {
-      title: "Which operating systems does the Savevideo converter work with?",
+      title: "Is it styled",
       content:
-        "SaveVideo is the ultimate online tool for converting Youtube videos to mp4 and it's compatible with Android, iOS, iPad, MAC, and Windows devices.",
+        "Yes. It comes with default styles that matches the other components' aesthetic.",
     },
     {
-      title: "Can I change Bitrates manually?",
+      title: "Is it animated?",
       content:
-        "Yes, you can select your favourite MP4 bitrates from the settings available in the header menu.",
-    },
-    {
-      title: "Where are mp3s saved after being downloaded?",
-      content:
-        "When downloading files, they are usually saved into whatever folder you have set as your default. Your browser usually sets this folder for you. In browser settings, you can manually change and choose the destination folder for your downloaded audio files.",
+        "Yes. It's animated by default, but you can disable it if you prefer.",
     },
   ];
 
   return (
     !toggled && (
       <div>
-        <h2 className='scroll-m-20 text-xl sm:text-3xl font-semibold tracking-tight px-4  py-10'>
+        <h2 className='scroll-m-20 text-xl sm:text-3xl font-semibold tracking-tight px-4  py-4'>
           Frequently Ask Questions
         </h2>
 
@@ -46,12 +40,9 @@ const Faqs = () => {
             type='single'
             collapsible
             key={ele.title}
-            className='mb-4 px-4'
+            className='mb-4 px-4 '
           >
-            <AccordionItem
-              value='item-1'
-              className='border-none bg-[#F4F4F5] dark:bg-[#444] px-4 rounded'
-            >
+            <AccordionItem value='item-1'>
               <AccordionTrigger>{ele.title}</AccordionTrigger>
               <AccordionContent>{ele.content}</AccordionContent>
             </AccordionItem>

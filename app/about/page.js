@@ -1,47 +1,34 @@
 import Image from "next/image";
 import React from "react";
-import { RiTwitterXLine } from "react-icons/ri";
-import { FaInstagram } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa6";
 import { CiMail } from "react-icons/ci";
 import Link from "next/link";
 import Faqs from "@/components/common/Faqs";
 import DownloadBtn from "@/components/common/DownloadBtn";
+
 const page = () => {
   return (
     <div className='max-w-6xl mx-auto my-4 md:my-12 space-y-8'>
-      <div className='grid grid-cols-1 gap-y-8 lg:grid-cols-2 lg:grid-rows-[auto_1fr]  lg:gap-y-12 px-4'>
-        <div className='lg:pl-20 '>
-          <div className='max-w-xs px-2.5 lg:max-w-none'>
-            <Image
-              src='/about.webp'
-              width={433}
-              height={433}
-              className=' rotate-[4deg] rounded-md mb-10'
-            />
-          </div>
-        </div>
-        <div className=' lg:order-first lg:row-span-2'>
+      <div className='flex flex-col lg:flex-row justify-between h-full px-4'>
+        <div className='flex-1'>
           <article>
-            <h1 className=' text-5xl font-bold leading-[56px]'>
+            <h1 className='text-5xl font-bold leading-[56px]'>
               I’m Spencer Sharp. I live in New York City, where I design the
               future.
             </h1>
-            <p className=' leading-7 text-[16px] my-6 '>
+            <p className='leading-7 text-[16px] my-6'>
               I’ve loved making things for as long as I can remember, and wrote
               my first program when I was 6 years old, just two weeks after my
               mom brought home the brand new Macintosh LC 550 that I taught
               myself to type on.
             </p>
-            <p className=' leading-7 text-[16px] mb-6 '>
+            <p className='leading-7 text-[16px] mb-6'>
               The only thing I loved more than computers as a kid was space.
               When I was 8, I climbed the 40-foot oak tree at the back of our
               yard while wearing my older sister’s motorcycle helmet, counted
               down from three, and jumped — hoping the tree was tall enough that
               with just a bit of momentum I’d be able to get to orbit.
             </p>
-            <p className=' leading-7 text-[16px] my-6 '>
+            <p className='leading-7 text-[16px] my-6'>
               I spent the next few summers indoors working on a rocket design,
               while I recovered from the multiple surgeries it took to fix my
               badly broken legs. It took nine iterations, but when I was 15 I
@@ -56,19 +43,32 @@ const page = () => {
             </p>
           </article>
         </div>
-
-        <div className='lg:pl-20'>
-          <DownloadBtn />
-          <div className='divider div-transparent'></div>
-          <div className='flex items-center gap-3 mt-6'>
-            <CiMail />
-            <Link href='#' className='text-sm font-medium hover:underline'>
-              web@gmail.com
-            </Link>
+        <div className=' sticky top-0 self-start'>
+          <div className='lg:pl-20'>
+            <div className='max-w-xs px-2.5 lg:max-w-none'>
+              <Image
+                src='/about.webp'
+                width={433}
+                height={433}
+                className='rotate-[4deg] rounded-md mb-10'
+              />
+            </div>
+          </div>
+          <div className='lg:pl-20'>
+            <DownloadBtn />
+            <div className='divider div-transparent'></div>
+            <div className='flex items-center gap-3 mt-6'>
+              <CiMail />
+              <Link href='#' className='text-sm font-medium hover:underline'>
+                web@gmail.com
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-      <Faqs />
+      <div className='faq-section px-4'>
+        <Faqs />
+      </div>
     </div>
   );
 };
