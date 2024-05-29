@@ -172,10 +172,10 @@ const DropDown = () => {
       <Sheet>
         <SheetTrigger>
           <Button variant='ghost'>
-            <span className='mr-2'>
+            <span>
               <Paintbrush size={16} />
             </span>
-            Customize
+            <span className=' hidden sm:flex'>Customize</span>
           </Button>
         </SheetTrigger>
 

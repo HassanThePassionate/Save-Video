@@ -44,7 +44,7 @@ const Navbar = () => {
             <Link
               href='/'
               onClick={handleLogoClick}
-              className='Desk_logo text-[16px] font-bold flex items-center gap-3'
+              className='Desk_logo text-[16px] font-bold flex items-center gap-3 '
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -76,7 +76,9 @@ const Navbar = () => {
                 ></line>
               </svg>
               <span>SaveVideo</span>
-              <Badge className='hidden sm:flex'>100% Ad-Free!</Badge>
+              <Badge className='sm:flex px-1 text-[10px] sm:text-[12px]'>
+                100% Ad-Free!
+              </Badge>
             </Link>
             <div className='flex items-center gap-4'>
               <NavigationMenu>
