@@ -4,127 +4,82 @@ import { Button } from "../ui/button";
 import { ChevronRight, ChevronUp } from "lucide-react";
 
 const UserList = () => {
-  const item = [
+  const items = [
     {
+      id: 1,
       name: "Olivia Martin",
       time: "8:47",
     },
     {
+      id: 2,
       name: "Olivia Martin",
       time: "8:47",
     },
     {
+      id: 3,
       name: "Olivia Martin",
       time: "8:47",
     },
     {
+      id: 4,
       name: "Olivia Martin",
       time: "8:47",
     },
     {
+      id: 5,
       name: "Olivia Martin",
       time: "8:47",
     },
     {
+      id: 6,
       name: "Olivia Martin",
       time: "8:47",
     },
     {
+      id: 7,
       name: "Olivia Martin",
       time: "8:47",
     },
     {
-      name: "Olivia Martin",
-      time: "8:47",
-    },
-    {
-      name: "Olivia Martin",
-      time: "8:47",
-    },
-    {
-      name: "Olivia Martin",
-      time: "8:47",
-    },
-    {
-      name: "Olivia Martin",
-      time: "8:47",
-    },
-    {
-      name: "Olivia Martin",
-      time: "8:47",
-    },
-    {
-      name: "Olivia Martin",
-      time: "8:47",
-    },
-    {
-      name: "Olivia Martin",
-      time: "8:47",
-    },
-    {
-      name: "Olivia Martin",
-      time: "8:47",
-    },
-    {
-      name: "Olivia Martin",
-      time: "8:47",
-    },
-    {
-      name: "Olivia Martin",
-      time: "8:47",
-    },
-    {
-      name: "Olivia Martin",
-      time: "8:47",
-    },
-    {
-      name: "Olivia Martin",
-      time: "8:47",
-    },
-    {
-      name: "Olivia Martin",
-      time: "8:47",
-    },
-    {
-      name: "Olivia Martin",
-      time: "8:47",
-    },
-    {
+      id: 8,
       name: "Olivia Martin",
       time: "8:47",
     },
   ];
+
   const [visibleItems, setVisibleItems] = useState(2);
 
   const loadMore = () => {
-    setVisibleItems((prevVisibleItems) => prevVisibleItems + 5);
+    setVisibleItems((prevVisibleItems) =>
+      Math.min(prevVisibleItems + 5, items.length)
+    );
   };
-  const showless = () => {
-    setVisibleItems((prevVisibleItems) => prevVisibleItems - 10);
+
+  const showLess = () => {
+    setVisibleItems((prevVisibleItems) => Math.max(prevVisibleItems - 5, 2));
   };
+
   return (
     <>
       <div className='grid'>
-        {item.slice(0, visibleItems).map((e) => {
-          return <UserItem key={e.name} name={e.name} time={e.time} />;
-        })}
+        {items.slice(0, visibleItems).map((item) => (
+          <UserItem key={item.id} name={item.name} time={item.time} />
+        ))}
       </div>
-      {visibleItems < item.length && (
-        <div className='flex items-center justify-center'>
-          <Button onClick={loadMore} variant='outline' className='mt-3 w-fit '>
+      <div className='flex items-center justify-center mt-3'>
+        {visibleItems < items.length && (
+          <Button onClick={loadMore} variant='outline' className='w-fit'>
             View more
             <ChevronRight size={16} className='ml-1' />
           </Button>
-        </div>
-      )}
-      {visibleItems == item.length && (
-        <div className='flex items-center justify-center'>
-          <Button onClick={showless} variant='outline' className='mt-3 w-fit '>
+        )}
+        {visibleItems >= items.length && visibleItems > 2 && (
+          <Button onClick={showLess} variant='outline' className='w-fit'>
             Show less
             <ChevronUp size={16} className='ml-1' />
           </Button>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 };
