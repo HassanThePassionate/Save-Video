@@ -43,7 +43,7 @@ const MobileNav = ({ toggle, menu }) => {
                 </button>
               </PopoverTrigger>
               <PopoverContent
-                className={`bg-white p-4 mt-2 rounded-md shadow-md z-50 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl transition-opacity ${
+                className={`bg-white dark:bg-[#333] p-4 mt-2 rounded-md shadow-md z-50 w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl transition-opacity ${
                   open ? "opacity-100" : "opacity-0"
                 }`}
                 side='bottom'
@@ -89,7 +89,7 @@ const MobileNav = ({ toggle, menu }) => {
                   </div>
                 </div>
                 <div className='flex flex-col sm:flex-row gap-6 items-center justify-center mt-3'>
-                  <button className='flex items-center gap-2 bg-[#F4F4F5] px-6 py-3 rounded-full'>
+                  <button className='flex items-center gap-2 bg-[#F4F4F5] dark:bg-[#777] px-6 py-3 rounded-full'>
                     <Image
                       src='https://i3.wp.com/addoncrop.com/wp-content/themes/addoncrop/assets/images/icon-webstore.png'
                       alt='img'
