@@ -74,34 +74,33 @@ const LinkInput = ({ loading, setLoading }) => {
 
   return (
     <>
-      {url.trim() !== "" && (
-        <div
-          className={`flex sm:hidden items-center justify-center transition-all duration-500 ${
-            btnVisible ? "max-h-10" : "max-h-0"
-          } overflow-hidden`}
+      <div
+        className={`flex sm:hidden items-center justify-center transition-all duration-500 ${
+          btnVisible ? "max-h-10" : "max-h-0"
+        } overflow-hidden`}
+      >
+        <Button
+          variant='secondary'
+          disabled={loading}
+          onClick={pasteLink}
+          className={`transition-transform duration-300 ${
+            loading ? "transform scale-95" : ""
+          }`}
         >
-          <Button
-            variant='secondary'
-            disabled={loading}
-            onClick={pasteLink}
-            className={`transition-transform duration-300 ${
-              loading ? "transform scale-95" : ""
-            }`}
-          >
-            {loading ? (
-              <>
-                <LoaderCircle className='mr-2 h-4 w-4 animate-spin' />
-                Please wait
-              </>
-            ) : (
-              <>
-                <Clipboard className='mr-2 h-4 w-4' />
-                Paste Link
-              </>
-            )}
-          </Button>
-        </div>
-      )}
+          {loading ? (
+            <>
+              <LoaderCircle className='mr-2 h-4 w-4 animate-spin' />
+              Please wait
+            </>
+          ) : (
+            <>
+              <Clipboard className='mr-2 h-4 w-4' />
+              Paste Link
+            </>
+          )}
+        </Button>
+      </div>
+
       <div className='flex items-center space-x-4 px-0'>
         <div className='w-full relative'>
           <Input

@@ -24,6 +24,7 @@ const Pop = ({ sliderValue, formatTime }) => {
 
   useEffect(() => {
     const result = browser();
+    console.log(result);
     const btn = [
       {
         img: "/Chrome.png",
