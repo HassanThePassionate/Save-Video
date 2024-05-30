@@ -15,6 +15,7 @@ import Image from "next/image";
 import { VideoIcon, X } from "lucide-react";
 import browser from "browser-detect";
 import { Badge } from "../ui/badge";
+import Link from "next/link";
 
 const Pop = ({ sliderValue, formatTime }) => {
   const [sortedBtn, setSortedBtn] = useState([]);
@@ -69,9 +70,12 @@ const Pop = ({ sliderValue, formatTime }) => {
               <VideoIcon />
               Download
             </Button>
-            <div className='absolute left-0 right-0 mt-2  flex justify-center cursor-pointer'>
+            <Link
+              href='#'
+              className='absolute left-0 right-0 mt-2.5  flex justify-center cursor-pointer'
+            >
               <Badge variant='secondary'>{formatduration}</Badge>
-            </div>
+            </Link>
           </AlertDialogTrigger>
           <AlertDialogContent className='mb-3 overflow-y-auto max-h-[calc(100vh-4rem)]'>
             <AlertDialogCancel className='rounded-full border border-black dark:border-white p-1'>

@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ChevronDown, Download, Scissors, Music } from "lucide-react";
 import { useSelector } from "react-redux";
+import Link from "next/link";
 const Dropdown = () => {
   const quality = useSelector((state) => state.quality.quality);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -52,19 +53,18 @@ const Dropdown = () => {
           <DropdownMenuContent className='w-[17.5rem] mr-[-4.1rem]'>
             <DropdownMenuGroup>
               {dropdownItems.map((item, index) => (
-                <DropdownMenuItem
-                  key={index}
-                  className='justify-between cursor-pointer'
-                >
-                  <p>
-                    MP4
-                    <span className='ml-2'>{item.label}</span>
-                  </p>
-                  {item.badge && <Badge variant='secondary'>HD</Badge>}
-                  <DropdownMenuShortcut className='ml-0'>
-                    {item.size}
-                  </DropdownMenuShortcut>
-                </DropdownMenuItem>
+                <Link href='#' key={index}>
+                  <DropdownMenuItem className='justify-between '>
+                    <p>
+                      MP4
+                      <span className='ml-2'>{item.label}</span>
+                    </p>
+                    {item.badge && <Badge variant='secondary'>HD</Badge>}
+                    <DropdownMenuShortcut className='ml-0'>
+                      {item.size}
+                    </DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                </Link>
               ))}
               <div className='relative' ref={dropdownRef}>
                 {!isDropdownOpen ? (
@@ -77,20 +77,22 @@ const Dropdown = () => {
                 ) : (
                   <div className='w-full'>
                     {dropdownItems.map((item, index) => (
-                      <DropdownMenuItem
-                        key={index + dropdownItems.length}
-                        className='justify-between cursor-pointer'
-                        onClick={() => handleQualityChange(item.label)}
-                      >
-                        <p>
-                          MP4
-                          <span className='ml-2'>{item.label}</span>
-                        </p>
-                        {item.badge && <Badge variant='secondary'>HD</Badge>}
-                        <DropdownMenuShortcut className='ml-0'>
-                          {item.size}
-                        </DropdownMenuShortcut>
-                      </DropdownMenuItem>
+                      <Link href='#'>
+                        <DropdownMenuItem
+                          key={index + dropdownItems.length}
+                          className='justify-between '
+                          onClick={() => handleQualityChange(item.label)}
+                        >
+                          <p>
+                            MP4
+                            <span className='ml-2'>{item.label}</span>
+                          </p>
+                          {item.badge && <Badge variant='secondary'>HD</Badge>}
+                          <DropdownMenuShortcut className='ml-0'>
+                            {item.size}
+                          </DropdownMenuShortcut>
+                        </DropdownMenuItem>
+                      </Link>
                     ))}
                   </div>
                 )}
