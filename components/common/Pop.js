@@ -39,12 +39,12 @@ const Pop = ({ sliderValue, formatTime }) => {
         browser: "chrome",
       },
       {
-        img: "/firefoxs.png",
+        img: "/firefox.png",
         label: "Fire Fox",
         browser: "firefox",
       },
       {
-        img: "/edges.webp",
+        img: "/edge.png",
         label: "Edge",
         browser: "edge",
       },

@@ -9,11 +9,11 @@ const DownloadBtn = () => {
       label: "Add to Chrome",
     },
     {
-      img: "/firefoxs.png",
+      img: "/firefox.png",
       label: "Add to Fire Fox",
     },
     {
-      img: "/edges.webp",
+      img: "/edge.png",
       label: "Add to Edge",
     },
   ];

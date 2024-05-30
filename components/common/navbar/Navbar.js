@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { RxCross2 } from "react-icons/rx";
 import {
@@ -7,7 +7,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -17,14 +16,28 @@ import {
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { Menu } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-
 import MobileNav from "./MobileNav";
 import DropDown from "./DropDown";
 import Image from "next/image";
+import browser from "browser-detect";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [toggle, setToggle] = useState(true);
+  const [browserName, setBrowserName] = useState("");
+
+  useEffect(() => {
+    const result = browser();
+    let name = result.name;
+
+    if (/OPR\//.test(navigator.userAgent)) {
+      name = "opera";
+    } else if (/Edg\//.test(navigator.userAgent)) {
+      name = "edge";
+    }
+
+    setBrowserName(name);
+  }, []);
 
   const handleClick = () => {
     if (!toggle) {
@@ -40,7 +53,7 @@ const Navbar = () => {
     <>
       <div className='wrap border-b border-[#f3f3f3] dark:border-[#333]'>
         <div className='container'>
-          <div className='flex items-center  justify-between px-[10px] py-5'>
+          <div className='flex items-center justify-between px-[10px] py-5'>
             <Link
               href='/'
               onClick={handleClick}
@@ -119,17 +132,19 @@ const Navbar = () => {
                     <Popover open={open} onOpenChange={setOpen}>
                       <PopoverTrigger>
                         <button
-                          id='chorme_btn'
+                          id='browser_btn'
                           onClick={() => setOpen(!open)}
-                          className='  px-5 py-3  bg-black text-white lg:flex items-center gap-2 text-base font-semibold rounded-md ml-[30px] transition-all hover:bg-[#444] dark:hover:bg-[#555] dark:bg-[#333]'
+                          className='px-5 py-3 bg-black text-white lg:flex items-center gap-2 text-base font-semibold rounded-md ml-[30px] transition-all hover:bg-[#444] dark:hover:bg-[#555] dark:bg-[#333]'
                         >
                           <Image
-                            src='/Chrome.png'
+                            src={`/${browserName}.png`}
                             alt='img'
                             width={20}
                             height={20}
                           />
-                          Add to chorme
+                          Add to&nbsp;
+                          {browserName.charAt(0).toUpperCase() +
+                            browserName.slice(1)}
                         </button>
                       </PopoverTrigger>
                       <PopoverContent onClose={() => setOpen(false)}>
@@ -157,7 +172,7 @@ const Navbar = () => {
                               height={20}
                               width={20}
                             />
-                            Let&apos;s Go
+                            Let's Go
                           </button>
                           <button className='hover:underline'>
                             Watch video
