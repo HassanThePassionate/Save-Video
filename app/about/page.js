@@ -55,6 +55,7 @@ const Page = () => {
             <div className='max-w-xs px-2.5 lg:max-w-none'>
               <Image
                 src='/about.webp'
+                alt='img'
                 width={433}
                 height={433}
                 className='rotate-[4deg] rounded-md mb-10 sm:mt-0 mt-10 md:mt-10'

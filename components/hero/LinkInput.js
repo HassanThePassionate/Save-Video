@@ -14,7 +14,7 @@ const LinkInput = ({ loading, setLoading }) => {
     if (url.trim() !== "") {
       validateUrl(url);
     }
-  }, [url]);
+  }, []);
 
   const handleClick = () => {
     setBtnVisible(true);

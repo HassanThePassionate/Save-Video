@@ -77,12 +77,8 @@ const Dropdown = () => {
                 ) : (
                   <div className='w-full'>
                     {dropdownItems.map((item, index) => (
-                      <Link href='#'>
-                        <DropdownMenuItem
-                          key={index + dropdownItems.length}
-                          className='justify-between '
-                          onClick={() => handleQualityChange(item.label)}
-                        >
+                      <Link href='#' key={index + dropdownItems.length}>
+                        <DropdownMenuItem className='justify-between '>
                           <p>
                             MP4
                             <span className='ml-2'>{item.label}</span>
