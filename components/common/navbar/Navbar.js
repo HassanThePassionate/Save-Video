@@ -29,7 +29,6 @@ const Navbar = () => {
   useEffect(() => {
     const result = browser();
     let name = result.name;
-
     if (/OPR\//.test(navigator.userAgent)) {
       name = "opera";
     } else if (/Edg\//.test(navigator.userAgent)) {
@@ -172,7 +171,7 @@ const Navbar = () => {
                               height={20}
                               width={20}
                             />
-                            Let's Go
+                            Let&apos;s Go
                           </button>
                           <button className='hover:underline'>
                             Watch video
