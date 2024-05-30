@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "../ui/button";
-import { LoaderCircle, Clipboard } from "lucide-react";
+import { LoaderCircle, Clipboard, X } from "lucide-react";
 
 const LinkInput = ({ loading, setLoading }) => {
   const [btnVisible, setBtnVisible] = useState(false);
@@ -66,6 +66,11 @@ const LinkInput = ({ loading, setLoading }) => {
       setError("URL is unsupported..");
     }
   };
+  const clear = () => {
+    setUrl("");
+    setLoading(false);
+    setError("");
+  };
 
   return (
     <>
@@ -108,6 +113,13 @@ const LinkInput = ({ loading, setLoading }) => {
             onPaste={inputHandler}
             className='!h-10 pr-10 text-[16px]'
           />
+          {url && (
+            <X
+              className=' absolute top-2.5 right-2 cursor-pointer'
+              size={20}
+              onClick={clear}
+            />
+          )}
         </div>
 
         <Button
