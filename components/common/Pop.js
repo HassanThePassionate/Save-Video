@@ -20,6 +20,7 @@ const Pop = ({ sliderValue, formatTime }) => {
   const [sortedBtn, setSortedBtn] = useState([]);
   const finalduration = sliderValue[1] - sliderValue[0];
   let formatduration = formatTime(finalduration);
+
   useEffect(() => {
     const result = browser();
     const btn = [
@@ -45,7 +46,6 @@ const Pop = ({ sliderValue, formatTime }) => {
       },
     ];
 
-    // Identify the browser and place its button at the beginning
     let detectedBrowser = btn.find((b) => {
       if (result.name === "chrome" && b.browser === "chrome") return true;
       if (result.name === "firefox" && b.browser === "firefox") return true;
@@ -65,11 +65,11 @@ const Pop = ({ sliderValue, formatTime }) => {
       <div>
         <AlertDialog>
           <AlertDialogTrigger className='relative'>
-            <Button className='flex gap-2 '>
+            <Button className='flex gap-2'>
               <VideoIcon />
               Download
             </Button>
-            <div className=' absolute left-5 mt-1'>
+            <div className='absolute left-0 right-0 mt-2  flex justify-center cursor-pointer'>
               <Badge variant='secondary'>{formatduration}</Badge>
             </div>
           </AlertDialogTrigger>
@@ -115,7 +115,7 @@ const Pop = ({ sliderValue, formatTime }) => {
                 <AlertDialogAction variant='outline' key={e.img}>
                   <div className='flex items-center gap-2'>
                     <Image src={e.img} alt='img' width={22} height={22} />
-                    <span className='text-[15px] '>
+                    <span className='text-[15px]'>
                       {index === 0 ? `Add to ${e.label}` : e.label}
                     </span>
                   </div>

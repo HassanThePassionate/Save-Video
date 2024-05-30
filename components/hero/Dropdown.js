@@ -52,7 +52,10 @@ const Dropdown = () => {
           <DropdownMenuContent className='w-[17.5rem] mr-[-4.1rem]'>
             <DropdownMenuGroup>
               {dropdownItems.map((item, index) => (
-                <DropdownMenuItem key={index} className='justify-between'>
+                <DropdownMenuItem
+                  key={index}
+                  className='justify-between cursor-pointer'
+                >
                   <p>
                     MP4
                     <span className='ml-2'>{item.label}</span>
@@ -76,7 +79,7 @@ const Dropdown = () => {
                     {dropdownItems.map((item, index) => (
                       <DropdownMenuItem
                         key={index + dropdownItems.length}
-                        className='justify-between'
+                        className='justify-between cursor-pointer'
                         onClick={() => handleQualityChange(item.label)}
                       >
                         <p>
