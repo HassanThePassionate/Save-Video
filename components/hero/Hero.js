@@ -9,7 +9,6 @@ import Blur from "./Blur";
 
 const Hero = () => {
   const [loading, setLoading] = useState(false);
-  const [link, setLink] = useState("");
 
   return (
     <div className='max-w-3xl mx-auto my-4 md:my-12 space-y-8'>
@@ -18,12 +17,7 @@ const Hero = () => {
           <Header />
         </CardHeader>
         <CardContent className='p-4 sm:px-10 pt-8 pb-10 flex gap-4 flex-col flex-wrap'>
-          <LinkInput
-            link={link}
-            setLink={setLink}
-            loading={loading}
-            setLoading={setLoading}
-          />
+          <LinkInput loading={loading} setLoading={setLoading} />
           <h4 className='pt-[32px] pb-4 text-[16px] font-semibold'>
             People with access
           </h4>
@@ -33,7 +27,7 @@ const Hero = () => {
               <Blur />
             </div>
           ) : (
-            <UserList />
+            <UserList setLoading={setLoading} loading={loading} />
           )}
         </CardContent>
       </Card>

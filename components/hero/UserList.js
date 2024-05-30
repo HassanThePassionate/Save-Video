@@ -3,7 +3,7 @@ import UserItem from "./UserItem";
 import { Button } from "../ui/button";
 import { ChevronRight, ChevronUp } from "lucide-react";
 
-const UserList = () => {
+const UserList = ({ setLoading, loading }) => {
   const items = [
     {
       id: 1,
@@ -58,9 +58,16 @@ const UserList = () => {
   return (
     <>
       <div className='grid'>
-        {items.slice(0, visibleItems).map((item) => (
-          <UserItem key={item.id} name={item.name} time={item.time} />
-        ))}
+        {(loading
+          ? Array.from({ length: visibleItems }).fill(null)
+          : items.slice(0, visibleItems)
+        ).map((item, index) =>
+          loading ? (
+            <div key={index} className='skeleton-line'></div>
+          ) : (
+            <UserItem key={item.id} name={item.name} time={item.time} />
+          )
+        )}
       </div>
       <div className='flex items-center justify-center mt-3'>
         {visibleItems < items.length && (
