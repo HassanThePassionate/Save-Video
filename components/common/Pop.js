@@ -24,7 +24,12 @@ const Pop = ({ sliderValue, formatTime }) => {
 
   useEffect(() => {
     const result = browser();
+    // Check for Edge browser specifically
+    if (result.name === "chrome" && /Edg/.test(navigator.userAgent)) {
+      result.name = "edge";
+    }
     console.log(result);
+
     const btn = [
       {
         img: "/Chrome.png",
