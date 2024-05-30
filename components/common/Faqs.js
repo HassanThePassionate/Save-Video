@@ -31,7 +31,7 @@ const Faqs = () => {
   return (
     !toggled && (
       <div>
-        <h2 className='scroll-m-20 text-xl sm:text-3xl font-semibold mb-4 tracking-tight px-4 md:px-0 border-b border-black py-4'>
+        <h2 className='scroll-m-20 text-xl sm:text-3xl font-semibold mb-4 tracking-tight  md:px-0 border-b border-black dark:border-[#222] py-4'>
           Frequently Ask Questions
         </h2>
 
@@ -40,7 +40,7 @@ const Faqs = () => {
             type='single'
             collapsible
             key={ele.title}
-            className='mb-4 px-4 md:px-0 '
+            className='mb-4 md:px-0 '
           >
             <AccordionItem value='item-1'>
               <AccordionTrigger>{ele.title}</AccordionTrigger>
