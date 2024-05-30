@@ -27,7 +27,7 @@ const Hero = () => {
               <Blur />
             </div>
           ) : (
-            <UserList setLoading={setLoading} loading={loading} />
+            <UserList />
           )}
         </CardContent>
       </Card>

@@ -170,7 +170,12 @@ const Cuts = () => {
               videoRef={videoRef}
             />
             <div className='flex items-center gap-4'>
-              <Pop />
+              <Pop
+                sliderValue={sliderValue}
+                duration={duration}
+                formatTime={formatTime}
+              />
+
               <TooltipProvider delayDuration={0}>
                 <Tooltip>
                   <TooltipTrigger asChild>
