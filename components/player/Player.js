@@ -17,7 +17,7 @@ import { Music } from "lucide-react";
 import { Button } from "../ui/button";
 import Header from "../common/Header";
 
-const Cuts = () => {
+const Player = () => {
   const [play, setPlay] = useState(false);
   const [mute, setMute] = useState(false);
   const videoRef = useRef(null);
@@ -196,4 +196,4 @@ const Cuts = () => {
   );
 };
 
-export default Cuts;
+export default Player;

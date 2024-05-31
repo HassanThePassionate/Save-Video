@@ -23,7 +23,7 @@ import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import { Switch } from "@/components/ui/switch";
 import { useSelector, useDispatch } from "react-redux";
-import { toggle } from "../../../redux/toggle/toggleSlice";
+import { toggle } from "../../redux/toggle/toggleSlice";
 import { setQuality } from "@/redux/quality/qualitySlice";
 import Image from "next/image";
 
