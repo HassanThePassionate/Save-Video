@@ -5,7 +5,7 @@ import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 
 import { Provider } from "react-redux";
-import { store, pr, persistor } from "@/redux/store";
+import { store, persistor } from "@/redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
