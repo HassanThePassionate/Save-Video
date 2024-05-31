@@ -47,7 +47,7 @@ const Navbar = () => {
                       </Link>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                      <Link href='/cut' legacyBehavior passHref>
+                      <Link href='/player' legacyBehavior passHref>
                         <NavigationMenuLink
                           className={navigationMenuTriggerStyle()}
                         >
