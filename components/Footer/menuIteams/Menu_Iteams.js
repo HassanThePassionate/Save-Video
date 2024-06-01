@@ -11,10 +11,10 @@ const Menu_Iteams = () => {
   ];
   return (
     <div>
-      <ul className='menu flex items-center gap-8 flex-wrap justify-center'>
+      <ul className="menu flex items-center gap-8 flex-wrap justify-center">
         {Iteam.map((item, index) => (
-          <li>
-            <Iteams key={index} href={item.href} text={item.text} />
+          <li key={index}>
+            <Iteams href={item.href} text={item.text} />
           </li>
         ))}
       </ul>

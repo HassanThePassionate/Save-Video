@@ -7,18 +7,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Badge } from "@/components/ui/badge";
 import { MdOutlineDesktopWindows } from "react-icons/md";
-import { IoSettingsOutline } from "react-icons/io5";
-import {
-  Brush,
-  ChevronRight,
-  EyeOff,
-  Moon,
-  Music2,
-  Paintbrush,
-  Sun,
-} from "lucide-react";
+import { Moon, Paintbrush, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import { Switch } from "@/components/ui/switch";
@@ -34,7 +24,6 @@ const DropDown = () => {
   const { setTheme } = useTheme();
 
   const [selectedLanguage, setSelectedLanguage] = useState("English");
-  const [selectedQuality, setSelectedQuality] = useState("720p");
   const [selectedMode, setSelectedMode] = useState("system");
 
   useEffect(() => {
@@ -52,10 +41,6 @@ const DropDown = () => {
     setTheme(mode);
     localStorage.setItem("theme", mode);
   };
-
-  // const handleQualityClick = (quality) => {
-  //   setSelectedQuality(quality);
-  // };
 
   const handleLanguageClick = (language) => {
     setSelectedLanguage(language);
@@ -171,24 +156,24 @@ const DropDown = () => {
     <div>
       <Sheet>
         <SheetTrigger>
-          <Button variant='ghost'>
+          <Button variant="ghost">
             <span>
               <Paintbrush size={16} />
             </span>
-            <span className=' hidden sm:flex'>Customize</span>
+            <span className=" hidden sm:flex sm:pl-1 mr-[30px]">Customize</span>
           </Button>
         </SheetTrigger>
 
-        <SheetContent className='content' side='bottom'>
-          <div className='max-w-3xl mx-auto my-4 md:my-12 space-y-8'>
+        <SheetContent className="content" side="bottom">
+          <div className="max-w-3xl mx-auto my-4 md:my-12 space-y-8">
             <SheetHeader>
               <SheetTitle>
-                <h1 className='font-semibold text-xl'>Setting</h1>
+                <h1 className="font-semibold text-xl">Setting</h1>
               </SheetTitle>
             </SheetHeader>
-            <div className='flex items-center justify-between gap-2 mt-5 '>
+            <div className="flex items-center justify-between gap-2 mt-5 ">
               <div>
-                <h2 className='mb-2 font-semibold'>Customize </h2>
+                <h2 className="mb-2 font-semibold">Customize </h2>
                 <SheetDescription>
                   <p>Pick a style and color for your components.</p>{" "}
                 </SheetDescription>
@@ -199,12 +184,12 @@ const DropDown = () => {
                 onCheckedChange={() => dispatch(toggle())}
               />
             </div>
-            <div className='divider div-transparent '></div>
+            <div className="divider div-transparent "></div>
             <div>
-              <h2 className='my-5 font-semibold'> Default Qualities</h2>
-              <div className='grid grid-cols-3 sm:grid-cols-6  gap-4'>
+              <h2 className="my-5 font-semibold"> Default Qualities</h2>
+              <div className="grid grid-cols-3 sm:grid-cols-6  gap-4">
                 <Button
-                  variant='outline'
+                  variant="outline"
                   className={` ${
                     quality === "720p"
                       ? " bg-black dark:bg-[#666] hover:bg-black"
@@ -217,7 +202,7 @@ const DropDown = () => {
                   720px
                 </Button>
                 <Button
-                  variant='outline'
+                  variant="outline"
                   className={` ${
                     quality === "360p"
                       ? " bg-black dark:bg-[#666] hover:bg-black"
@@ -230,12 +215,12 @@ const DropDown = () => {
                   360px
                 </Button>
               </div>
-              <h2 className='my-5 font-semibold'>All Qualities</h2>
-              <div className='grid grid-cols-3 sm:grid-cols-6 gap-4'>
+              <h2 className="my-5 font-semibold">All Qualities</h2>
+              <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
                 {qualits.map((e) => (
                   <Button
                     key={e.quality}
-                    variant='outline'
+                    variant="outline"
                     className={` ${
                       quality === e.quality
                         ? " bg-black dark:bg-[#666] hover:bg-black"
@@ -250,15 +235,15 @@ const DropDown = () => {
                 ))}
               </div>
             </div>
-            <div className='divider div-transparent '></div>
+            <div className="divider div-transparent "></div>
             <div>
-              <h2 className='my-5 font-semibold'>Languages</h2>
-              <div className='grid grid-cols-3 sm:grid-cols-6 gap-4'>
+              <h2 className="my-5 font-semibold">Languages</h2>
+              <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
                 {components.map((component) => (
                   <Button
                     key={component.name}
                     onClick={() => handleLanguageClick(component.name)}
-                    variant='outline'
+                    variant="outline"
                     className={` ${
                       selectedLanguage === component.name
                         ? " bg-black dark:bg-[#666] hover:bg-black"
@@ -275,17 +260,17 @@ const DropDown = () => {
                       height={18}
                       width={18}
                     />
-                    <span className='text-[12px]'> {component.name}</span>
+                    <span className="text-[12px]"> {component.name}</span>
                   </Button>
                 ))}
               </div>
             </div>
             <div>
-              <div className='divider div-transparent '></div>
-              <h2 className='my-5 font-semibold'>Modes</h2>
-              <div className='grid grid-cols-3 sm:grid-cols-6 gap-4'>
+              <div className="divider div-transparent "></div>
+              <h2 className="my-5 font-semibold">Modes</h2>
+              <div className="grid grid-cols-3 sm:grid-cols-6 gap-4">
                 <Button
-                  variant='outline'
+                  variant="outline"
                   className={` ${
                     selectedMode === "light"
                       ? " bg-black dark:bg-[#666] hover:bg-black"
@@ -301,7 +286,7 @@ const DropDown = () => {
                   Light
                 </Button>
                 <Button
-                  variant='outline'
+                  variant="outline"
                   className={` ${
                     selectedMode === "dark"
                       ? " bg-black dark:bg-[#666] hover:bg-black"
@@ -315,7 +300,7 @@ const DropDown = () => {
                   Dark
                 </Button>
                 <Button
-                  variant='outline'
+                  variant="outline"
                   className={` ${
                     selectedMode === "system"
                       ? " bg-black dark:bg-[#666] hover:bg-black"
