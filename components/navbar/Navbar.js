@@ -29,16 +29,16 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='wrap border-b border-[#f3f3f3] dark:border-[#333]'>
-        <div className='container'>
-          <div className='flex items-center justify-between px-[10px] py-5'>
+      <div className="wrap border-b border-[#f3f3f3] dark:border-[#333]">
+        <div className="container">
+          <div className="flex items-center justify-between px-[10px] py-5">
             <Logo />
-            <div className='flex items-center gap-4'>
+            <div className="flex items-center gap-4">
               <NavigationMenu>
                 <NavigationMenuList>
-                  <div className='nav flex items-center gap-2'>
+                  <div className="nav flex items-center gap-2">
                     <NavigationMenuItem>
-                      <Link href='/' legacyBehavior passHref>
+                      <Link href="/" legacyBehavior passHref>
                         <NavigationMenuLink
                           className={navigationMenuTriggerStyle()}
                         >
@@ -47,7 +47,7 @@ const Navbar = () => {
                       </Link>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                      <Link href='/player' legacyBehavior passHref>
+                      <Link href="/player" legacyBehavior passHref>
                         <NavigationMenuLink
                           className={navigationMenuTriggerStyle()}
                         >
@@ -57,19 +57,21 @@ const Navbar = () => {
                     </NavigationMenuItem>
                   </div>
 
-                  <div className='theme'></div>
+                  <div className="theme"></div>
 
                   <DropDown />
                   {toggle ? (
                     <Menu
                       onClick={handleMenu}
-                      className='ico absoulte right-0'
+                      className="ico absoulte right-0"
                     />
                   ) : (
-                    <RxCross2 onClick={handleMenu} className='ico' size={24} />
+                    <RxCross2 onClick={handleMenu} className="ico" size={24} />
                   )}
                   <NavigationMenuItem>
-                    <Btnpop />
+                    <div className="ml-[30px]">
+                      <Btnpop />
+                    </div>
                   </NavigationMenuItem>
                 </NavigationMenuList>
               </NavigationMenu>

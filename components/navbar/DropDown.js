@@ -160,7 +160,7 @@ const DropDown = () => {
             <span>
               <Paintbrush size={16} />
             </span>
-            <span className=" hidden sm:flex sm:pl-1 mr-[30px]">Customize</span>
+            <span className=" hidden sm:flex sm:pl-1">Customize</span>
           </Button>
         </SheetTrigger>
 
