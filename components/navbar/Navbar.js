@@ -2,28 +2,23 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { RxCross2 } from "react-icons/rx";
+import { Menu } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
+  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-import { Menu } from "lucide-react";
+import Logo from "../common/Logo";
 import MobileNav from "./MobileNav";
 import DropDown from "./DropDown";
-import Logo from "../common/Logo";
 import Btnpop from "./Btnpop";
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(true);
-  const handleClick = () => {
-    if (!toggle) {
-      setToggle(true);
-    }
-  };
 
-  const handleMenu = () => {
+  const toggleMenu = () => {
     setToggle(!toggle);
   };
 
@@ -62,11 +57,11 @@ const Navbar = () => {
                   <DropDown />
                   {toggle ? (
                     <Menu
-                      onClick={handleMenu}
+                      onClick={toggleMenu}
                       className="ico absoulte right-0"
                     />
                   ) : (
-                    <RxCross2 onClick={handleMenu} className="ico" size={24} />
+                    <RxCross2 onClick={toggleMenu} className="ico" size={24} />
                   )}
                   <NavigationMenuItem>
                     <div className="ml-[30px]">
@@ -78,7 +73,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <MobileNav toggle={toggle} menu={handleClick} />
+        <MobileNav toggle={toggle} menu={toggleMenu} />
       </div>
     </>
   );

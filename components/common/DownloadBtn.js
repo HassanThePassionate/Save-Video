@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import Image from "next/image";
@@ -11,14 +12,14 @@ import {
 const DownloadBtn = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
-  const btn = [
+  const btns = [
     {
       img: "/Chrome.png",
       label: "Add to Chrome",
     },
     {
       img: "/firefox.png",
-      label: "Add to Fire Fox",
+      label: "Add to Firefox",
     },
     {
       img: "/edge.png",
@@ -32,7 +33,7 @@ const DownloadBtn = () => {
 
   return (
     <div className="flex flex-col gap-4 mb-5 w-[50%]">
-      {btn.map((e, index) => (
+      {btns.map((btn, index) => (
         <Popover
           key={index}
           open={openIndex === index}
@@ -44,8 +45,8 @@ const DownloadBtn = () => {
               onClick={() => handleOpenChange(index, openIndex !== index)}
             >
               <div className="flex items-center gap-2">
-                <Image src={e.img} alt="img" width={22} height={22} />
-                <span className="text-[15px]">{e.label}</span>
+                <Image src={btn.img} alt="img" width={22} height={22} />
+                <span className="text-[15px]">{btn.label}</span>
               </div>
             </Button>
           </PopoverTrigger>

@@ -1,16 +1,16 @@
 import React from "react";
-import Menu_Iteams from "./menuIteams/Menu_Iteams";
+import MenuItems from "./menuIteams/Menu_Items";
 import Logo from "../common/Logo";
 
 const Footer = () => {
   return (
-    <footer className='wrap border-t border-[#f3f3f3] dark:border-[#333]'>
-      <div className='container'>
-        <div className='flex items-center justify-center sm:justify-between px-[10px] py-[20px] gap-3  flex-wrap  '>
+    <footer className="wrap border-t border-[#f3f3f3] dark:border-[#333]">
+      <div className="container">
+        <div className="flex flex-col items-center justify-center sm:flex-row sm:justify-between px-4 py-6 gap-3">
           <Logo />
-          <Menu_Iteams />
-          <div className='copyright'>
-            <span className='text-sm text-[#888] text-center'>
+          <MenuItems />
+          <div className="text-center sm:text-left">
+            <span className="text-sm text-[#888]">
               &copy; SaveVideo. 2018-2024
             </span>
           </div>

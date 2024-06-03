@@ -32,7 +32,7 @@ const UserList = () => {
 
   return (
     <>
-      <div className='grid'>
+      <div className="grid">
         {loading
           ? items.slice(0, expandedItems).map((_, index) => (
               <div key={index}>
@@ -45,11 +45,11 @@ const UserList = () => {
                 <UserItem key={item.id} name={item.name} time={item.time} />
               ))}
       </div>
-      <div className='flex items-center justify-center mt-3'>
+      <div className="flex items-center justify-center mt-3">
         {visibleItems < items.length && (
-          <Button onClick={loadMore} variant='outline' className='w-fit'>
+          <Button onClick={loadMore} variant="outline" className="w-fit">
             View more
-            <ChevronRight size={16} className='ml-1' />
+            <ChevronRight size={16} className="ml-1" />
           </Button>
         )}
       </div>

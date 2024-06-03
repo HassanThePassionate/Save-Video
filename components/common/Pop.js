@@ -19,20 +19,20 @@ import Link from "next/link";
 
 const Pop = ({ sliderValue, formatTime }) => {
   const [sortedBtn, setSortedBtn] = useState([]);
-  const finalduration = sliderValue[1] - sliderValue[0];
-  let formatduration = formatTime(finalduration);
+
+  const finalDuration = sliderValue[1] - sliderValue[0];
+  const formatDuration = formatTime(finalDuration);
 
   useEffect(() => {
     const result = browser();
 
-    // Adjust detection for Opera and Edge
     if (/OPR\//.test(navigator.userAgent)) {
       result.name = "opera";
     } else if (/Edg\//.test(navigator.userAgent)) {
       result.name = "edge";
     }
 
-    const btn = [
+    const browserButtons = [
       {
         img: "/Chrome.png",
         label: "Chrome",
@@ -40,7 +40,7 @@ const Pop = ({ sliderValue, formatTime }) => {
       },
       {
         img: "/firefox.png",
-        label: "Fire Fox",
+        label: "Firefox",
         browser: "firefox",
       },
       {
@@ -55,16 +55,11 @@ const Pop = ({ sliderValue, formatTime }) => {
       },
     ];
 
-    let detectedBrowser = btn.find((b) => {
-      if (result.name === "chrome" && b.browser === "chrome") return true;
-      if (result.name === "firefox" && b.browser === "firefox") return true;
-      if (result.name === "edge" && b.browser === "edge") return true;
-      if (result.name === "opera" && b.browser === "opera") return true;
-      return false;
-    });
-
-    const otherBrowsers = btn.filter((b) => b !== detectedBrowser);
-    const sorted = detectedBrowser ? [detectedBrowser, ...otherBrowsers] : btn;
+    let detectedBrowser = browserButtons.find((b) => b.browser === result.name);
+    const otherBrowsers = browserButtons.filter((b) => b !== detectedBrowser);
+    const sorted = detectedBrowser
+      ? [detectedBrowser, ...otherBrowsers]
+      : browserButtons;
 
     setSortedBtn(sorted);
   }, []);
@@ -82,7 +77,7 @@ const Pop = ({ sliderValue, formatTime }) => {
               href="#"
               className="absolute left-0 right-0 mt-2.5  flex justify-center cursor-pointer"
             >
-              <Badge variant="secondary">{formatduration}</Badge>
+              <Badge variant="secondary">{formatDuration}</Badge>
             </Link>
           </AlertDialogTrigger>
           <AlertDialogContent className="mb-3  overflow-y-auto max-h-[calc(100vh-4rem)]">
@@ -120,12 +115,12 @@ const Pop = ({ sliderValue, formatTime }) => {
             </div>
             <div className="divider div-transparent mb-4 "></div>
             <AlertDialogFooter className="gap-2 sm:gap-0">
-              {sortedBtn.map((e, index) => (
-                <AlertDialogAction variant="outline" key={e.img}>
+              {sortedBtn.map((browser, index) => (
+                <AlertDialogAction variant="outline" key={browser.img}>
                   <div className="flex items-center gap-2">
-                    <Image src={e.img} alt="img" width={22} height={22} />
+                    <Image src={browser.img} alt="img" width={22} height={22} />
                     <span className="text-[15px]">
-                      {index === 0 ? `Add to ${e.label}` : e.label}
+                      {index === 0 ? `Add to ${browser.label}` : browser.label}
                     </span>
                   </div>
                 </AlertDialogAction>

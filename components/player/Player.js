@@ -119,14 +119,14 @@ const Player = () => {
 
   return (
     <div>
-      <main className='max-w-3xl mx-auto my-4 md:my-12 space-y-8'>
+      <main className="max-w-3xl mx-auto my-4 md:my-12 space-y-8">
         <Card>
-          <CardHeader className='px-4 sm:px-10 md:pt-10 flex flex-row items-center gap-4'>
+          <CardHeader className="px-4 sm:px-10 md:pt-10 flex flex-row items-center gap-4">
             <Header />
           </CardHeader>
-          <div className='px-4 sm:px-10 pb-10'>
+          <div className="px-4 sm:px-10 pb-10">
             <VideoPlayer
-              url='https://www.youtube.com/embed/RD4JPW6mKaU'
+              url="https://www.youtube.com/embed/RD4JPW6mKaU"
               playing={play}
               muted={mute}
               onDuration={handleDuration}
@@ -145,7 +145,7 @@ const Player = () => {
               formatTime={formatTime}
             />
           </div>
-          <div className='flex items-center flex-col gap-4 text-center px-7 sm:px-10'>
+          <div className="flex items-center flex-col gap-4 text-center px-7 sm:px-10">
             <MultiSlider
               defaultValue={sliderValue}
               min={0}
@@ -161,7 +161,7 @@ const Player = () => {
               replay={replay}
             />
           </div>
-          <CardContent className='px-4 sm:px-10 pt-8 pb-20 flex gap-5 sm:gap-4 items-center justify-center sm:justify-between flex-wrap'>
+          <CardContent className="px-4 sm:px-10 pt-8 pb-20 flex gap-5 sm:gap-4 items-center justify-center sm:justify-between flex-wrap">
             <TimeAdjuster
               sliderValue={sliderValue}
               setSliderValue={setSliderValue}
@@ -169,18 +169,17 @@ const Player = () => {
               formatTime={formatTime}
               videoRef={videoRef}
             />
-            <div className='flex items-center gap-4'>
+            <div className="flex items-center gap-4">
               <Pop
                 sliderValue={sliderValue}
                 duration={duration}
                 formatTime={formatTime}
               />
-
               <TooltipProvider delayDuration={0}>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Button size='icon' variant='outline' className='w-12 h-10'>
-                      <Music className='h-4 w-4' />
+                    <Button size="icon" variant="outline" className="w-12 h-10">
+                      <Music className="h-4 w-4" />
                     </Button>
                   </TooltipTrigger>
                   <TooltipContent>

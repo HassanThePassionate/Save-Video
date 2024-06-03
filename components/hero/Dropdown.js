@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useRef, useState } from "react";
 import {
   DropdownMenu,
@@ -20,6 +18,7 @@ import { Badge } from "@/components/ui/badge";
 import { ChevronDown, Download, Scissors, Music } from "lucide-react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
+
 const Dropdown = () => {
   const quality = useSelector((state) => state.quality.quality);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -28,6 +27,7 @@ const Dropdown = () => {
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
   };
+
   const dropdownItems = [
     { label: "720p", size: "64.6MB", badge: true },
     { label: "360p", size: "17.7MB", badge: false },
@@ -36,55 +36,55 @@ const Dropdown = () => {
   ];
 
   return (
-    <div className='flex items-center gap-4'>
-      <div className='flex items-center'>
-        <Button className='rounded-r-none dark:hover:bg-[#dadada] hover:bg-[#333]'>
-          <Download className='h-4 w-4' />
+    <div className="flex items-center gap-4">
+      <div className="flex items-center">
+        <Button className="rounded-r-none dark:hover:bg-[#dadada] hover:bg-[#333]">
+          <Download className="h-4 w-4" />
         </Button>
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <Button variant='outline' className='rounded-l-none'>
+            <Button variant="outline" className="rounded-l-none">
               <span>MP4 {quality}</span>
-              <span className='pl-2'>
+              <span className="pl-2">
                 <ChevronDown size={14} />
               </span>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className='w-[17.5rem] mr-[-4.1rem]'>
+          <DropdownMenuContent className="w-[17.5rem] mr-[-4.1rem]">
             <DropdownMenuGroup>
               {dropdownItems.map((item, index) => (
-                <Link href='#' key={index}>
-                  <DropdownMenuItem className='justify-between '>
+                <Link href="#" key={index}>
+                  <DropdownMenuItem className="justify-between ">
                     <p>
                       MP4
-                      <span className='ml-2'>{item.label}</span>
+                      <span className="ml-2">{item.label}</span>
                     </p>
-                    {item.badge && <Badge variant='secondary'>HD</Badge>}
-                    <DropdownMenuShortcut className='ml-0'>
+                    {item.badge && <Badge variant="secondary">HD</Badge>}
+                    <DropdownMenuShortcut className="ml-0">
                       {item.size}
                     </DropdownMenuShortcut>
                   </DropdownMenuItem>
                 </Link>
               ))}
-              <div className='relative' ref={dropdownRef}>
+              <div className="relative" ref={dropdownRef}>
                 {!isDropdownOpen ? (
                   <button
                     onClick={toggleDropdown}
-                    className='hover:bg-secondary text-secondary-foreground flex justify-between items-center text-xs w-full py-1 px-2'
+                    className="hover:bg-secondary text-secondary-foreground flex justify-between items-center text-xs w-full py-1 px-2"
                   >
-                    More <ChevronDown className='w-4 h-4' />
+                    More <ChevronDown className="w-4 h-4" />
                   </button>
                 ) : (
-                  <div className='w-full'>
+                  <div className="w-full">
                     {dropdownItems.map((item, index) => (
-                      <Link href='#' key={index + dropdownItems.length}>
-                        <DropdownMenuItem className='justify-between '>
+                      <Link href="#" key={index + dropdownItems.length}>
+                        <DropdownMenuItem className="justify-between ">
                           <p>
                             MP4
-                            <span className='ml-2'>{item.label}</span>
+                            <span className="ml-2">{item.label}</span>
                           </p>
-                          {item.badge && <Badge variant='secondary'>HD</Badge>}
-                          <DropdownMenuShortcut className='ml-0'>
+                          {item.badge && <Badge variant="secondary">HD</Badge>}
+                          <DropdownMenuShortcut className="ml-0">
                             {item.size}
                           </DropdownMenuShortcut>
                         </DropdownMenuItem>
@@ -101,8 +101,8 @@ const Dropdown = () => {
       <TooltipProvider delayDuration={0}>
         <Tooltip>
           <TooltipTrigger>
-            <Button variant='outline' size='icon'>
-              <Scissors className='h-4 w-4' />
+            <Button variant="outline" size="icon">
+              <Scissors className="h-4 w-4" />
             </Button>
           </TooltipTrigger>
           <TooltipContent>
@@ -114,8 +114,8 @@ const Dropdown = () => {
       <TooltipProvider delayDuration={0}>
         <Tooltip>
           <TooltipTrigger>
-            <Button variant='outline' size='icon'>
-              <Music className='h-4 w-4' />
+            <Button variant="outline" size="icon">
+              <Music className="h-4 w-4" />
             </Button>
           </TooltipTrigger>
           <TooltipContent>

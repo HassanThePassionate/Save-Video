@@ -10,17 +10,17 @@ import {
 import { ReplyAll, Pause, Play, Volume2, VolumeX } from "lucide-react";
 
 const Controls = ({ play, mute, togglePlay, toggleMute, replay }) => (
-  <div className='flex items-center gap-4'>
-    <TooltipProvider delayDuration={0}>
+  <div className="flex items-center gap-4">
+    <TooltipProvider delayDuration={300}>
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
-            size='icon'
-            variant='outline'
+            size="icon"
+            variant="outline"
             onClick={replay}
-            className='w-12 h-10'
+            className="w-12 h-10"
           >
-            <ReplyAll className='w-4 h-4' />
+            <ReplyAll className="w-4 h-4" />
           </Button>
         </TooltipTrigger>
         <TooltipContent>
@@ -29,19 +29,19 @@ const Controls = ({ play, mute, togglePlay, toggleMute, replay }) => (
       </Tooltip>
     </TooltipProvider>
 
-    <TooltipProvider delayDuration={0}>
+    <TooltipProvider delayDuration={300}>
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
-            size='icon'
-            variant='outline'
+            size="icon"
+            variant="outline"
             onClick={togglePlay}
-            className='w-12 h-10'
+            className="w-12 h-10"
           >
             {play ? (
-              <Pause className='w-4 h-4' />
+              <Pause className="w-4 h-4" />
             ) : (
-              <Play className='w-4 h-4' />
+              <Play className="w-4 h-4" />
             )}
           </Button>
         </TooltipTrigger>
@@ -51,19 +51,19 @@ const Controls = ({ play, mute, togglePlay, toggleMute, replay }) => (
       </Tooltip>
     </TooltipProvider>
 
-    <TooltipProvider delayDuration={0}>
+    <TooltipProvider delayDuration={300}>
       <Tooltip>
         <TooltipTrigger asChild>
           <Button
-            size='icon'
-            variant='outline'
+            size="icon"
+            variant="outline"
             onClick={toggleMute}
-            className='w-12 h-10'
+            className="w-12 h-10"
           >
             {!mute ? (
-              <Volume2 className='h-4 w-4' />
+              <Volume2 className="h-4 w-4" />
             ) : (
-              <VolumeX className='h-4 w-4' />
+              <VolumeX className="h-4 w-4" />
             )}
           </Button>
         </TooltipTrigger>

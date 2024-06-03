@@ -63,9 +63,10 @@ const LinkInput = ({ loading, setLoading }) => {
         setError(`URL is unsupported.`);
       }
     } catch (error) {
-      setError("URL is unsupported..");
+      setError("URL is unsupported.");
     }
   };
+
   const clear = () => {
     setUrl("");
     setLoading(false);
@@ -80,7 +81,7 @@ const LinkInput = ({ loading, setLoading }) => {
         } overflow-hidden`}
       >
         <Button
-          variant='secondary'
+          variant="secondary"
           disabled={loading}
           onClick={pasteLink}
           className={`transition-transform duration-300 ${
@@ -89,32 +90,32 @@ const LinkInput = ({ loading, setLoading }) => {
         >
           {loading ? (
             <>
-              <LoaderCircle className='mr-2 h-4 w-4 animate-spin' />
+              <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
               Please wait
             </>
           ) : (
             <>
-              <Clipboard className='mr-2 h-4 w-4' />
+              <Clipboard className="mr-2 h-4 w-4" />
               Paste Link
             </>
           )}
         </Button>
       </div>
 
-      <div className='flex items-center space-x-4 px-0'>
-        <div className='w-full relative'>
+      <div className="flex items-center space-x-4 px-0">
+        <div className="w-full relative">
           <Input
             onClick={handleClick}
-            type='url'
-            placeholder='Enter URL'
+            type="url"
+            placeholder="Enter URL"
             value={url}
             onChange={handleChange}
             onPaste={inputHandler}
-            className='!h-10 pr-10 text-[16px]'
+            className="!h-10 pr-10 text-[16px]"
           />
           {url && (
             <X
-              className=' absolute top-2.5 right-2 cursor-pointer'
+              className=" absolute top-2.5 right-2 cursor-pointer"
               size={20}
               onClick={clear}
             />
@@ -124,25 +125,25 @@ const LinkInput = ({ loading, setLoading }) => {
         <Button
           disabled={loading}
           onClick={pasteLink}
-          variant='secondary'
+          variant="secondary"
           className={`hidden sm:flex transition-transform duration-300 ${
             loading ? "transform scale-95" : ""
           }`}
         >
           {loading ? (
             <>
-              <LoaderCircle className='mr-2 h-4 w-4 animate-spin' />
+              <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
               Please wait
             </>
           ) : (
             <>
-              <Clipboard className='mr-2 h-4 w-4' />
+              <Clipboard className="mr-2 h-4 w-4" />
               Paste Link
             </>
           )}
         </Button>
       </div>
-      {error && <p className='text-red-500 text-sm '>{error}</p>}
+      {error && <p className="text-red-500 text-sm ">{error}</p>}
     </>
   );
 };
