@@ -27,7 +27,7 @@ const Navbar = () => {
       <div className="wrap border-b border-[#f3f3f3] dark:border-[#333]">
         <div className="container">
           <div className="flex items-center justify-between px-[10px] py-5">
-            <Logo />
+            <Logo menu={toggleMenu} />
             <div className="flex items-center gap-4">
               <NavigationMenu>
                 <NavigationMenuList>
@@ -64,7 +64,7 @@ const Navbar = () => {
                     <RxCross2 onClick={toggleMenu} className="ico" size={24} />
                   )}
                   <NavigationMenuItem>
-                    <div className="ml-[30px]">
+                    <div className="ml-[30px] hidden lg:flex">
                       <Btnpop />
                     </div>
                   </NavigationMenuItem>

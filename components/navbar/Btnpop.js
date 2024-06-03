@@ -26,7 +26,7 @@ const Btnpop = () => {
         <button
           id="browser_btn"
           onClick={() => setOpen(!open)}
-          className="px-5 py-3 bg-black text-white lg:flex items-center gap-2 text-base font-semibold rounded-md  transition-all hover:bg-[#444] dark:hover:bg-[#555] dark:bg-[#333]"
+          className="px-5 py-3 bg-black text-white flex items-center gap-2 text-base font-semibold rounded-md  transition-all hover:bg-[#444] dark:hover:bg-[#555] dark:bg-[#333]"
         >
           <Image src={`/${browserName}.png`} alt="img" width={20} height={20} />
           Add to&nbsp;
@@ -34,7 +34,7 @@ const Btnpop = () => {
         </button>
       </PopoverTrigger>
       <PopoverContent onClose={() => setOpen(false)}>
-        <div className="flex items-center gap-4 mt-2 ">
+        <div className=" sm:flex-row flex-col w-[300px] sm:max-w-md  flex items-center gap-4 mt-2 ">
           <div>
             <Image
               src="https://i0.wp.com/addoncrop.com/wp-content/uploads/2021/03/Foxified-icon.png"

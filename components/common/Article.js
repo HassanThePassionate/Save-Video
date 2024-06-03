@@ -10,7 +10,7 @@ const Article = () => {
   if (toggled) return null;
 
   return (
-    <div className="max-w-3xl mx-auto my-4 md:my-12 space-y-8">
+    <div className="max-w-3xl sm:px-3 mx-auto my-4 md:my-12 space-y-8">
       <Card>
         <CardHeader className="p-4 sm:px-10 md:pt-10">
           <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight border-b pb-2">

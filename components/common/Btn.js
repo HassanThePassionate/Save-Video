@@ -20,7 +20,7 @@ const Btn = () => {
         </p>
         <Btnpop />
         <p className="text-sm text-[#9ca3af]">
-          Made by{" "}
+          Made by
           <Link href="#" className="hover:underline">
             cssninja.io
           </Link>

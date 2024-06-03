@@ -11,7 +11,7 @@ const Hero = () => {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="max-w-3xl mx-auto my-4 md:my-12 space-y-8">
+    <div className="max-w-3xl mx-auto my-4 md:my-12 sm:px-3 space-y-8">
       <Card>
         <CardHeader className="p-4 sm:px-10 md:pt-10">
           <Header />

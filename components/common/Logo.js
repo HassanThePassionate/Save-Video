@@ -1,9 +1,9 @@
 import Link from "next/link";
 import React from "react";
 
-const Logo = () => {
+const Logo = ({ menu }) => {
   return (
-    <div>
+    <div onClick={menu}>
       <Link
         href="/"
         className="logo text-[16px] font-bold flex items-center gap-3 "
